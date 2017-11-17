@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.collections.FXCollections?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <top>
+        <FlowPane alignment="CENTER" prefHeight="30" prefWidth="330">
+            <children>
+                <Label style="-fx-font: NORMAL 20 Tahoma" text="写入EPC工具" textAlignment="CENTER"/>
+            </children>
+        </FlowPane>
+    </top>
+    <center>
+        <GridPane alignment="center" hgap="10" vgap="10">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10"/>
+            </padding>
+            <children>
+                <Label text="主机名：" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <HBox prefHeight="23.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <children>
+                        <ChoiceBox fx:id="readername" value="speedwayr"
+                                prefHeight="23.0">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="speedwayr"/>
+                                </FXCollections>
+                            </items>
+                        </ChoiceBox>
+                        <Label prefHeight="23" text="-"/>
+                        <TextField fx:id="mac_1" prefColumnCount="2"/>
+                        <Label prefHeight="23" text="-"/>
+                        <TextField fx:id="mac_2" prefColumnCount="2"/>
+                        <Label prefHeight="23" text="-"/>
+                        <TextField fx:id="mac_3" prefColumnCount="2"/>
+                        <Label prefHeight="23" text=".local"/>
+                    </children>
+                </HBox>
+                <Label text="功率：" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <children>
+                        <Slider majorTickUnit="1" minorTickCount="1"
+                                showTickLabels="true" showTickMarks="true"
+                                blockIncrement="1" snapToTicks="true"
+                                value="22.5"
+                                fx:id="power_slider"
+                                onMouseDragged="#handleChangePower" onMouseClicked="#handleChangePower"
+                                max="35.0" min="20.0" prefHeight="14.0" prefWidth="196.0"/>
+                        <Label fx:id="powertext" text="22.5" alignment="CENTER"
+                                   prefHeight="23.0" prefWidth="48.0">
+
+                        </Label>
+                        <Label text="db"/>
+                    </children>
+                </HBox>
+<!--
+
+                <Label text="掩码位：" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <children>
+                        <Slider majorTickUnit="4" minorTickCount="1"
+                                showTickLabels="true" showTickMarks="true"
+                                blockIncrement="1" snapToTicks="true"
+                                value="16"
+                                fx:id="tagmask_slider"
+                                onMouseDragged="#handleChangeTaglen" onMouseClicked="#handleChangeTaglen"
+                                max="24" min="4" prefHeight="14.0" prefWidth="204.0"/>
+                        <Label fx:id="taglentext" text="16" alignment="CENTER"
+                               prefHeight="23.0" prefWidth="48.0">
+
+                        </Label>
+                    </children>
+                </HBox>
+                <Label text="掩码：" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+
+                    <TextField fx:id="tagmaskText" prefColumnCount="6"
+                               onKeyReleased="#tagmaskchange"
+                               GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+-->
+
+                <Label text="端口：" GridPane.rowIndex="5"/>
+                <ChoiceBox fx:id="porter" value="1"
+                           prefHeight="23.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="1"/>
+                            <String fx:value="2"/>
+                            <String fx:value="3"/>
+                            <String fx:value="4"/>
+                        </FXCollections>
+                    </items>
+                </ChoiceBox>
+                <Button fx:id="setting" onAction="#handleSetting" text="设置" GridPane.columnIndex="1"
+                        GridPane.rowIndex="6"/>
+                <Label text="EPC：" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+                <HBox GridPane.columnIndex="1" GridPane.rowIndex="7">
+                    <TextField fx:id="EPC1" prefColumnCount="6"/>
+                    <TextField fx:id="EPC2" prefColumnCount="6"/>
+                    <TextField fx:id="EPC3" prefColumnCount="6"/>
+                </HBox>
+                <Button fx:id="write" text="写入" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+            </children>
+        </GridPane>
+    </center>
+    <bottom>
+        <VBox alignment="TOP_LEFT">
+            <padding>
+                <Insets bottom="20" left="30" right="30" top="0"/>
+            </padding>
+            <children>
+                <Label alignment="BASELINE_LEFT" text="消息：">
+                    <font>
+                        <Font size="15.0"/>
+                    </font>
+                </Label>
+                <TextArea fx:id="print" prefColumnCount="20" prefRowCount="5"/>
+            </children>
+        </VBox>
+    </bottom>
+</BorderPane>

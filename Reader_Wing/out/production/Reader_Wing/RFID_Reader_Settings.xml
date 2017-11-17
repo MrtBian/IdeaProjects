@@ -1,0 +1,405 @@
+{
+  "autoStart": {
+    "mode": "None",
+    "gpiPortNumber": 0,
+    "firstDelayInMs": 0,
+    "periodInMs": 0,
+    "utcTimestamp": 0
+  },
+  "autoStop": {
+    "mode": "None",
+    "durationInMs": 0,
+    "gpiPortNumber": 0,
+    "timeout": 0
+  },
+  "readerMode": "MaxThroughput",
+  "searchMode": "DualTarget",
+  "session": 0,
+  "tagPopulationEstimate": 4,
+  "lowDutyCycle": {
+    "IsEnabled": false,
+    "EmptyFieldTimeoutInMs": 0,
+    "FieldPingIntervalInMs": 0
+  },
+  "filters": {
+    "Mode": "OnlyFilter1",
+    "TagFilter1": {
+      "TagMask": "11070005",
+      "BitPointer": 32,
+      "BitCount": 32,
+      "MemoryBank": "Epc",
+      "FilterOp": "Match"
+    },
+    "TagFilter2": {
+      "BitPointer": 0,
+      "BitCount": 0
+    }
+  },
+  "report": {
+    "mode": "Individual",
+    "includeAntennaPortNumber": true,
+    "includeChannel": true,
+    "includeFirstSeenTime": true,
+    "includeLastSeenTime": true,
+    "includePeakRssi": true,
+    "includeSeenCount": false,
+    "includeFastId": true,
+    "includePhaseAngle": true,
+    "includeDopplerFrequency": true,
+    "includeGpsCoordinates": false,
+    "includePcBits": true,
+    "includeCrc": false,
+    "optimizedReadOps": []
+  },
+  "antennas": {
+    "antennaConfigs": [
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 1,
+        "portName": "Antenna Port 1"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 2,
+        "portName": "Antenna Port 2"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 3,
+        "portName": "Antenna Port 3"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 4,
+        "portName": "Antenna Port 4"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 5,
+        "portName": "Antenna Port 5"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 6,
+        "portName": "Antenna Port 6"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 7,
+        "portName": "Antenna Port 7"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 8,
+        "portName": "Antenna Port 8"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 9,
+        "portName": "Antenna Port 9"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 10,
+        "portName": "Antenna Port 10"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 11,
+        "portName": "Antenna Port 11"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 12,
+        "portName": "Antenna Port 12"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 13,
+        "portName": "Antenna Port 13"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 14,
+        "portName": "Antenna Port 14"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 15,
+        "portName": "Antenna Port 15"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 16,
+        "portName": "Antenna Port 16"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 17,
+        "portName": "Antenna Port 17"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 18,
+        "portName": "Antenna Port 18"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 19,
+        "portName": "Antenna Port 19"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 20,
+        "portName": "Antenna Port 20"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 21,
+        "portName": "Antenna Port 21"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 22,
+        "portName": "Antenna Port 22"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 23,
+        "portName": "Antenna Port 23"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 24,
+        "portName": "Antenna Port 24"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 25,
+        "portName": "Antenna Port 25"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 26,
+        "portName": "Antenna Port 26"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 27,
+        "portName": "Antenna Port 27"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 28,
+        "portName": "Antenna Port 28"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 29,
+        "portName": "Antenna Port 29"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 30,
+        "portName": "Antenna Port 30"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 31,
+        "portName": "Antenna Port 31"
+      },
+      {
+        "rxSensitivityinDbm": 0.0,
+        "txPowerinDbm": 24.0,
+        "isMaxRxSensitivity": true,
+        "isMaxTxPower": false,
+        "enabled": true,
+        "portNumber": 32,
+        "portName": "Antenna Port 32"
+      }
+    ],
+    "antennaCollectionCreatedBySerializer": false,
+    "rxSensitivityinDbm": 0.0,
+    "txPowerinDbm": 0.0,
+    "isMaxRxSensitivity": true,
+    "isMaxTxPower": true,
+    "polarizationEnabled": false
+  },
+  "gpis": {
+    "gpiConfigs": [],
+    "gpiCollectionCreatedBySerializer": false
+  },
+  "gpos": {
+    "gpoConfigs": [],
+    "gpoCollectionCreatedBySerializer": false
+  },
+  "keepalives": {
+    "enabled": false,
+    "periodInMs": 0,
+    "enableLinkMonitorMode": false,
+    "linkDownThreshold": 0
+  },
+  "holdReportsOnDisconnect": false,
+  "txFrequenciesInMhz": [],
+  "xArray": {
+    "spatialConfig": {
+      "mode": "Inventory",
+      "placement": {
+        "heightCm": 400,
+        "facilityXLocationCm": 0,
+        "facilityYLocationCm": 0,
+        "orientationDegrees": 0
+      },
+      "location": {
+        "computeWindowSeconds": 10,
+        "tagAgeIntervalSeconds": 20,
+        "updateIntervalSeconds": 5,
+        "updateReportEnabled": true,
+        "entryReportEnabled": true,
+        "exitReportEnabled": true,
+        "diagnosticReportEnabled": false,
+        "isMaxTxPower": true,
+        "txPowerinDbm": 0.0,
+        "disabledAntennaList": []
+      },
+      "direction": {
+        "enabledSectors": [],
+        "userTagPopulationLimit": 0,
+        "isMaxTxPower": true,
+        "txPowerinDbm": 0.0,
+        "tagAgeIntervalSeconds": 2,
+        "updateIntervalSeconds": 2,
+        "updateReportEnabled": true,
+        "entryReportEnabled": true,
+        "exitReportEnabled": true,
+        "diagnosticReportEnabled": false,
+        "fieldOfView": "READER_SELECTED",
+        "mode": "HighPerformance"
+      }
+    }
+  }
+}
