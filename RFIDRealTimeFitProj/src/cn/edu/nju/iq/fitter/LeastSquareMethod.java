@@ -2,6 +2,7 @@ package cn.edu.nju.iq.fitter;
 
 /**
  * Least square method class.
+ * 使用最小二乘法拟合曲线
  */
 public class LeastSquareMethod {
 
