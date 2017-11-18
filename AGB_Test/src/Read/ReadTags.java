@@ -4,32 +4,37 @@ import Tools.LeastSquareMethod;
 import com.impinj.octane.ImpinjReader;
 import com.impinj.octane.OctaneSdkException;
 import com.impinj.octane.Settings;
+import main.EachInfo;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 import static java.lang.Math.max;
+import static java.lang.Math.rint;
 import static java.lang.Thread.sleep;
+import static java.lang.Thread.yield;
 
 
 public class ReadTags implements TagReportListenerImplementation.OnGetStartTimeCallback {
-    public static PrintWriter writer;
+    //public static PrintWriter writer;
     public static List<String> infoList;
-    private String path = ".\\Data";
-    private String dateStr = "1110";
-    private String dataFile = dateStr + "_1.txt";
+    public String path = ".\\Data";
+    private String datastr = "1108";
+    public String dataFile = datastr + "_8.txt";
     private ReaderSettings setting;
-    //给定时间间隔
+    //时间间隔
     private int during = 5;
 
     private long startTime = 0;
     private long endTime = 0;
-    private String timeFile = dateStr + "_time.txt";
+    private String timeFile = datastr + "_time.txt";
 
-    private ReadTags() {
+    public ReadTags() {
         File file = new File(path);
         if (!file.exists() && !file.isDirectory()) {
             file.mkdir();
@@ -37,14 +42,14 @@ public class ReadTags implements TagReportListenerImplementation.OnGetStartTimeC
         setting = new ReaderSettings();
     }
 
-    private void reading() {
+    public void reading() {
         try {
             String hostname = setting.hostname;
             ImpinjReader reader = new ImpinjReader();
             reader.connect(hostname);
             reader.applySettings(Settings.load(setting.settingsFilePath));
 
-            writer = new PrintWriter(path+"\\"+dataFile, "UTF-8");
+            //writer = new PrintWriter(path+"\\"+dataFile, "UTF-8");
             infoList = new ArrayList<>();
             reader.setTagReportListener(new TagReportListenerImplementation(this));
             reader.start();
@@ -52,9 +57,8 @@ public class ReadTags implements TagReportListenerImplementation.OnGetStartTimeC
             waitPolyfit();
             int toMidTimes = polyFit();
             long midTime = startTime + toMidTimes;
-            endTime = midTime + during * 1000;
-            sleep(endTime - System.currentTimeMillis());
-
+            long endTime = midTime + during * 1000;
+            waitTimeMillis(endTime);
             System.out.println("Midtime: " + toMidTimes);
             //Scanner s = new Scanner(System.in);
             //s.nextLine();
@@ -78,11 +82,11 @@ public class ReadTags implements TagReportListenerImplementation.OnGetStartTimeC
         }
     }
 
-/*    *//**
+    /**
      * 等待直到endtime
      *
      * @param endTime 终止时间
-     *//*
+     */
     public void waitTimeMillis(long endTime) {
         long curTime = System.currentTimeMillis();
         if (curTime > endTime) {
@@ -97,14 +101,14 @@ public class ReadTags implements TagReportListenerImplementation.OnGetStartTimeC
             }
             curTime = System.currentTimeMillis();
         }
-    }*/
+    }
 
     /**
      * 拟合数据，返回中线对应时间
      *
      * @return midTime
      */
-    private int polyFit() {
+    public int polyFit() {
         int num = infoList.size();
         double[] xTime = new double[num];
         double[] yRssi = new double[num];
@@ -122,7 +126,7 @@ public class ReadTags implements TagReportListenerImplementation.OnGetStartTimeC
         return (int) (-a[1] / (a[2] * 2));
     }
 
-    private void waitPolyfit() {
+    public void waitPolyfit() {
         while (!isPolyfit()) {
             /*wait*/
             System.out.println("waiting start polyfit...");
@@ -139,7 +143,7 @@ public class ReadTags implements TagReportListenerImplementation.OnGetStartTimeC
      *
      * @return
      */
-    private boolean isPolyfit() {
+    public boolean isPolyfit() {
          /*条件*/
         int num = infoList.size();
         if(num<5){
@@ -148,18 +152,19 @@ public class ReadTags implements TagReportListenerImplementation.OnGetStartTimeC
         double[] xTime = new double[num];
         double[] yRssi = new double[num];
         double[] yphase = new double[num];
-        double maxRssi = 0.0;
+        double maxRssi = -70.0;
         for (int i = 0; i < num; i++) {
             String[] info = infoList.get(i).split(" ");
             xTime[i] = Long.parseLong(info[4]);
             yRssi[i] = Double.parseDouble(info[2]);
             yphase[i] = Double.parseDouble(info[3]);
+            //System.out.println("yRssi: "+yRssi[i]);
             if (yRssi[i] > maxRssi) {
                 maxRssi = yRssi[i];
             }
         }
-
-        if (yRssi[num - 1] > yRssi[num - 2] || yRssi[num - 1] > maxRssi - 5) {
+        System.out.println("MaxRssi: "+maxRssi);
+        if (yRssi[num - 1] > yRssi[num - 2] || yRssi[num - 1] > maxRssi - 4) {
             return false;
         }
         //连续下降点的个数
@@ -174,8 +179,6 @@ public class ReadTags implements TagReportListenerImplementation.OnGetStartTimeC
                 return false;
             }
         }*/
-
-
         return true;
     }
 

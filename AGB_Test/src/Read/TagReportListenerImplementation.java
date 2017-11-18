@@ -39,8 +39,8 @@ public class TagReportListenerImplementation implements TagReportListener {
         }
         List<Tag> tags = report.getTags();
         for (Tag t : tags) {
-            /*System.out.print(" EPC: " + t.getEpc().toString());
-            if (reader.getName() != null) {
+            //System.out.print(" EPC: " + t.getEpc().toString());
+            /*if (reader.getName() != null) {
                 System.out.print(" Reader_name: " + reader.getName());
             } else {
                 System.out.print(" Reader_ip: " + reader.getAddress());
@@ -106,7 +106,7 @@ public class TagReportListenerImplementation implements TagReportListener {
             }
 
             //System.out.println("");
-            ReadTags.writer.println(record);
+            //ReadTags.writer.println(record);
             ReadTags.infoList.add(record);
         }
     }

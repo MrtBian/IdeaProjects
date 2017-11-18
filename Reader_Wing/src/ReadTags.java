@@ -11,8 +11,8 @@ import java.util.Scanner;
 public class ReadTags implements TagReportListenerImplementation.OnGetStartTimeCallback {
     public static PrintWriter writer;
     public String path = ".\\Data";
-    private String datastr = "1108";
-    public String dataFile = datastr + "_8.txt";
+    private String datastr = "1110";
+    public String dataFile = datastr + "_test.txt";
     private ReaderSettings setting;
 
     private long startTime = 0;
