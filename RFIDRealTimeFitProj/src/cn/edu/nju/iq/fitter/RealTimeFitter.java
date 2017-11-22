@@ -124,16 +124,21 @@ public class RealTimeFitter {
         if(leftMaxIndex != rightMaxIndex) {
             int newLen = len - rightMaxIndex + leftMaxIndex;
             double [] newPhase = new double[newLen];
+            double [] newTime =new double[newLen];
             int i = 0;
             for(;i < leftMaxIndex;i++) {
                 newPhase[i] = phase[i];
+                newTime[i] = timeStamp[i];
             }
             for(int j = rightMaxIndex + 1;j < len;j++, i++) {
                 newPhase[i] = phase[j];
+                newTime[i] = timeStamp[j];
             }
             phase = new double[newLen];
+            timeStamp = new double[newLen];
             for(int j = 0;j < newLen;j++) {
                 phase[j] = newPhase[j];
+                timeStamp[j] = newTime[j];
             }
         }
     }
