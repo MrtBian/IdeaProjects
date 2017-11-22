@@ -46,20 +46,23 @@ public class Reader {
                 @Override
                 public void onGetFirstReadTime(long firstReadTime) {
                     startTime = firstReadTime;
+                    realTimeFitter.setStartTime(firstReadTime);
                 }
             }));
+            Thread.sleep(1000);
+            mouseClick();
+            Thread.sleep(500);
             reader.start();
 
             int midTime = realTimeFitter.fit(Constants.FIT_WAY);
+            reader.stop();
+            reader.disconnect();
             System.out.println("midTime: " + midTime);
             endTime = startTime + midTime + Constants.THRESHOLD_RUN_INTERVAL_WHEN_PEAK_APPEAR;
             System.out.println("stop...");
             Thread.sleep(endTime - System.currentTimeMillis());
-            System.out.println("stop");
 
-//            stopRun();
-            reader.stop();
-            reader.disconnect();
+            mouseClick();
         } catch (OctaneSdkException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -67,7 +70,7 @@ public class Reader {
         }
     }
 
-    private void stopRun() {
+    private void mouseClick() {
         try {
             Robot robot = new Robot();
             robot.mousePress(InputEvent.BUTTON1_MASK);
