@@ -2,13 +2,17 @@ package main;
 
 import Tools.*;
 
+import javax.naming.NameNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainClass {
     private double [] timeStamp;
     private double [] rssi;
     private double [] phase;
     double THRESHOLD_RSSI_MAX_DIFF_TO_PEAK = 10;
+    double V = 0.044179;
+    double FIXED_FREQUENCY = 920.625;
 
 
     private void processData() {
@@ -125,14 +129,65 @@ public class MainClass {
             }
         }
     }
+
+
+    /**
+     * 使用三个时间段的信息计算出书的所在的时间位置
+     * @param t1
+     * @param t2
+     * @param t3
+     * @param phase1
+     * @param phase2
+     * @param phase3
+     * @return 书的时间点
+     */
+    public double computeTime(double t1, double t2, double t3, double phase1, double phase2, double phase3){
+        int C = 299792458;
+        double cos1 =  Math.abs((phase1 - phase2)*C/((t2-t1)*V*FIXED_FREQUENCY*1000*4*Math.PI));
+        double cos2 =  Math.abs((phase2 - phase3)*C/((t3-t2)*V*FIXED_FREQUENCY*1000*4*Math.PI));
+        double tan1 = getTan(cos1);
+        double tan2 = getTan(cos2);
+        double x = (t2-t1)*V*tan1/(tan2-tan1);
+        return x/V + t2;
+    }
+
+    /**
+     * 通过余弦值获得正切值
+     * @param cos 余弦值
+     * @return
+     */
+    public double getTan(double cos){
+        return Math.sqrt(1-cos*cos);
+    }
+
+    public double getLocation(){
+        List<Double> bookTimeList = new ArrayList<>();
+        int interval = 5;
+        int num = timeStamp.length;
+        double averageTime = 0.0,sum =0.0;
+        for(int i=0;i+interval*2<200;i++){
+            double bTime = computeTime(timeStamp[i],
+                    timeStamp[i+interval],
+                    timeStamp[i+interval*2],
+                    phase[i],
+                    phase[i+interval],
+                    phase[i+interval*2]);
+            if(bTime > 0) {
+                sum += bTime;
+            }
+            bookTimeList.add(bTime);
+            System.out.println("i="+i+" "+bTime);
+        }
+        averageTime = sum/200;
+        return averageTime;
+    }
     public static void main(String args[]) {
         MainClass mainClass = new MainClass();
-        ArrayList<EachInfo> infos = readRFIDFile.readFile(".\\Data\\1120\\13.txt");
+        ArrayList<EachInfo> infos = readRFIDFile.readFile(".\\Data\\1121\\11.txt");
         int num = infos.size();
         mainClass.timeStamp = new double[num];
         mainClass.rssi = new double[num];
         mainClass.phase = new double[num];
-
 
         int start = 0;
         for (int i = 0; i < num; i++) {
@@ -141,18 +196,26 @@ public class MainClass {
             mainClass.rssi[i] = info.getRSSI();
             mainClass.phase[i] = info.getPhase();
         }
-        mainClass.eliminatePhaseJumps();
-        mainClass.processData();
-        mainClass.processPhase();
-        num = mainClass.phase.length;
-//        double a[] = mypolyfit.PolyFit(mainClass.timeStamp, mainClass.phase, num, 3);
-        LeastSquareMethod leastSquareMethod = new LeastSquareMethod(mainClass.timeStamp, mainClass.phase, 3);
-        double a[] = leastSquareMethod.getCoefficient();
-            /*if(a[2]>0)
-                start++;*/
-        System.out.println("Mid: "+( - a[1] / (a[2] * 2)));
 
-        System.out.println(a[0] + " " + a[1] + " " + a[2]);
+        mainClass.eliminatePhaseJumps();
+        double newphase[] = new double[num];
+        //Smooth.linearSmooth3(mainClass.phase,newphase,num);
+        double bookTime = mainClass.getLocation();
+        System.out.println(bookTime);
+
+
+//        mainClass.eliminatePhaseJumps();
+//        mainClass.processData();
+//        mainClass.processPhase();
+//        num = mainClass.phase.length;
+////        double a[] = mypolyfit.PolyFit(mainClass.timeStamp, mainClass.phase, num, 3);
+//        LeastSquareMethod leastSquareMethod = new LeastSquareMethod(mainClass.timeStamp, mainClass.phase, 3);
+//        double a[] = leastSquareMethod.getCoefficient();
+//            /*if(a[2]>0)
+//                start++;*/
+//        System.out.println("Mid: "+( - a[1] / (a[2] * 2)));
+//
+//        System.out.println(a[0] + " " + a[1] + " " + a[2]);
     }
 
 }
