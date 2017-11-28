@@ -15,23 +15,34 @@
       <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/edu/nju/iq/constants/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="578">
               <caret line="34" column="48" lean-forward="false" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
+=======
+            <state relative-caret-position="612">
+              <caret line="36" column="41" lean-forward="false" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="41" />
+>>>>>>> 36eee23bf77738e33e5cc5ff94bee42ff59045f9
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReaderSettings.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/edu/nju/iq/utils/ReaderSettings.java">
+      <file leaf-file-name="Smooth.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/edu/nju/iq/fitter/Smooth.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="289">
               <caret line="23" column="53" lean-forward="false" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
+=======
+            <state relative-caret-position="340">
+              <caret line="20" column="41" lean-forward="true" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
+>>>>>>> 36eee23bf77738e33e5cc5ff94bee42ff59045f9
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="TagReportListenerImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/edu/nju/iq/listener/TagReportListenerImpl.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -60,6 +71,14 @@
                 <marker date="1511258495742" expanded="false" signature="1564:1581" ph=" }" />
                 <marker date="1511258495742" expanded="true" signature="2377:2627" ph="{...}" />
               </folding>
+=======
+      <file leaf-file-name="ReaderSettings.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/edu/nju/iq/utils/ReaderSettings.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="23" column="53" lean-forward="false" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
+              <folding />
+>>>>>>> 36eee23bf77738e33e5cc5ff94bee42ff59045f9
             </state>
           </provider>
         </entry>
@@ -67,6 +86,7 @@
       <file leaf-file-name="RealTimeFitter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cn/edu/nju/iq/fitter/RealTimeFitter.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="824">
               <caret line="124" column="15" lean-forward="false" selection-start-line="124" selection-start-column="12" selection-end-line="124" selection-end-column="15" />
               <folding>
@@ -79,6 +99,21 @@
                 <element signature="e#584#585#0" expanded="true" />
                 <element signature="e#611#612#0" expanded="true" />
                 <element signature="e#643#644#0" expanded="true" />
+=======
+            <state relative-caret-position="646">
+              <caret line="38" column="26" lean-forward="true" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#368#369#0" expanded="true" />
+                <element signature="e#418#419#0" expanded="true" />
+                <element signature="e#446#447#0" expanded="true" />
+                <element signature="e#484#485#0" expanded="true" />
+                <element signature="e#1333#1334#0" expanded="true" />
+                <element signature="method#initData#0;class#RealTimeFitter#0" expanded="false" />
+                <element signature="method#processData#0;class#RealTimeFitter#0" expanded="false" />
+                <element signature="method#processPhase#0;class#RealTimeFitter#0" expanded="false" />
+                <element signature="method#eliminatePhaseJumps#0;class#RealTimeFitter#0" expanded="false" />
+>>>>>>> 36eee23bf77738e33e5cc5ff94bee42ff59045f9
               </folding>
             </state>
           </provider>
@@ -87,7 +122,11 @@
       <file leaf-file-name="LeastSquareMethod.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/edu/nju/iq/fitter/LeastSquareMethod.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="-799">
+=======
+            <state relative-caret-position="884">
+>>>>>>> 36eee23bf77738e33e5cc5ff94bee42ff59045f9
               <caret line="52" column="37" lean-forward="false" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="37" />
               <folding />
             </state>
@@ -124,8 +163,9 @@
         <option value="$PROJECT_DIR$/src/cn/edu/nju/iq/reader/Reader.java" />
         <option value="$PROJECT_DIR$/src/cn/edu/nju/iq/constants/Constants.java" />
         <option value="$PROJECT_DIR$/src/cn/edu/nju/iq/listener/TagReportListenerImpl.java" />
-        <option value="$PROJECT_DIR$/src/cn/edu/nju/iq/fitter/RealTimeFitter.java" />
         <option value="$PROJECT_DIR$/src/cn/edu/nju/iq/fitter/LeastSquareMethod.java" />
+        <option value="$PROJECT_DIR$/src/cn/edu/nju/iq/fitter/Smooth.java" />
+        <option value="$PROJECT_DIR$/src/cn/edu/nju/iq/fitter/RealTimeFitter.java" />
       </list>
     </option>
   </component>
@@ -156,8 +196,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -222,8 +263,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -379,6 +419,7 @@
   </component>
   <component name="TimeTrackingManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="662000" />
   </component>
   <component name="ToolWindowManager">
@@ -390,6 +431,13 @@
     <frame x="1912" y="-8" width="916" height="1576" extended-state="6" />
     <editor active="true" />
 >>>>>>> 8b66a08caf8b7834352543bef14d5771d6c94831
+=======
+    <option name="totallyTimeSpent" value="3957000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1912" y="-8" width="916" height="1576" extended-state="6" />
+    <editor active="true" />
+>>>>>>> 36eee23bf77738e33e5cc5ff94bee42ff59045f9
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -398,8 +446,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3896247" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3896247" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -409,15 +457,35 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3896247" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19106881" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -433,6 +501,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/cn/edu/nju/iq/fitter/RealTimeFitter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="486">
@@ -451,6 +520,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> 36eee23bf77738e33e5cc5ff94bee42ff59045f9
     <entry file="file://$PROJECT_DIR$/src/cn/edu/nju/iq/constants/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1161">
@@ -477,7 +548,10 @@
           <folding>
             <element signature="method#Reader#0;class#Reader#0" expanded="false" />
             <marker date="1511258495742" expanded="false" signature="1564:1581" ph=" }" />
+<<<<<<< HEAD
             <marker date="1511258495742" expanded="true" signature="2377:2627" ph="{...}" />
+=======
+>>>>>>> 36eee23bf77738e33e5cc5ff94bee42ff59045f9
           </folding>
         </state>
       </provider>
@@ -488,6 +562,7 @@
           <caret line="201" column="5" lean-forward="true" selection-start-line="201" selection-start-column="5" selection-end-line="201" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
+<<<<<<< HEAD
             <element signature="e#387#388#0" expanded="true" />
             <element signature="e#429#430#0" expanded="true" />
             <element signature="e#460#461#0" expanded="true" />
@@ -496,6 +571,17 @@
             <element signature="e#584#585#0" expanded="true" />
             <element signature="e#611#612#0" expanded="true" />
             <element signature="e#643#644#0" expanded="true" />
+=======
+            <element signature="e#368#369#0" expanded="true" />
+            <element signature="e#418#419#0" expanded="true" />
+            <element signature="e#446#447#0" expanded="true" />
+            <element signature="e#484#485#0" expanded="true" />
+            <element signature="e#1333#1334#0" expanded="true" />
+            <element signature="method#initData#0;class#RealTimeFitter#0" expanded="false" />
+            <element signature="method#processData#0;class#RealTimeFitter#0" expanded="false" />
+            <element signature="method#processPhase#0;class#RealTimeFitter#0" expanded="false" />
+            <element signature="method#eliminatePhaseJumps#0;class#RealTimeFitter#0" expanded="false" />
+>>>>>>> 36eee23bf77738e33e5cc5ff94bee42ff59045f9
           </folding>
         </state>
       </provider>
@@ -515,7 +601,10 @@
           <folding>
             <element signature="method#Reader#0;class#Reader#0" expanded="false" />
             <marker date="1511258495742" expanded="false" signature="1564:1581" ph=" }" />
+<<<<<<< HEAD
             <marker date="1511258495742" expanded="true" signature="2377:2627" ph="{...}" />
+=======
+>>>>>>> 36eee23bf77738e33e5cc5ff94bee42ff59045f9
           </folding>
         </state>
       </provider>
@@ -537,6 +626,7 @@
           <caret line="133" column="31" lean-forward="true" selection-start-line="133" selection-start-column="31" selection-end-line="133" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
+<<<<<<< HEAD
             <element signature="e#387#388#0" expanded="true" />
             <element signature="e#429#430#0" expanded="true" />
             <element signature="e#460#461#0" expanded="true" />
@@ -545,6 +635,17 @@
             <element signature="e#584#585#0" expanded="true" />
             <element signature="e#611#612#0" expanded="true" />
             <element signature="e#643#644#0" expanded="true" />
+=======
+            <element signature="e#368#369#0" expanded="true" />
+            <element signature="e#418#419#0" expanded="true" />
+            <element signature="e#446#447#0" expanded="true" />
+            <element signature="e#484#485#0" expanded="true" />
+            <element signature="e#1333#1334#0" expanded="true" />
+            <element signature="method#initData#0;class#RealTimeFitter#0" expanded="false" />
+            <element signature="method#processData#0;class#RealTimeFitter#0" expanded="false" />
+            <element signature="method#processPhase#0;class#RealTimeFitter#0" expanded="false" />
+            <element signature="method#eliminatePhaseJumps#0;class#RealTimeFitter#0" expanded="false" />
+>>>>>>> 36eee23bf77738e33e5cc5ff94bee42ff59045f9
           </folding>
         </state>
       </provider>
@@ -576,7 +677,10 @@
           <folding>
             <element signature="method#Reader#0;class#Reader#0" expanded="false" />
             <marker date="1511258495742" expanded="false" signature="1564:1581" ph=" }" />
+<<<<<<< HEAD
             <marker date="1511258495742" expanded="true" signature="2377:2627" ph="{...}" />
+=======
+>>>>>>> 36eee23bf77738e33e5cc5ff94bee42ff59045f9
           </folding>
         </state>
       </provider>
@@ -622,7 +726,10 @@
           <folding>
             <element signature="method#Reader#0;class#Reader#0" expanded="false" />
             <marker date="1511258495742" expanded="false" signature="1564:1581" ph=" }" />
+<<<<<<< HEAD
             <marker date="1511258495742" expanded="true" signature="2377:2627" ph="{...}" />
+=======
+>>>>>>> 36eee23bf77738e33e5cc5ff94bee42ff59045f9
           </folding>
         </state>
       </provider>
@@ -668,6 +775,7 @@
           <caret line="10" column="43" lean-forward="true" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
+<<<<<<< HEAD
             <element signature="e#387#388#0" expanded="true" />
             <element signature="e#429#430#0" expanded="true" />
             <element signature="e#460#461#0" expanded="true" />
@@ -676,6 +784,17 @@
             <element signature="e#584#585#0" expanded="true" />
             <element signature="e#611#612#0" expanded="true" />
             <element signature="e#643#644#0" expanded="true" />
+=======
+            <element signature="e#368#369#0" expanded="true" />
+            <element signature="e#418#419#0" expanded="true" />
+            <element signature="e#446#447#0" expanded="true" />
+            <element signature="e#484#485#0" expanded="true" />
+            <element signature="e#1333#1334#0" expanded="true" />
+            <element signature="method#initData#0;class#RealTimeFitter#0" expanded="false" />
+            <element signature="method#processData#0;class#RealTimeFitter#0" expanded="false" />
+            <element signature="method#processPhase#0;class#RealTimeFitter#0" expanded="false" />
+            <element signature="method#eliminatePhaseJumps#0;class#RealTimeFitter#0" expanded="false" />
+>>>>>>> 36eee23bf77738e33e5cc5ff94bee42ff59045f9
           </folding>
         </state>
       </provider>
@@ -688,7 +807,10 @@
           <folding>
             <element signature="method#Reader#0;class#Reader#0" expanded="false" />
             <marker date="1511258495742" expanded="false" signature="1564:1581" ph=" }" />
+<<<<<<< HEAD
             <marker date="1511258495742" expanded="true" signature="2377:2627" ph="{...}" />
+=======
+>>>>>>> 36eee23bf77738e33e5cc5ff94bee42ff59045f9
           </folding>
         </state>
       </provider>
@@ -729,18 +851,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/edu/nju/iq/utils/ReaderSettings.java">
+    <entry file="file://$PROJECT_DIR$/src/cn/edu/nju/iq/fitter/LeastSquareMethod.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="289">
           <caret line="23" column="53" lean-forward="false" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/edu/nju/iq/constants/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="48" lean-forward="false" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
+=======
+        <state relative-caret-position="884">
+          <caret line="52" column="37" lean-forward="false" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="37" />
+>>>>>>> 36eee23bf77738e33e5cc5ff94bee42ff59045f9
           <folding />
         </state>
       </provider>
@@ -752,13 +871,63 @@
           <folding>
             <element signature="method#Reader#0;class#Reader#0" expanded="false" />
             <marker date="1511258495742" expanded="false" signature="1564:1581" ph=" }" />
-            <marker date="1511258495742" expanded="true" signature="2377:2627" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/edu/nju/iq/listener/TagReportListenerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="48" column="37" lean-forward="false" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1511258495805" expanded="true" signature="4259:4536" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/edu/nju/iq/constants/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="578">
+          <caret line="34" column="48" lean-forward="false" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
+=======
+        <state relative-caret-position="612">
+          <caret line="36" column="41" lean-forward="false" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/edu/nju/iq/fitter/Smooth.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="41" lean-forward="true" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
+>>>>>>> 36eee23bf77738e33e5cc5ff94bee42ff59045f9
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/edu/nju/iq/utils/ReaderSettings.java">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="102">
+          <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="9" />
+          <folding>
+            <element signature="method#Reader#0;class#Reader#0" expanded="false" />
+            <marker date="1511258495742" expanded="false" signature="1564:1581" ph=" }" />
+            <marker date="1511258495742" expanded="true" signature="2377:2627" ph="{...}" />
+          </folding>
+=======
+        <state relative-caret-position="289">
+          <caret line="23" column="53" lean-forward="false" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
+          <folding />
+>>>>>>> 36eee23bf77738e33e5cc5ff94bee42ff59045f9
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/edu/nju/iq/listener/TagReportListenerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="509">
           <caret line="48" column="37" lean-forward="false" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
           <folding>
@@ -795,6 +964,21 @@
             <element signature="e#584#585#0" expanded="true" />
             <element signature="e#611#612#0" expanded="true" />
             <element signature="e#643#644#0" expanded="true" />
+=======
+        <state relative-caret-position="646">
+          <caret line="38" column="26" lean-forward="true" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#368#369#0" expanded="true" />
+            <element signature="e#418#419#0" expanded="true" />
+            <element signature="e#446#447#0" expanded="true" />
+            <element signature="e#484#485#0" expanded="true" />
+            <element signature="e#1333#1334#0" expanded="true" />
+            <element signature="method#initData#0;class#RealTimeFitter#0" expanded="false" />
+            <element signature="method#processData#0;class#RealTimeFitter#0" expanded="false" />
+            <element signature="method#processPhase#0;class#RealTimeFitter#0" expanded="false" />
+            <element signature="method#eliminatePhaseJumps#0;class#RealTimeFitter#0" expanded="false" />
+>>>>>>> 36eee23bf77738e33e5cc5ff94bee42ff59045f9
           </folding>
         </state>
       </provider>
