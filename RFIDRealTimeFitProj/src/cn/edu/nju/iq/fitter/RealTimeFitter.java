@@ -5,7 +5,6 @@ import cn.edu.nju.iq.constants.Constants;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class RealTimeFitter {
     private List<String> infoList;
 
@@ -16,8 +15,20 @@ public class RealTimeFitter {
     private int maxDataIndex;
     private long startTime;
 
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
+    }
+
     public RealTimeFitter() {
         infoList = new ArrayList<String>();
+    }
+
+    public void addData(String data) {
+        infoList.add(data);
+    }
+
+    public void clear() {
+        infoList.clear();
     }
 
     public int getSize() {
@@ -37,8 +48,9 @@ public class RealTimeFitter {
      */
     public double computeTime(double t1, double t2, double t3, double phase1, double phase2, double phase3) {
         int C = 299792458;
-        double cos1 =  Math.abs((phase1 - phase2)*C/((t2-t1)*Constants.V* Constants.FIXED_FREQUENCY*1000*2*Math.PI));
-        double cos2 =  Math.abs((phase2 - phase3)*C/((t3-t2)*Constants.V*Constants.FIXED_FREQUENCY*1000*2*Math.PI));double tan1 = getTan(cos1);
+        double cos1 = Math.abs((phase1 - phase2) * C / ((t2 - t1) * Constants.V * Constants.FIXED_FREQUENCY * 1000 * 4 * Math.PI));
+        double cos2 = Math.abs((phase2 - phase3) * C / ((t3 - t2) * Constants.V * Constants.FIXED_FREQUENCY * 1000 * 4 * Math.PI));
+        double tan1 = getTan(cos1);
         double tan2 = getTan(cos2);
         double x = (t2 - t1) * Constants.V * tan1 / (tan2 - tan1);
         return x / Constants.V + t2;
@@ -54,49 +66,29 @@ public class RealTimeFitter {
         return Math.sqrt(1 - cos * cos);
     }
 
-    public double getLocation(){
+    public double getLocation() {
         List<Double> bookTimeList = new ArrayList<>();
         int interval = 5;
         int num = timeStamp.length;
-        double averageTime = 0.0,sum =0.0;
-        for(int i=0;i+interval*2<200;i++){
+        double averageTime = 0.0, sum = 0.0;
+        for (int i = 0; i + interval * 2 < 200; i++) {
             double bTime = computeTime(timeStamp[i],
-                    timeStamp[i+interval],
-                    timeStamp[i+interval*2],
+                    timeStamp[i + interval],
+                    timeStamp[i + interval * 2],
                     phase[i],
-                    phase[i+interval],
-                    phase[i+interval*2]);
-            if(bTime > 0) {
+                    phase[i + interval],
+                    phase[i + interval * 2]);
+            if (bTime > 0) {
                 sum += bTime;
             }
             bookTimeList.add(bTime);
-            System.out.println("i="+i+" "+bTime);
+            System.out.println("i=" + i + " " + bTime);
         }
-        averageTime = sum/200;
+        averageTime = sum / 200;
         return averageTime;
     }
 
-    public void setStartTime(long startTime) {
-        this.startTime = startTime;
-    }
-
-
-    public void addData(String data) {
-        infoList.add(data);
-    }
-
-    public void clear() {
-        infoList.clear();
-    }
-
     public int fit(int fitWay) {
-        wait(fitWay);
-        System.out.println("maxTime: " + timeStamp[maxDataIndex]);
-        try {
-            Thread.sleep(Constants.THRESHOLD_TIME - System.currentTimeMillis() + startTime + (int) timeStamp[maxDataIndex]);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return polyFit(fitWay);
     }
 
@@ -122,6 +114,7 @@ public class RealTimeFitter {
      * @return midTime
      */
     private int polyFit(int fitWay) {
+        wait(fitWay);
         synchronized (this) {
             initData();
 
@@ -129,11 +122,11 @@ public class RealTimeFitter {
             LeastSquareMethod leastSquareMethod = null;
             switch (fitWay) {
                 case Constants.RSSI_FIT:
-                    processData();
+                    processData(fitWay);
                     leastSquareMethod = new LeastSquareMethod(timeStamp, rssi, 3);
                     break;
                 case Constants.PHASE_FIT:
-                    processData();
+                    processData(fitWay);
 //                    processPhase();
                     leastSquareMethod = new LeastSquareMethod(timeStamp, phase, 3);
                     break;
@@ -144,25 +137,30 @@ public class RealTimeFitter {
         }
     }
 
-    private void processData() {
+    private void processData(int fitWay) {
         int num = infoList.size();
-        double max = Constants.MIN_RSSI;
-        int maxIndex = 0;
-        for (int i = 0; i < num; i++) {
-            max = max > rssi[i] ? max : rssi[i];
-            maxIndex = max > rssi[i] ? maxIndex : i;
-        }
+        int startIndex = Math.max(0, maxDataIndex - (num - maxDataIndex));
 
-        int startI = maxIndex - 1;
-        for (; startI >= 0 && max - rssi[startI] <= Constants.THRESHOLD_RSSI_MAX_DIFF_TO_PEAK; startI--) ;
-        System.out.println("startI: " + startI);
+//        double max = Constants.MIN_RSSI;
+//        int maxIndex = 0;
+//        if(Constants.RSSI_FIT == fitWay) {
+//            maxIndex = maxDataIndex;
+//        } else {
+//            for (int i = 0; i < num; i++) {
+//                max = max > rssi[i] ? max : rssi[i];
+//                maxIndex = max > rssi[i] ? maxIndex : i;
+//            }
+//        }
+//        int startIndex = maxIndex - 1;
+//        for(;startIndex >= 0 && max - rssi[startIndex] <= Constants.THRESHOLD_RSSI_MAX_DIFF_TO_PEAK;startIndex--);
 
-        if (startI > 0) {
-            int newLen = num - startI;
+        if (startIndex > 0) {
+            System.out.println("startIndex: " + startIndex);
+            int newLen = num - startIndex;
             double[] newTime = new double[newLen];
             double[] newRssi = new double[newLen];
             double[] newPhase = new double[newLen];
-            for (int j = 0, i = startI; j < newLen; i++, j++) {
+            for (int j = 0, i = startIndex; j < newLen; i++, j++) {
                 newTime[j] = timeStamp[i];
                 newRssi[j] = rssi[i];
                 newPhase[j] = phase[i];
@@ -207,7 +205,7 @@ public class RealTimeFitter {
             leftMaxIndex = Math.max(0, leftMaxIndex - THRESHOLD1);
             rightMaxIndex = Math.min(len - 1, rightMaxIndex + THRESHOLD1);
             System.out.println("left: " + leftMaxIndex + "\nright: " + rightMaxIndex);
-            int newLen = len - rightMaxIndex + leftMaxIndex;
+            int newLen = len - rightMaxIndex + leftMaxIndex - 1;
             double[] newPhase = new double[newLen];
             double[] newTime = new double[newLen];
             int i = 0;
@@ -274,6 +272,12 @@ public class RealTimeFitter {
                     e.printStackTrace();
                 }
             }
+        }
+        System.out.println("maxTime: " + timeStamp[maxDataIndex]);
+        try {
+            Thread.sleep(Constants.THRESHOLD_TIME_READ_DATA_AFTER_PEAK_APPEAR - System.currentTimeMillis() + startTime + (int) timeStamp[maxDataIndex]);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
