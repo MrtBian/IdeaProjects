@@ -62,11 +62,31 @@ public class TagReportListenerImpl implements TagReportListener {
                         .append(timeStamp).append(" ").append(tag.getChannelInMhz());
                 recordList.add(record.toString());
 
-                if(!isAlreadyFit) {
-                    judgeFit();
+                synchronized (realTimeFitter) {
+                    if(timeStamp - lastTime > Constants.THRESHOLD_MAX_NO_READ_TIME) {
+                        realTimeFitter.clear();
+                        FileUtil.clearFile(Constants.DATA_FILE_PATH + File.separator + Constants.DATA_FILE_NAME);
+                    }
+                    lastTime = timeStamp;
+                    realTimeFitter.addData(record.toString());
+                    if(!isAlreadyFit && realTimeFitter.isPolyFit(Constants.FIT_WAY)) {
+                        realTimeFitter.notify();
+                        try {
+                            Thread.sleep(1);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        isAlreadyFit = true;
+                    }
                     FileUtil.writeFile(Constants.DATA_FILE_PATH + File.separator + Constants.DATA_FILE_NAME,
                             true, recordList);
                 }
+
+//                if(!isAlreadyFit) {
+//                    judgeFit();
+//                    FileUtil.writeFile(Constants.DATA_FILE_PATH + File.separator + Constants.DATA_FILE_NAME,
+//                            true, recordList);
+//                }
             }
         }
     }
@@ -80,6 +100,7 @@ public class TagReportListenerImpl implements TagReportListener {
             lastTime = timeStamp;
             realTimeFitter.addData(record.toString());
             if(realTimeFitter.isPolyFit(Constants.FIT_WAY)) {
+
                 realTimeFitter.notify();
                 try {
                     Thread.sleep(1);
