@@ -35,7 +35,7 @@ public class RealTimeFitter {
      * @param phase3
      * @return 书的时间点
      */
-    public double computeX(double t1, double t2, double t3, double phase1, double phase2, double phase3) {
+    public double computeTime(double t1, double t2, double t3, double phase1, double phase2, double phase3) {
         int C = 299792458;
         double cos1 =  Math.abs((phase1 - phase2)*C/((t2-t1)*Constants.V* Constants.FIXED_FREQUENCY*1000*2*Math.PI));
         double cos2 =  Math.abs((phase2 - phase3)*C/((t3-t2)*Constants.V*Constants.FIXED_FREQUENCY*1000*2*Math.PI));double tan1 = getTan(cos1);
@@ -54,20 +54,26 @@ public class RealTimeFitter {
         return Math.sqrt(1 - cos * cos);
     }
 
-    public List<Double> getLocation() {
-        initData();
+    public double getLocation(){
         List<Double> bookTimeList = new ArrayList<>();
         int interval = 5;
-        int num = getSize();
-        for (int i = 0; i + interval * 2 < num; i++) {
-            bookTimeList.add(computeX(timeStamp[i],
-                    timeStamp[i + interval],
-                    timeStamp[i + interval * 2],
+        int num = timeStamp.length;
+        double averageTime = 0.0,sum =0.0;
+        for(int i=0;i+interval*2<200;i++){
+            double bTime = computeTime(timeStamp[i],
+                    timeStamp[i+interval],
+                    timeStamp[i+interval*2],
                     phase[i],
-                    phase[i + interval],
-                    phase[i + interval * 2]));
+                    phase[i+interval],
+                    phase[i+interval*2]);
+            if(bTime > 0) {
+                sum += bTime;
+            }
+            bookTimeList.add(bTime);
+            System.out.println("i="+i+" "+bTime);
         }
-        return bookTimeList;
+        averageTime = sum/200;
+        return averageTime;
     }
 
     public void setStartTime(long startTime) {
