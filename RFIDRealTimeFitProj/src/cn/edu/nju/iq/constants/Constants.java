@@ -49,5 +49,5 @@ public final class Constants {
     /**  最小波动值 **/
     public static final double THRESHOLD_MIN_FLUCTUATION = 5.0;
     /**  拟合结束返回峰值后，从峰值的时刻开始再跑此值的时间 **/
-    public static final int THRESHOLD_RUN_INTERVAL_WHEN_PEAK_APPEAR = 8 * 1000;
+    public static final int THRESHOLD_TIME_READ_DATA_AFTER_PEAK_APPEAR = 8 * 1000;
 }

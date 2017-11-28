@@ -8,9 +8,9 @@ import java.util.List;
 public class RealTimeFitter {
     private List<String> infoList;
 
-    private double [] timeStamp;
-    private double [] rssi;
-    private double [] phase;
+    private double[] timeStamp;
+    private double[] rssi;
+    private double[] phase;
 
     private int maxDataIndex;
     private long startTime;
@@ -22,16 +22,16 @@ public class RealTimeFitter {
     public RealTimeFitter() {
         infoList = new ArrayList<String>();
     }
-	
-	 public void addData(String data) {
+
+    public void addData(String data) {
         infoList.add(data);
     }
 
     public void clear() {
         infoList.clear();
     }
-	
-	public int getSize() {
+
+    public int getSize() {
         return infoList.size();
     }
 
@@ -48,8 +48,9 @@ public class RealTimeFitter {
      */
     public double computeTime(double t1, double t2, double t3, double phase1, double phase2, double phase3) {
         int C = 299792458;
-        double cos1 =  Math.abs((phase1 - phase2)*C/((t2-t1)*Constants.V* Constants.FIXED_FREQUENCY*1000*2*Math.PI));
-        double cos2 =  Math.abs((phase2 - phase3)*C/((t3-t2)*Constants.V*Constants.FIXED_FREQUENCY*1000*2*Math.PI));double tan1 = getTan(cos1);
+        double cos1 = Math.abs((phase1 - phase2) * C / ((t2 - t1) * Constants.V * Constants.FIXED_FREQUENCY * 1000 * 4 * Math.PI));
+        double cos2 = Math.abs((phase2 - phase3) * C / ((t3 - t2) * Constants.V * Constants.FIXED_FREQUENCY * 1000 * 4 * Math.PI));
+        double tan1 = getTan(cos1);
         double tan2 = getTan(cos2);
         double x = (t2 - t1) * Constants.V * tan1 / (tan2 - tan1);
         return x / Constants.V + t2;
@@ -65,25 +66,25 @@ public class RealTimeFitter {
         return Math.sqrt(1 - cos * cos);
     }
 
-    public double getLocation(){
+    public double getLocation() {
         List<Double> bookTimeList = new ArrayList<>();
         int interval = 5;
         int num = timeStamp.length;
-        double averageTime = 0.0,sum =0.0;
-        for(int i=0;i+interval*2<200;i++){
+        double averageTime = 0.0, sum = 0.0;
+        for (int i = 0; i + interval * 2 < 200; i++) {
             double bTime = computeTime(timeStamp[i],
-                    timeStamp[i+interval],
-                    timeStamp[i+interval*2],
+                    timeStamp[i + interval],
+                    timeStamp[i + interval * 2],
                     phase[i],
-                    phase[i+interval],
-                    phase[i+interval*2]);
-            if(bTime > 0) {
+                    phase[i + interval],
+                    phase[i + interval * 2]);
+            if (bTime > 0) {
                 sum += bTime;
             }
             bookTimeList.add(bTime);
-            System.out.println("i="+i+" "+bTime);
+            System.out.println("i=" + i + " " + bTime);
         }
-        averageTime = sum/200;
+        averageTime = sum / 200;
         return averageTime;
     }
 
@@ -98,7 +99,7 @@ public class RealTimeFitter {
         phase = new double[num];
 
         for (int i = 0; i < num; i++) {
-            String [] info = infoList.get(i).split(" ");
+            String[] info = infoList.get(i).split(" ");
             timeStamp[i] = Long.parseLong(info[4]);
             rssi[i] = Double.parseDouble(info[2]);
             phase[i] = Double.parseDouble(info[3]);
@@ -131,7 +132,7 @@ public class RealTimeFitter {
                     break;
             }
 
-            double [] coe = leastSquareMethod.getCoefficient();
+            double[] coe = leastSquareMethod.getCoefficient();
             return (int) (-coe[1] / (coe[2] * 2));
         }
     }
@@ -153,13 +154,13 @@ public class RealTimeFitter {
 //        int startIndex = maxIndex - 1;
 //        for(;startIndex >= 0 && max - rssi[startIndex] <= Constants.THRESHOLD_RSSI_MAX_DIFF_TO_PEAK;startIndex--);
 
-        if(startIndex > 0) {
+        if (startIndex > 0) {
             System.out.println("startIndex: " + startIndex);
             int newLen = num - startIndex;
-            double [] newTime = new double[newLen];
-            double [] newRssi = new double[newLen];
-            double [] newPhase = new double[newLen];
-            for(int j = 0, i = startIndex;j < newLen;i++, j++) {
+            double[] newTime = new double[newLen];
+            double[] newRssi = new double[newLen];
+            double[] newPhase = new double[newLen];
+            for (int j = 0, i = startIndex; j < newLen; i++, j++) {
                 newTime[j] = timeStamp[i];
                 newRssi[j] = rssi[i];
                 newPhase[j] = phase[i];
@@ -168,7 +169,7 @@ public class RealTimeFitter {
             timeStamp = new double[newLen];
             rssi = new double[newLen];
             phase = new double[newLen];
-            for(int i = 0;i < newLen;i++) {
+            for (int i = 0; i < newLen; i++) {
                 timeStamp[i] = newTime[i];
                 rssi[i] = newRssi[i];
                 phase[i] = newPhase[i];
@@ -184,41 +185,41 @@ public class RealTimeFitter {
 
         final int THRESHOLD = 5;
 
-        for(;left < len;left++) {
+        for (; left < len; left++) {
             leftMaxIndex = leftMax > phase[left] ? leftMaxIndex : left;
             leftMax = leftMax > phase[left] ? leftMax : phase[left];
-            if(left - leftMaxIndex > THRESHOLD) {
+            if (left - leftMaxIndex > THRESHOLD) {
                 break;
             }
         }
-        for(;right >= 0;right--) {
+        for (; right >= 0; right--) {
             rightMaxIndex = rightMax > phase[right] ? rightMaxIndex : right;
             rightMax = rightMax > phase[right] ? rightMax : phase[right];
-            if(rightMaxIndex - right > THRESHOLD) {
+            if (rightMaxIndex - right > THRESHOLD) {
                 break;
             }
         }
 
-        if(leftMaxIndex != rightMaxIndex) {
+        if (leftMaxIndex != rightMaxIndex) {
             final int THRESHOLD1 = 5;
             leftMaxIndex = Math.max(0, leftMaxIndex - THRESHOLD1);
             rightMaxIndex = Math.min(len - 1, rightMaxIndex + THRESHOLD1);
             System.out.println("left: " + leftMaxIndex + "\nright: " + rightMaxIndex);
             int newLen = len - rightMaxIndex + leftMaxIndex - 1;
-            double [] newPhase = new double[newLen];
-            double [] newTime = new double[newLen];
+            double[] newPhase = new double[newLen];
+            double[] newTime = new double[newLen];
             int i = 0;
-            for(;i < leftMaxIndex;i++) {
+            for (; i < leftMaxIndex; i++) {
                 newPhase[i] = phase[i];
                 newTime[i] = timeStamp[i];
             }
-            for(int j = rightMaxIndex + 1;j < len;j++, i++) {
+            for (int j = rightMaxIndex + 1; j < len; j++, i++) {
                 newPhase[i] = phase[j];
                 newTime[i] = timeStamp[j];
             }
             phase = new double[newLen];
             timeStamp = new double[newLen];
-            for(int j = 0;j < newLen;j++) {
+            for (int j = 0; j < newLen; j++) {
                 phase[j] = newPhase[j];
                 timeStamp[j] = newTime[j];
             }
@@ -230,26 +231,26 @@ public class RealTimeFitter {
      */
     private void eliminatePhaseJumps() {
         int len = phase.length;
-        for(int i = 1;i < len;i++) {
+        for (int i = 1; i < len; i++) {
             double tmp = Math.abs(phase[i - 1] - phase[i]);
-            if(tmp > 2 && tmp < 5) {
-                if(phase[i - 1] > phase[i]) {
-                    for(int j = i;j < len;j++) {
+            if (tmp > 2 && tmp < 5) {
+                if (phase[i - 1] > phase[i]) {
+                    for (int j = i; j < len; j++) {
                         phase[j] += Math.PI;
                     }
                 } else {
-                    for(int j = i;j < len;j++) {
+                    for (int j = i; j < len; j++) {
                         phase[j] -= Math.PI;
                     }
                 }
             }
-            if(tmp > 5) {
-                if(phase[i - 1] > phase[i]) {
-                    for(int j = i;j < len;j++) {
+            if (tmp > 5) {
+                if (phase[i - 1] > phase[i]) {
+                    for (int j = i; j < len; j++) {
                         phase[j] += 2 * Math.PI;
                     }
                 } else {
-                    for(int j = i;j < len;j++) {
+                    for (int j = i; j < len; j++) {
                         phase[j] -= 2 * Math.PI;
                     }
                 }
@@ -261,7 +262,7 @@ public class RealTimeFitter {
         while (true) {
             synchronized (this) {
                 try {
-                    if(!isPolyFit(fitWay)) {
+                    if (!isPolyFit(fitWay)) {
                         System.out.println("waiting for polyfit...");
                         this.wait();
                     }
@@ -289,7 +290,7 @@ public class RealTimeFitter {
         initData();
 
         boolean result = false;
-        if(infoList.size() >= Constants.THRESHOLD_MIN_FIT_POINTS_NUM){
+        if (infoList.size() >= Constants.THRESHOLD_MIN_FIT_POINTS_NUM) {
             switch (fitWay) {
                 case Constants.RSSI_FIT:
                     result = isPolyFitRssi();
@@ -307,12 +308,12 @@ public class RealTimeFitter {
         double max = rssi[0];
         int maxIndex = 0;
         int len = rssi.length;
-        for(int i = 1;i < len;i++) {
+        for (int i = 1; i < len; i++) {
             max = max > rssi[i] ? max : rssi[i];
             maxIndex = max > rssi[i] ? maxIndex : i;
         }
 
-        if(len - maxIndex >= Constants.THRESHOLD_RSSI_MOST_POINTS_NUM_TO_PEAK
+        if (len - maxIndex >= Constants.THRESHOLD_RSSI_MOST_POINTS_NUM_TO_PEAK
                 && max - rssi[len - 1] >= Constants.THRESHOLD_MIN_FLUCTUATION) {
             maxDataIndex = maxIndex;
             return true;
@@ -324,12 +325,12 @@ public class RealTimeFitter {
         double max = phase[0];
         int maxIndex = 0;
         int len = phase.length;
-        for(int i = 1;i < len;i++) {
+        for (int i = 1; i < len; i++) {
             max = max > phase[i] ? max : phase[i];
             maxIndex = max > phase[i] ? maxIndex : i;
         }
 
-        if(len - maxIndex >= Constants.THRESHOLD_RSSI_MOST_POINTS_NUM_TO_PEAK) {
+        if (len - maxIndex >= Constants.THRESHOLD_RSSI_MOST_POINTS_NUM_TO_PEAK) {
             maxDataIndex = maxIndex;
             return true;
         }
