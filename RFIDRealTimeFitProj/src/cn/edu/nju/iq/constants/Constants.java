@@ -16,6 +16,7 @@ public final class Constants {
 
     //掩码的十六进制表示
     public static final String TAG_MASK = "11070002";
+//    public static final String TAG_MASK = "11210001";
 
     //设置文件地址
     public static final String SETTINGS_FILE_NAME = "RFID_Reader_Settings.xml";
@@ -24,7 +25,7 @@ public final class Constants {
     public static final String PHASE_PATTERN = "#0.00000";
 
     public static String DATA_FILE_PATH = "Data";
-    public static final String DATA_FILE_NAME = "14.txt";
+    public static final String DATA_FILE_NAME = "23.txt";
 //    public static final String DATA_FILE_NAME = "test.txt";
 
     public static final int RSSI_FIT = 0;
@@ -45,9 +46,9 @@ public final class Constants {
     public static final int THRESHOLD_MIN_FIT_POINTS_NUM = 20;
     /**  峰值出现后，读到的点的数量超过此值就开始拟合 **/
     public static final int THRESHOLD_RSSI_MOST_POINTS_NUM_TO_PEAK = 20;
-    public static final int THRESHOLD_TIME = (int) (1000 * 20 / V);
+    public static final int THRESHOLD_TIME_READ_DATA_AFTER_PEAK_APPEAR = (int) (1000 * 20 / V);
     /**  最小波动值 **/
     public static final double THRESHOLD_MIN_FLUCTUATION = 5.0;
     /**  拟合结束返回峰值后，从峰值的时刻开始再跑此值的时间 **/
-    public static final int THRESHOLD_TIME_READ_DATA_AFTER_PEAK_APPEAR = 8 * 1000;
+    public static final int THRESHOLD_RUN_READ_DATA_AFTER_PEAK_APPEAR = 8 * 1000;
 }

@@ -126,7 +126,7 @@ public class RealTimeFitter {
                     leastSquareMethod = new LeastSquareMethod(timeStamp, rssi, 3);
                     break;
                 case Constants.PHASE_FIT:
-                    processData(fitWay);
+                    processData2(fitWay);
 //                    processPhase();
                     leastSquareMethod = new LeastSquareMethod(timeStamp, phase, 3);
                     break;
@@ -134,6 +134,37 @@ public class RealTimeFitter {
 
             double[] coe = leastSquareMethod.getCoefficient();
             return (int) (-coe[1] / (coe[2] * 2));
+        }
+    }
+
+    private void processData2(int fitWay) {
+        int num = infoList.size();
+        int startIndex = 0;
+        for (int i = 0; i < num; i++)
+            if(phase[i] > phase[num-1]) {
+                startIndex = i;
+                break;
+            }
+        if (startIndex > 0) {
+            System.out.println("startIndex: " + startIndex);
+            int newLen = num - startIndex;
+            double[] newTime = new double[newLen];
+            double[] newRssi = new double[newLen];
+            double[] newPhase = new double[newLen];
+            for (int j = 0, i = startIndex; j < newLen; i++, j++) {
+                newTime[j] = timeStamp[i];
+                newRssi[j] = rssi[i];
+                newPhase[j] = phase[i];
+            }
+
+            timeStamp = new double[newLen];
+            rssi = new double[newLen];
+            phase = new double[newLen];
+            for (int i = 0; i < newLen; i++) {
+                timeStamp[i] = newTime[i];
+                rssi[i] = newRssi[i];
+                phase[i] = newPhase[i];
+            }
         }
     }
 

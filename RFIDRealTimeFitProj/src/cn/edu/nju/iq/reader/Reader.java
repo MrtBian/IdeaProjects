@@ -58,7 +58,7 @@ public class Reader {
             reader.stop();
             reader.disconnect();
             System.out.println("midTime: " + midTime);
-            endTime = startTime + midTime + Constants.THRESHOLD_RUN_INTERVAL_WHEN_PEAK_APPEAR;
+            endTime = startTime + midTime + Constants.THRESHOLD_RUN_READ_DATA_AFTER_PEAK_APPEAR;
             System.out.println("stop...");
             Thread.sleep(endTime - System.currentTimeMillis());
 

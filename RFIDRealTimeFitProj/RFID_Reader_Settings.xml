@@ -24,7 +24,7 @@
   "filters": {
     "Mode": "OnlyFilter1",
     "TagFilter1": {
-      "TagMask": "11070001",
+      "TagMask": "11070002",
       "BitPointer": 32,
       "BitCount": 32,
       "MemoryBank": "Epc",
@@ -88,258 +88,6 @@
         "enabled": true,
         "portNumber": 4,
         "portName": "Antenna Port 4"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 5,
-        "portName": "Antenna Port 5"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 6,
-        "portName": "Antenna Port 6"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 7,
-        "portName": "Antenna Port 7"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 8,
-        "portName": "Antenna Port 8"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 9,
-        "portName": "Antenna Port 9"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 10,
-        "portName": "Antenna Port 10"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 11,
-        "portName": "Antenna Port 11"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 12,
-        "portName": "Antenna Port 12"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 13,
-        "portName": "Antenna Port 13"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 14,
-        "portName": "Antenna Port 14"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 15,
-        "portName": "Antenna Port 15"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 16,
-        "portName": "Antenna Port 16"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 17,
-        "portName": "Antenna Port 17"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 18,
-        "portName": "Antenna Port 18"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 19,
-        "portName": "Antenna Port 19"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 20,
-        "portName": "Antenna Port 20"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 21,
-        "portName": "Antenna Port 21"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 22,
-        "portName": "Antenna Port 22"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 23,
-        "portName": "Antenna Port 23"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 24,
-        "portName": "Antenna Port 24"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 25,
-        "portName": "Antenna Port 25"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 26,
-        "portName": "Antenna Port 26"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 27,
-        "portName": "Antenna Port 27"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 28,
-        "portName": "Antenna Port 28"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 29,
-        "portName": "Antenna Port 29"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 30,
-        "portName": "Antenna Port 30"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 31,
-        "portName": "Antenna Port 31"
-      },
-      {
-        "rxSensitivityinDbm": 0.0,
-        "txPowerinDbm": 28.0,
-        "isMaxRxSensitivity": true,
-        "isMaxTxPower": false,
-        "enabled": true,
-        "portNumber": 32,
-        "portName": "Antenna Port 32"
       }
     ],
     "antennaCollectionCreatedBySerializer": false,
@@ -350,11 +98,53 @@
     "polarizationEnabled": false
   },
   "gpis": {
-    "gpiConfigs": [],
+    "gpiConfigs": [
+      {
+        "portNumber": 1,
+        "isEnabled": true,
+        "debounceInMs": 0
+      },
+      {
+        "portNumber": 2,
+        "isEnabled": true,
+        "debounceInMs": 0
+      },
+      {
+        "portNumber": 3,
+        "isEnabled": true,
+        "debounceInMs": 0
+      },
+      {
+        "portNumber": 4,
+        "isEnabled": true,
+        "debounceInMs": 0
+      }
+    ],
     "gpiCollectionCreatedBySerializer": false
   },
   "gpos": {
-    "gpoConfigs": [],
+    "gpoConfigs": [
+      {
+        "portNumber": 1,
+        "mode": "Normal",
+        "gpoPulseDurationMsec": 0
+      },
+      {
+        "portNumber": 2,
+        "mode": "Normal",
+        "gpoPulseDurationMsec": 0
+      },
+      {
+        "portNumber": 3,
+        "mode": "Normal",
+        "gpoPulseDurationMsec": 0
+      },
+      {
+        "portNumber": 4,
+        "mode": "Normal",
+        "gpoPulseDurationMsec": 0
+      }
+    ],
     "gpoCollectionCreatedBySerializer": false
   },
   "keepalives": {
