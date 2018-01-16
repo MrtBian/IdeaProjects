@@ -142,13 +142,13 @@ public class MainClass {
      * @return 书的时间点
      */
     public double computeTime(double t1, double t2, double t3, double phase1, double phase2, double phase3){
-        int C = 299792458;
+        int C = 299700000;
         double cos1 =  Math.abs((phase1 - phase2)*C/((t2-t1)*V*FIXED_FREQUENCY*1000*4*Math.PI));
         double cos2 =  Math.abs((phase2 - phase3)*C/((t3-t2)*V*FIXED_FREQUENCY*1000*4*Math.PI));
         double tan1 = getTan(cos1);
         double tan2 = getTan(cos2);
-        double x = (t2-t1)*V*tan1/(tan2-tan1);
-        return x/V + t2;
+        double x = (t2-t1)*tan1/(tan2-tan1);
+        return x + t2;
     }
 
     /**
@@ -162,10 +162,10 @@ public class MainClass {
 
     public double getLocation(){
         List<Double> bookTimeList = new ArrayList<>();
-        int interval = 5;
-        int num = timeStamp.length;
+        int interval = 15;
+        int num = 0;
         double averageTime = 0.0,sum =0.0;
-        for(int i=0;i+interval*2<200;i++){
+        for(int i=0;i+interval*2<300;i++){
             double bTime = computeTime(timeStamp[i],
                     timeStamp[i+interval],
                     timeStamp[i+interval*2],
@@ -174,11 +174,12 @@ public class MainClass {
                     phase[i+interval*2]);
             if(bTime > 0) {
                 sum += bTime;
+                num++;
             }
             bookTimeList.add(bTime);
-            System.out.println("i="+i+" "+bTime);
+            System.out.println("time="+timeStamp[i]+" "+bTime);
         }
-        averageTime = sum/200;
+        averageTime = sum/num;
         return averageTime;
     }
     public static void main(String args[]) {
@@ -199,7 +200,8 @@ public class MainClass {
 
         mainClass.eliminatePhaseJumps();
         double newphase[] = new double[num];
-        //Smooth.linearSmooth3(mainClass.phase,newphase,num);
+        Smooth.linearSmooth3(mainClass.phase,newphase,num);
+        mainClass.phase = newphase;
         double bookTime = mainClass.getLocation();
         System.out.println(bookTime);
 
