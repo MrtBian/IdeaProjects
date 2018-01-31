@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="WebCollector-2.71">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/WebCollector-2.71.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ideaLibSources/WebCollector-2.71-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

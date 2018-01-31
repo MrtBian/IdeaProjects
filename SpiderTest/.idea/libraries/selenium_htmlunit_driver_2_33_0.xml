@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="selenium-htmlunit-driver-2.33.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/selenium-htmlunit-driver-2.33.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ideaLibSources/selenium-htmlunit-driver-2.33.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

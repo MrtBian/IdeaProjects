@@ -7,5 +7,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="WebCollector-2.71" level="project" />
+    <orderEntry type="library" name="selenium-htmlunit-driver-2.33.0" level="project" />
+    <orderEntry type="library" name="selenium-server-standalone-2.42.2" level="project" />
+    <orderEntry type="library" name="jsoup-1.11.2" level="project" />
   </component>
 </module>
