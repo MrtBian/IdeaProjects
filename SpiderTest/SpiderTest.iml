@@ -11,5 +11,8 @@
     <orderEntry type="library" name="selenium-htmlunit-driver-2.33.0" level="project" />
     <orderEntry type="library" name="selenium-server-standalone-2.42.2" level="project" />
     <orderEntry type="library" name="jsoup-1.11.2" level="project" />
+    <orderEntry type="library" name="httpcore-4.4.9" level="project" />
+    <orderEntry type="library" name="httpclient-4.5.5" level="project" />
+    <orderEntry type="library" name="commons-logging-1.2" level="project" />
   </component>
 </module>
