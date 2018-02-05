@@ -62,7 +62,7 @@ public class demo {
     }
 
     public String Login(String url) {
-        int ranInt = (int) (Math.random() * 10);
+        int ranInt = (int) (Math.random() * 1);
         try {
             Thread.sleep(1000 * ranInt);
         } catch (InterruptedException e) {
@@ -71,7 +71,7 @@ public class demo {
         int agentIndex = (int) (Math.random() * userAgents.length);
 //        int cookieIndex = (int) (Math.random() * cookies.length);
         int cookieIndex = (int) (Math.random() * 2);
-        cookieIndex = 2;
+        cookieIndex = 0;
         CloseableHttpClient client;
         HttpGet get = new HttpGet();
 
@@ -142,10 +142,71 @@ public class demo {
         }
     }
 
+    /**
+     * 判断uid是否是starName的粉丝
+     * @param starName
+     * @param uid
+     * @return
+     */
     public boolean isFan(String starName, String uid) {
         HashSet<String> fList = getFollowers(uid);
         boolean tmp = fList.contains(starName);
         return tmp;
+    }
+
+    public void getFansWeibo(String uid){
+        HashSet<String> uList =  getFanByID(uid);
+        File dir = new File(uid);
+        dir.mkdir();
+        for(String u:uList){
+            getAllWeiboE(u,uid+"/");
+        }
+    }
+
+    /**
+     * 返回uid的粉丝uid列表
+     * @param uid
+     * @return
+     */
+    public HashSet<String> getFanByID(String uid) {
+        HashSet<String> uList = new HashSet<>();
+        String url = baseUrl + uid;
+        String html = Login(url);
+        Document doc = Jsoup.parse(html);
+        Elements elest = doc.getElementsByClass("tip2");
+        if (elest.size() == 0) {
+            return uList;
+        }
+        Element elef = elest.first().getElementsByTag("a").get(1);
+        String fUrl = weiboUrl + elef.attr("href");
+        html = Login(fUrl);
+        doc = Jsoup.parse(html);
+        Elements eles = doc.getElementsByAttributeValue("value", "跳页");
+        if (eles.size() == 0) {
+            return uList;
+        }
+        Element div = eles.first().parent();
+        String str = div.text();
+        int pageNum = Integer.valueOf(str.substring(str.indexOf("/") + 1, str.length() - 1));
+        for (int i = 0; i <= pageNum; i++) {
+            String eachUrl = fUrl + "?page=" + (i + 1);
+            html = Login(eachUrl);
+            doc = Jsoup.parse(html);
+            Elements links = doc.getElementsByTag("table");
+            for (Element link : links) {
+                Element tmp = link.getElementsByTag("a").get(1);
+                String fanurl = tmp.attr("href").toString();
+                String uidtmp ="";
+                if (fanurl.matches("https://weibo.cn/u/[0-9]*")) {
+                    uidtmp = fanurl.substring(19, fanurl.length());
+                }
+                if(uidtmp.length()>1){
+                    uList.add(uidtmp);
+                }
+
+            }
+        }
+        return uList;
     }
 
     public HashSet<String> getFollowers(String uid) {
@@ -281,24 +342,81 @@ public class demo {
                     count++;
                     String text = each.text();
                     FileUtil.writeFile(file, true, text);
+                    if(count%50==49){
+                        System.out.print(".");
+                    }
                     if(count>499||i>55){
-                        System.out.println("  Get " + count + " weibos!");
+                        System.out.println("\n  Get " + count + " weibos!");
                         return;
                     }
                 }
             }
         }
-        System.out.println("  Get " + count + " weibos!");
+        System.out.println("\n  Get " + count + " weibos!");
+    }
+    /**
+     * @param uid
+     * @param file
+     */
+    public void getAllWeiboE(String uid, String file) {
+//        int ranInt = 20;
+//        try {
+//            Thread.sleep(1000 * ranInt);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        String url = baseUrl + uid;
+        String html = Login(url);
+        Document doc = Jsoup.parse(html);
+        String tit= doc.title();
+        String ufile = file+tit+".txt";
+        File file1 = new File(ufile);
+        if(file1.exists()){
+            return;
+        }
+        Element ele = doc.getElementsByAttributeValue("name", "mp").first();
+        if(ele==null){
+            return;
+        }
+        int pageNum = Integer.valueOf(ele.attr("value"));
+        int count = 0;
+        for (int i = 0; i <= pageNum; i++) {
+//            System.out.println("  Get " + (i + 1) + "th weibo!");
+            String eachUrl = url + "?page=" + (i + 1);
+            html = Login(eachUrl);
+            doc = Jsoup.parse(html);
+            Elements eles = doc.getElementsByClass("c");
+            for (Element each : eles) {
+                if (each.attr("id").matches("M_[0-9a-zA-Z]*")) {
+                    String text = each.text();
+                    String tmp = text.substring(0,2);
+                    if(tmp.compareTo("转发")!=0&&tmp.compareTo("分享")!=0){
+                        count++;
+                        FileUtil.writeFile(ufile, true, text);
+                        if(count%10==9){
+                            System.out.print(".");
+                        }
+                    }
+                    if(count>49||i>20){
+                        System.out.println("\n  Get " + count + " weibos!");
+                        return;
+                    }
+                }
+            }
+        }
+        System.out.println("\n  Get " + count + " weibos!");
     }
 
     public static void main(String[] args) throws ClientProtocolException, IOException, URISyntaxException {
         demo demo1 = new demo();
+        String myUid = "5364400977";
         //        String fileName = "LuhanWeibo.txt";
         //        FileUtil.clearFile(fileName);
         //        demo1.getAllWeibo(demo1.starUid, fileName);
 //        String fileNameFans = "LuHanFans.txt";
 //        FileUtil.clearFile(fileNameFans);
 //        demo1.mainLoop(demo1.starUid, fileNameFans);
-        demo1.getFans("https://weibo.cn/comment/G0YAt0zbV?uid=1537790411&rl=0");
+//        demo1.getFans("https://weibo.cn/comment/G0YAt0zbV?uid=1537790411&rl=0");
+        demo1.getFansWeibo(myUid);
     }
 }
