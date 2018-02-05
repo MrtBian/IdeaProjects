@@ -31,16 +31,14 @@ public class demo {
     public String starUrl = baseUrl + starUid;
     String[] userAgents = {"Mozilla/5.0 (Windows; U; Windows NT 5.1; it; rv:1.8.1.11) Gecko/20071127 " +
             "Firefox/2.0.0.11", "Opera/9.25 (Windows NT 5.1; U; en)", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT " +
-            "" + "5.1; SV1;.NET CLR " + "1.1.4322;" + " " + "" + "" + "" + "" + ".NET" + " " + "" + "CLR " + "" +
-            "2.0.50727)" + "" + "", "Mozilla/5.0" + " " + "" + "" + "" + "" + "" + "" + "(compatible; " + "" +
+            "" + "5.1; SV1;.NET CLR " + "1.1.4322;.NET" + " " + "" + "CLR " + "" +
+            "2.0.50727)" + "" + "", "Mozilla/5.0(compatible; " + "" +
             "Konqueror/3.5; " + "Linux)" + " " + "KHTML/3.5.5 " + "" + "" + "" + "(like " + "" + "Gecko)" + "" + "" +
             "" + " " + "" + "" + "" + "(Kubuntu)", "Mozilla/5.0" + "" + " " + "(X11; " + "" + "U; " + "Linux " + "" +
             "" + "" + "i686; " + "en-US; " + "rv:1.8.0.12) " + "Gecko/20070731 " + "Ubuntu/dapper-security" + "" + " " +
             "" + "" + "Firefox/1.5.0.12", "Lynx/2.8.5rel.1 " + "libwww-FM/2.14 " + "SSL-MM/1.4.1 GNUTLS/1.2.9",
-            "Mozilla/5.0 " + "(X11; Linux" + " " + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" + "" +
-                    "i686)" + "" + "" + "" + " " + "" + "" + "AppleWebKit/535.7 " + "" + "(KHTML, " + "" + "" + "" +
-                    "like " + "Gecko) " + "" + "Ubuntu/11.04" + " " + "Chromium/16.0.912.77 " + "Chrome/16.0.912.77"
-                    + "" + " " + "Safari/535.7", "Mozilla/5.0 " + "" + "(X11; " + "" + "Ubuntu; " + "Linux" + " " +
+            "Mozilla/5.0 " + "(X11; Linuxi686)" + "" + "" + "" + " " + "" + "" + "AppleWebKit/535.7 " + "" + "(KHTML, like " + "Gecko) " + "" + "Ubuntu/11.04" + " " + "Chromium/16.0.912.77 " + "Chrome/16.0.912.77"
+                    + "Safari/535.7", "Mozilla/5.0 " + "" + "(X11; " + "" + "Ubuntu; " + "Linux" + " " +
             "i686; " + "rv:10.0) " + "" + "Gecko/20100101 " + "Firefox/10.0" + " ",};
     //18207394354
     String cookie1 = "_T_WM=850fc9d3069c874c19fbd9e1fe092411; " +
@@ -49,24 +47,14 @@ public class demo {
             "SCF=AtI0SJPpmwi_n4RzToidS_z-RwVsuXVBolNs7OTmkkXybHiown20ApKKFqrabsBvKXXw2zwakAhhuNhKsrHIk20.; " +
             "SSOLoginState=1517641979";
     //bianxy96@gmail.com
-    String cookie0 = "_T_WM=918d43a7f5805f40e60d654b3ccc3301; ALF=1519991699; " +
-            "SCF=AgDWR313JuXm8k8mQnzvC2QugmwEc_65aDyMTbV2LFZ4HphBufkwEl7KgLbZEXYjCOnMfETkJYMBgXzoVWABtCo.; " +
-            "SUB=_2A253dd8dDeThGeBM61sS8yfIyjyIHXVUmeFVrDV6PUJbktBeLRjBkW1NRRFx_yTanlvWccBs3jr9yi_YhuPv44k2; " +
-            "SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W5OGKSDVF6Bu7d9DXNCWFXm5JpX5K-hUgL" +
-            ".FoqEeh.0e0.XeK52dJLoIE9SqPWC9gxfqc-LxKBLB.eL1-2LxK-LBo.LBonLxKMLBKqL12qR15tt; SUHB=0btshTBE2Gksba; " +
-            "SSOLoginState=1517399885";
+    String cookie0 = "_T_WM=02510fa4812c5f9850bf896aec371bd1; " +
+            "SUB=_2A253cocSDeThGeBM61sS8yfIyjyIHXVUnClarDV6PUJbkdANLVSjkW1NRRFx_5vJzMZvCjFkRhvxQ6p_U0QvzlVX; " +
+            "SUHB=0sqRo7WsiNZTne; SCF=ApFrZJA8RaWFzuwazefEgAOThE5nc0TXmwufGGbJNAy5saJskQCRTls_0t" +
+            "-YlbdfxH_eMzcQYLqg0bCbNC_41RQ.; SSOLoginState=1517745986";
     //13574854583
-    String cookie2 = "_T_WM=9e6435847f436692b2fd240531245805; " +
-            "SUB=_2A253cRUmDeRhGeBK7VcS9i3IyDyIHXVUnbturDV6PUJbkdBeLU_3kW1NR4omipfMhIuNhCoi53g1sXRhRC6z1YWT; " +
-            "SUHB=0qjEtY8FzhT3cq; SCF=AqXYTJ7xht10RIs2EFbCY1rcYW1HloQZ4ofbp-89DBN0m9hVIxFD" +
-            "--hRcUQsjzspqJii8VF3cSbvsonJzbjaayo.; SSOLoginState=1517643126";
+    String cookie2 = "SCF=Am0YUbvwB0GlA1I4OqSXkdUe3Eacyj3VKMwq1Fokt7xn--VLzW_XT_5UnzmQ7Hte7rILx9Zzk_bAlYdlfWSUy8Y.; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9Wh6b5rOnOC1xZ1vVOnnAaEa5JpX5KMhUgL.Fo-0SoBXeh54S0M2dJLoI0YLxKMLBK-L1--LxKBLBonL1h5LxKqLBK5LBoMLxKML1-2L1hBLxKBLB.2L1K2LxKBLBo.L12zLxKnL1h5L1h5t; _T_WM=8a54890bc1ab6f5050f2bb793c622dfd; SUB=_2A253cohFDeRhGeBK7VcS9i3IyDyIHXVUnCgNrDV6PUJbkdANLU_DkW1NR4ominTR1iHgMgS2bN0hk-lo63Sj2i8d; SUHB=04WeII4gFgcdH-; SSOLoginState=1517746197";
     //13467453825
-    String cookie3 = "SCF=Am0YUbvwB0GlA1I4OqSXkdUe3Eacyj3VKMwq1Fokt7xn--VLzW_XT_5UnzmQ7Hte7rILx9Zzk_bAlYdlfWSUy8Y.; " +
-            "SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9Wh6b5rOnOC1xZ1vVOnnAaEa5JpX5KMhUgL" +
-            ".Fo-0SoBXeh54S0M2dJLoI0YLxKMLBK-L1--LxKBLBonL1h5LxKqLBK5LBoMLxKML1-2L1hBLxKBLB.2L1K2LxKBLBo" +
-            ".L12zLxKnL1h5L1h5t; _T_WM=8a54890bc1ab6f5050f2bb793c622dfd; " +
-            "SUB=_2A253cPtjDeRhGeBK7VcR9ijKzzmIHXVUmoUrrDV6PUJbkdANLVrgkW1NR4omiQw5wzUh0wI1NZKiAPUtib1mtNSn; " +
-            "SUHB=0C1CoMvX55S0Gw; SSOLoginState=1517587251";
+    String cookie3 = "_T_WM=fb636782e66545092939fad92a60152d; SUB=_2A253co1VDeRhGeBK7VcR9ijKzzmIHXVUnBMdrDV6PUJbkdANLU3TkW1NR4omiZJIMJ-BCO7UMM70SF_jn1JvJuvA; SUHB=0oUoqd2zBGtt95; SCF=AtMX_7maIay6rgMdgnJzRfYtL2ki5lJbg_fXz27K03iC_HcWe97ukwNg7uqn4BCnNymxonhXsKwznB1OW0TvB8s.; SSOLoginState=1517747461";
     String[] cookies = {cookie0, cookie1,cookie2,cookie3};
 
     public demo() {
@@ -81,8 +69,9 @@ public class demo {
             e.printStackTrace();
         }
         int agentIndex = (int) (Math.random() * userAgents.length);
-        int cookieIndex = (int) (Math.random() * cookies.length);
-        cookieIndex = 1;
+//        int cookieIndex = (int) (Math.random() * cookies.length);
+        int cookieIndex = (int) (Math.random() * 2);
+        cookieIndex = 2;
         CloseableHttpClient client;
         HttpGet get = new HttpGet();
 
@@ -106,7 +95,13 @@ public class demo {
 //            System.out.println("Cookie：" + cookieIndex);
 //            System.out.println("UserAgent:" + agentIndex);
             CloseableHttpResponse resp = client.execute(get);
-            System.out.println(resp.getStatusLine());
+            String[] tmp=resp.getStatusLine().toString().split(" ");
+            if(tmp[1].compareTo("200")!=0){
+                System.out.println(tmp[1]);
+                if(tmp[1].compareTo("404")!=0) {
+                    System.exit(1);
+                }
+            }
             HttpEntity entity = resp.getEntity();
             cont = EntityUtils.toString(entity);
             resp.close();
@@ -162,7 +157,7 @@ public class demo {
         if (elest.size() == 0) {
             return uList;
         }
-        Element elef = doc.getElementsByClass("tip2").first().getElementsByTag("a").first();
+        Element elef = elest.first().getElementsByTag("a").first();
         String fUrl = weiboUrl + elef.attr("href");
         html = Login(fUrl);
         doc = Jsoup.parse(html);
@@ -206,10 +201,10 @@ public class demo {
         int pageNum = Integer.valueOf(str.substring(str.indexOf("/") + 1, str.length() - 1));
         for (int i = 0; i <= pageNum; i++) {
             System.out.println("Get " + (i + 1) + "th page!");
-            String eachUrl = comlink.substring(0, comlink.indexOf("#")) + "&page=" + (i + 1);
+            String eachUrl = comlink + "&page=" + (i + 1);
             html = Login(eachUrl);
 
-            System.out.println(html.length());
+//            System.out.println(html.length());
             doc = Jsoup.parse(html);
             Elements links = doc.getElementsByAttributeValueMatching("id", "C_[0-9]*");
             for (Element link : links) {
@@ -217,18 +212,26 @@ public class demo {
                 Element tmp = link.getElementsByTag("a").first();
                 String uidtmp = tmp.attr("href").toString();
                 String uid = "";
-                String uName = tmp.text();
+//                String uName = tmp.text();
                 if (uidtmp.matches("/u/[0-9]*")) {
                     uid = uidtmp.substring(3, uidtmp.length());
-                } else {
-                    uid = uidtmp.substring(1, uidtmp.length());
+                } else if(uidtmp.matches("/u/[0-9]*\\?gid=[0-9]*")){
+                    uid = uidtmp.substring(3, uidtmp.indexOf("?"));
+                }
+                if(uid.length()<1){
+                    return uList;
                 }
                 String fileName = starName + "/" + uid + ".txt";
                 File uFile = new File(fileName);
                 if (!uFile.exists()) {
-                    if (isFan(starName, uid)) {
-                        getAllWeibo(uid, fileName);
+                    try {
+                        uFile.createNewFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
+                    //                    if (isFan(starName, uid)) {
+                        getAllWeibo(uid, fileName);
+//                    }
                 }
                 uList.add(uid);
                 //                System.out.println("ID:" + uid);
@@ -252,14 +255,23 @@ public class demo {
      * @param file
      */
     public void getAllWeibo(String uid, String file) {
+//        int ranInt = 20;
+//        try {
+//            Thread.sleep(1000 * ranInt);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         String url = baseUrl + uid;
         String html = Login(url);
         Document doc = Jsoup.parse(html);
         Element ele = doc.getElementsByAttributeValue("name", "mp").first();
+        if(ele==null){
+            return;
+        }
         int pageNum = Integer.valueOf(ele.attr("value"));
         int count = 0;
         for (int i = 0; i <= pageNum; i++) {
-            System.out.println("Get " + (i + 1) + "th weibo!");
+//            System.out.println("  Get " + (i + 1) + "th weibo!");
             String eachUrl = url + "?page=" + (i + 1);
             html = Login(eachUrl);
             doc = Jsoup.parse(html);
@@ -267,15 +279,16 @@ public class demo {
             for (Element each : eles) {
                 if (each.attr("id").matches("M_[0-9a-zA-Z]*")) {
                     count++;
-
                     String text = each.text();
                     FileUtil.writeFile(file, true, text);
-                    if(count>499){
+                    if(count>499||i>55){
+                        System.out.println("  Get " + count + " weibos!");
                         return;
                     }
                 }
             }
         }
+        System.out.println("  Get " + count + " weibos!");
     }
 
     public static void main(String[] args) throws ClientProtocolException, IOException, URISyntaxException {
@@ -283,8 +296,9 @@ public class demo {
         //        String fileName = "LuhanWeibo.txt";
         //        FileUtil.clearFile(fileName);
         //        demo1.getAllWeibo(demo1.starUid, fileName);
-        String fileNameFans = "LuHanFans.txt";
-        FileUtil.clearFile(fileNameFans);
-        demo1.mainLoop(demo1.starUid, fileNameFans);
+//        String fileNameFans = "LuHanFans.txt";
+//        FileUtil.clearFile(fileNameFans);
+//        demo1.mainLoop(demo1.starUid, fileNameFans);
+        demo1.getFans("https://weibo.cn/comment/G0YAt0zbV?uid=1537790411&rl=0");
     }
 }
