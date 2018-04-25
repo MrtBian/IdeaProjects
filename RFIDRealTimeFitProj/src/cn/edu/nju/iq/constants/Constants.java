@@ -3,10 +3,11 @@ package cn.edu.nju.iq.constants;
 public final class Constants {
 //    public static final String HOST_NAME = "speedwayr-11-1c-1f.local";
     public static final String HOST_NAME = "speedwayr-11-1e-9c.local";
-    public static final double POWER_IN_DBM = 28;
+    public static final double POWER_IN_DBM = 30;
     public static final int TAG_POPULATION_ESTIMATE = 4;
     public static final int SESSION = 0;
     public static final double FIXED_FREQUENCY = 920.625;
+    public static final double V_LIGHT = 299792458;
 
     //掩码位数
     public static final int BIT_COUNT = 32;
@@ -25,7 +26,7 @@ public final class Constants {
     public static final String PHASE_PATTERN = "#0.00000";
 
     public static String DATA_FILE_PATH = "Data";
-    public static final String DATA_FILE_NAME = "23.txt";
+    public static final String DATA_FILE_NAME = "1.txt";
 //    public static final String DATA_FILE_NAME = "test.txt";
 
     public static final int RSSI_FIT = 0;
@@ -51,4 +52,16 @@ public final class Constants {
     public static final double THRESHOLD_MIN_FLUCTUATION = 5.0;
     /**  拟合结束返回峰值后，从峰值的时刻开始再跑此值的时间 **/
     public static final int THRESHOLD_RUN_READ_DATA_AFTER_PEAK_APPEAR = 8 * 1000;
+
+    /*
+    三角近似推算相关参数
+     */
+    /* 间隔点数 */
+    public static final int INTERVAL_NUM = 14;
+
+    public static final int THRESHOLD_MIN_VERTICAL_DISTANCE = 6;
+    public static final int THRESHOLD_MAX_VERTICAL_DISTANCE = 16;
+    public static final int THRESHOLD_MAX_POINT_NUM = 8;
+
+    public static final int THRESHOLD_MAX_NO_POINT_TIME = 2500;
 }

@@ -54,7 +54,8 @@ public class Reader {
             Thread.sleep(500);
             reader.start();
 
-            int midTime = realTimeFitter.fit(Constants.FIT_WAY);
+            //int midTime = realTimeFitter.fit(Constants.FIT_WAY);
+            int midTime = (int)realTimeFitter.getLocation();
             reader.stop();
             reader.disconnect();
             System.out.println("midTime: " + midTime);

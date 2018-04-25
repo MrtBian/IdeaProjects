@@ -7,6 +7,8 @@ import java.util.List;
 
 public class RealTimeFitter {
     private List<String> infoList;
+    /** 存储垂直距离符合要求的书时间的计算**/
+    private List<Double> bookTimeList;
 
     private double[] timeStamp;
     private double[] rssi;
@@ -21,6 +23,7 @@ public class RealTimeFitter {
 
     public RealTimeFitter() {
         infoList = new ArrayList<String>();
+        bookTimeList = new ArrayList<>();
     }
 
     public void addData(String data) {
@@ -47,13 +50,19 @@ public class RealTimeFitter {
      * @return 书的时间点
      */
     public double computeTime(double t1, double t2, double t3, double phase1, double phase2, double phase3) {
-        int C = 299792458;
-        double cos1 = Math.abs((phase1 - phase2) * C / ((t2 - t1) * Constants.V * Constants.FIXED_FREQUENCY * 1000 * 4 * Math.PI));
-        double cos2 = Math.abs((phase2 - phase3) * C / ((t3 - t2) * Constants.V * Constants.FIXED_FREQUENCY * 1000 * 4 * Math.PI));
+        double cos1 = Math.abs((phase1 - phase2) * Constants.V_LIGHT / ((t2 - t1) * Constants.V * Constants.FIXED_FREQUENCY * 1000 * 4 * Math.PI));
+        double cos2 = Math.abs((phase2 - phase3) * Constants.V_LIGHT / ((t3 - t2) * Constants.V * Constants.FIXED_FREQUENCY * 1000 * 4 * Math.PI));
         double tan1 = getTan(cos1);
         double tan2 = getTan(cos2);
-        double x = (t2 - t1) * Constants.V * tan1 / (tan2 - tan1);
-        return x / Constants.V + t2;
+
+        double t = (t2-t1)*tan1/(tan2-tan1);
+        double h = t*Constants.V*tan2/10;//垂直距离
+        if(h>Constants.THRESHOLD_MIN_VERTICAL_DISTANCE&&h<Constants.THRESHOLD_MAX_VERTICAL_DISTANCE){
+            return t + t2;
+        }
+
+            return 0;
+
     }
 
     /**
@@ -66,25 +75,33 @@ public class RealTimeFitter {
         return Math.sqrt(1 - cos * cos);
     }
 
+    /**
+     *
+     * @return
+     */
     public double getLocation() {
-        List<Double> bookTimeList = new ArrayList<>();
-        int interval = 5;
-        int num = timeStamp.length;
         double averageTime = 0.0, sum = 0.0;
-        for (int i = 0; i + interval * 2 < 200; i++) {
-            double bTime = computeTime(timeStamp[i],
-                    timeStamp[i + interval],
-                    timeStamp[i + interval * 2],
-                    phase[i],
-                    phase[i + interval],
-                    phase[i + interval * 2]);
-            if (bTime > 0) {
-                sum += bTime;
+        while(true) {
+            initData();
+            int num = timeStamp.length;
+            if (num - Constants.INTERVAL_NUM * 2 > 0) {
+                double bTime = computeTime(timeStamp[num - Constants.INTERVAL_NUM * 2-1],
+                        timeStamp[num - Constants.INTERVAL_NUM-1],
+                        timeStamp[num-1],
+                        phase[num - Constants.INTERVAL_NUM * 2-1],
+                        phase[num - Constants.INTERVAL_NUM-1],
+                        phase[num-1]);
+                if (bTime > 0) {
+                    sum += bTime;
+                }
+                bookTimeList.add(bTime);
+                System.out.println("i=" + bookTimeList.size() + " " + bTime);
             }
-            bookTimeList.add(bTime);
-            System.out.println("i=" + i + " " + bTime);
+            if(bookTimeList.size()>Constants.THRESHOLD_MAX_POINT_NUM||timeStamp[num-1]>Constants.THRESHOLD_MAX_NO_POINT_TIME){
+                break;
+            }
         }
-        averageTime = sum / 200;
+        averageTime = sum / bookTimeList.size();
         return averageTime;
     }
 
