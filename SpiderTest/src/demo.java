@@ -62,7 +62,7 @@ public class demo {
     }
 
     public String Login(String url) {
-        int ranInt = (int) (Math.random() * 1);
+        int ranInt = (int) (Math.random() * 10);
         try {
             Thread.sleep(1000 * ranInt);
         } catch (InterruptedException e) {
@@ -71,7 +71,7 @@ public class demo {
         int agentIndex = (int) (Math.random() * userAgents.length);
 //        int cookieIndex = (int) (Math.random() * cookies.length);
         int cookieIndex = (int) (Math.random() * 2);
-        cookieIndex = 0;
+        cookieIndex = 3;
         CloseableHttpClient client;
         HttpGet get = new HttpGet();
 
@@ -279,24 +279,21 @@ public class demo {
                 } else if(uidtmp.matches("/u/[0-9]*\\?gid=[0-9]*")){
                     uid = uidtmp.substring(3, uidtmp.indexOf("?"));
                 }
-                if(uid.length()<1){
-                    return uList;
-                }
-                String fileName = starName + "/" + uid + ".txt";
-                File uFile = new File(fileName);
-                if (!uFile.exists()) {
-                    try {
-                        uFile.createNewFile();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    //                    if (isFan(starName, uid)) {
+                if(uid.length()>1){
+                    String fileName = starName + "/" + uid + ".txt";
+                    File uFile = new File(fileName);
+                    if (!uFile.exists()) {
+                        try {
+                            uFile.createNewFile();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        //                    if (isFan(starName, uid)) {
                         getAllWeibo(uid, fileName);
-//                    }
+                        //                    }
+                    }
+                    uList.add(uid);
                 }
-                uList.add(uid);
-                //                System.out.println("ID:" + uid);
-                //                System.out.println("Name:" + uName);
             }
         }
         return uList;
@@ -416,7 +413,7 @@ public class demo {
 //        String fileNameFans = "LuHanFans.txt";
 //        FileUtil.clearFile(fileNameFans);
 //        demo1.mainLoop(demo1.starUid, fileNameFans);
-//        demo1.getFans("https://weibo.cn/comment/G0YAt0zbV?uid=1537790411&rl=0");
-        demo1.getFansWeibo(myUid);
+        demo1.getFans("https://weibo.cn/comment/G0YAt0zbV?uid=1537790411&rl=0");
+//        demo1.getFansWeibo(myUid);
     }
 }
