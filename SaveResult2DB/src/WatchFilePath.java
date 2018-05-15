@@ -18,7 +18,7 @@ public class WatchFilePath {
 
     private WatchService watcher;
     private String path;
-    private static final String ENDFILE = "END";
+    private static final String END_FILE = "end";
 
     public WatchFilePath(Path path) throws IOException {
         this.path = path.toString();
@@ -40,12 +40,14 @@ public class WatchFilePath {
                 WatchEvent<Path> e = (WatchEvent<Path>) event;
 
                 String fileName = e.context().toString();
+                System.out.printf("Event %s has happened,which fileName is %s%n"
+                        , kind.name(), fileName);
                 if (kind.name().equals("ENTRY_CREATE")) {
                     if (fileName.matches(".*\\.res$")) {
                         //监听到结果文件创建
                         resFile = path + fileName;
                     }
-                    if (fileName.equals(ENDFILE)) {
+                    if (fileName.equals(END_FILE)) {
                         //监听到结束标志文件创建
                         new File(fileName).delete();//删除结束标志文件
                         Res2DB res2DB = new Res2DB(resFile);
@@ -54,8 +56,6 @@ public class WatchFilePath {
                         resFile = "";
                     }
                 }
-                System.out.printf("Event %s has happened,which fileName is %s%n"
-                        , kind.name(), fileName);
 
             }
             if (!key.reset()) {
@@ -65,8 +65,12 @@ public class WatchFilePath {
     }
 
     public static void main(String args[]) throws IOException, InterruptedException {
-//        String FILEPATH = "C:\\Users\\Wing\\Desktop\\";
-//        new WatchFilePath(Paths.get(FILEPATH).handleEvents();
-        new WatchFilePath(Paths.get(args[0])).handleEvents();
+        String FILEPATH = "C:\\Users\\Wing\\Desktop\\";
+        File file = new File(FILEPATH);
+        if(!file.getParentFile().exists()){
+            file.mkdirs();
+        }
+        new WatchFilePath(Paths.get(FILEPATH)).handleEvents();
+//        new WatchFilePath(Paths.get(args[0])).handleEvents();
     }
 }
