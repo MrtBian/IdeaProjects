@@ -5,24 +5,25 @@ import com.impinj.octane.Settings;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.Scanner;
 
 
 public class ReadTags implements TagReportListenerImplementation.OnGetStartTimeCallback {
     public static PrintWriter writer;
-    public String path = ".\\Data";
-    private String datastr = "1110";
-    public String dataFile = datastr + "_test.txt";
+    public String path = ".\\Data\\";
+    private String dataStr = "0523\\";
+    public String dataFile =  "test.txt";
     private ReaderSettings setting;
 
     private long startTime = 0;
     private long endTime = 0;
-    private String timeFile = datastr + "_time.txt";
+    private String timeFile =   "time.txt";
 
     public ReadTags() {
-        File file = new File(path);
+        File file = new File(path+dataStr);
         if (!file.exists() && !file.isDirectory()) {
-            file.mkdir();
+            file.mkdirs();
         }
         setting = new ReaderSettings();
     }
@@ -34,7 +35,7 @@ public class ReadTags implements TagReportListenerImplementation.OnGetStartTimeC
             reader.connect(hostname);
             reader.applySettings(Settings.load(setting.settingsFilePath));
 
-            writer = new PrintWriter(path+"\\"+dataFile, "UTF-8");
+            writer = new PrintWriter(path+dataStr+dataFile, "UTF-8");
 
             reader.setTagReportListener(new TagReportListenerImplementation(this));
             reader.start();
@@ -46,11 +47,11 @@ public class ReadTags implements TagReportListenerImplementation.OnGetStartTimeC
             reader.stop();
             reader.disconnect();
             writer.close();
-            FileWriter fileWriter = new FileWriter(path+"\\"+timeFile,true);
-            PrintWriter writer1 = new PrintWriter(fileWriter);
+//            FileWriter fileWriter = new FileWriter(path+"\\"+timeFile,true);
+//            PrintWriter writer1 = new PrintWriter(fileWriter);
             endTime = System.currentTimeMillis();
-            writer1.append(dataFile+" "+startTime+" "+endTime+" "+(endTime-startTime)+"\n");
-            writer1.close();
+//            writer1.append(dataFile+" "+startTime+" "+endTime+" "+(endTime-startTime)+"\n");
+//            writer1.close();
         } catch (OctaneSdkException ex) {
             System.out.println(ex.getMessage());
         } catch (Exception ex) {
