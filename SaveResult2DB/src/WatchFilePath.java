@@ -56,11 +56,12 @@ public class WatchFilePath {
                         Res2DB res2DB = new Res2DB(resFile);
                         //写回数据库
 //                        res2DB.write2DB();
-                        res2DB.generateReport();
+                        res2DB.generateReportTemp();
+//                        res2DB.generateReport();
                         resFile = "";
                     }
                 }
-                System.out.println("监听继续...");
+//                System.out.println("监听继续...");
 
             }
             if (!key.reset()) {
@@ -70,10 +71,10 @@ public class WatchFilePath {
     }
 
     public static void main(String args[]) throws IOException, InterruptedException {
-        String FILEPATH = args[0];
-//        String FILEPATH = "C:\\Users\\Wing\\Desktop\\Test\\";
+//        String FILEPATH = args[0];
+        String FILEPATH = "C:\\Users\\Wing\\Desktop\\Test\\";
         File file = new File(FILEPATH);
-        if(!file.getParentFile().exists()){
+        if(!file.exists()){
             file.mkdirs();
         }
         new WatchFilePath(Paths.get(FILEPATH)).handleEvents();

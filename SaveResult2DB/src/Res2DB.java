@@ -9,7 +9,7 @@ import jxl.write.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
-import java.util.List;
+import java.util.*;
 
 import static util.FileUtil.readFileByLine;
 
@@ -42,10 +42,41 @@ class Res2DB {
     /*EPC 区域号 楼层号 列号 排号 架号 层号 顺序号 放错等级*/
     private String[][] resInfo;
     private static final int FIELD_NUM = 9;
+
+    /**
+     * 书籍信息
+     */
+
+    /*条形码 索书号 书名 区域号 楼层号 列号 排号 架号 层号 顺序号 放错等级*/
+    private enum BookFieldName {
+        BOOK_ID("BOOK_ID", 0), BOOK_INDEX("BOOK_INDEX", 1), BOOK_NAME("BOOK_NAME", 2), AREANO("AREANO", 3), FLOORNO
+                ("FLOORNO", 4), COLUMNNO("COLUMNNO", 5), ROWNO("ROWNO", 6), SHELFNO("SHELFNO", 7), LAYERNO("LAYERNO",
+                8), ORDERNO("ORDERNO", 9), ERRORFLAG("ERRORFLAG", 10);
+        private String name;
+        private int index;
+
+        BookFieldName(String name, int index) {
+            this.name = name;
+            this.index = index;
+        }
+
+        public int getIndex() {
+            return index;
+        }
+
+        public String getName() {
+            return name;
+        }
+    }
+
+    private static final int BOOK_FIELD_NUM = 11;
+    private Map<String, String[]> bookMap;
+    private List<Map.Entry<String, String[]>> bookList;
     /**
      * 对应图书馆数据库字段
      **/
-    private static final String DB_FIELD_NAME[] = {"TAG_ID", "AREANO", "FLOORNO", "COLUMNNO", "ROWNO", "SHELFNO", "LAYERNO", "ORDERNO", "ERRORFLAG"};
+    private static final String DB_FIELD_NAME[] = {"TAG_ID", "AREANO", "FLOORNO", "COLUMNNO", "ROWNO", "SHELFNO",
+            "LAYERNO", "ORDERNO", "ERRORFLAG"};
     //
     private static final int SHEET_NUM = 10;
     /**
@@ -66,14 +97,55 @@ class Res2DB {
         getResInfo();
     }
 
-    public void getResInfo(){
+    public void getResInfo() {
+        bookMap = new HashMap<>();
         List<String> result = readFileByLine(resPath);
         resInfo = new String[result.size()][];
         int i = 0;
-        String tags = "";
+        String[] tagIDs = new String[result.size()];
         for (String data : result) {
-            resInfo[i++] = data.split(" ");
+            String[] bookInfos = new String[BOOK_FIELD_NUM];
+            resInfo[i] = data.split(" ");
+            tagIDs[i] = "\"" + resInfo[i][0] + "\"";
+            String tagID = resInfo[i][0];
+            System.arraycopy(resInfo[i], 1, bookInfos, BookFieldName.AREANO.getIndex(), FIELD_NUM - 2);
+            bookMap.put(tagID, bookInfos);
+            i++;
         }
+                getDBConnection();
+        try {
+            statement = connect.createStatement();
+            String tagsTmp = Arrays.toString(tagIDs).replace("[", "(").replace("]", ")");
+            String sql = "SELECT TAG_ID,BOOK_ID, BOOK_INDEX, BOOK_NAME FROM " + DB_NAME + "." + TABLE_NAME + " WHERE " +
+                    "" + "TAG_ID = '" + tagsTmp + "'";
+            System.out.println(sql);
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                String tagID = resultSet.getString("TAG_ID");
+                String[] bookInfos = bookMap.get(tagID);
+                bookInfos[0] = resultSet.getString("BOOK_ID");
+                bookInfos[1] = resultSet.getString("BOOK_INDEX");
+                bookInfos[2] = resultSet.getString("BOOK_NAME");
+                bookMap.put(tagID, bookInfos);
+            }
+            statement.close();
+            connect.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        //排序
+        bookList = new ArrayList<Map.Entry<String, String[]>>(bookMap.entrySet());
+        Collections.sort(bookList, new Comparator<Map.Entry<String, String[]>>() {
+            //升序排序
+            public int compare(Map.Entry<String, String[]> o1, Map.Entry<String, String[]> o2) {
+                String tmp1 = Arrays.toString(o1.getValue());
+                String tmp2 = Arrays.toString(o2.getValue());
+                int tmp = tmp1.compareTo(tmp2);
+                return tmp;
+            }
+
+        });
     }
 
     /**
@@ -91,22 +163,18 @@ class Res2DB {
         }
         for (String[] data : resInfo) {
             if (isEpc(data[0])) {
-                String sql = "UPDATE " + DB_NAME +"."+TABLE_NAME + " SET "
-                        + DB_FIELD_NAME[1] + "='" + data[1] + "', "
-                        + DB_FIELD_NAME[2] + "='" + data[2] + "', "
-                        + DB_FIELD_NAME[3] + "='" + data[3] + "', "
-                        + DB_FIELD_NAME[4] + "='" + data[4] + "', "
-                        + DB_FIELD_NAME[5] + "='" + data[5] + "', "
-                        + DB_FIELD_NAME[6] + "='" + data[6] + "', "
-                        + DB_FIELD_NAME[7] + "='" + data[7] + "'"
-                        + " WHERE " + DB_FIELD_NAME[0] + "='" + data[0] + "'";
-//                System.out.println(sql);
+                String sql = "UPDATE " + DB_NAME + "." + TABLE_NAME + " SET " + DB_FIELD_NAME[1] + "='" + data[1] +
+                        "', " + DB_FIELD_NAME[2] + "='" + data[2] + "', " + DB_FIELD_NAME[3] + "='" + data[3] + "', "
+                        + DB_FIELD_NAME[4] + "='" + data[4] + "', " + DB_FIELD_NAME[5] + "='" + data[5] + "', " +
+                        DB_FIELD_NAME[6] + "='" + data[6] + "', " + DB_FIELD_NAME[7] + "='" + data[7] + "'" + " " +
+                        "WHERE" + " " + DB_FIELD_NAME[0] + "='" + data[0] + "'";
+                //                System.out.println(sql);
 
-            try {
-                statement.executeUpdate(sql);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+                try {
+                    statement.executeUpdate(sql);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         try {
@@ -128,13 +196,14 @@ class Res2DB {
         getDBConnection();
         try {
             statement = connect.createStatement();
-            String sql = "SELECT BOOK_ID, BOOK_INDEX, BOOK_NAME FROM " + DB_NAME+"."+TABLE_NAME + " WHERE TAG_ID = '" + tagID + "'";
-//            System.out.println(sql);
+            String sql = "SELECT BOOK_ID, BOOK_INDEX, BOOK_NAME FROM " + DB_NAME + "." + TABLE_NAME + " WHERE TAG_ID " +
+                    "" + "" + "" + "" + "" + "" + "" + "= '" + tagID + "'";
+            //            System.out.println(sql);
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                bookID = resultSet.getString("BOOK_ID");
-                bookIndex = resultSet.getString("BOOK_INDEX");
-                bookName = resultSet.getString("BOOK_NAME");
+                bookID = resultSet.getString(BookFieldName.BOOK_ID.getName());
+                bookIndex = resultSet.getString(BookFieldName.BOOK_INDEX.getName());
+                bookName = resultSet.getString(BookFieldName.BOOK_NAME.getName());
             }
             statement.close();
             connect.close();
@@ -144,6 +213,74 @@ class Res2DB {
         return bookID + " " + bookIndex + " " + bookName;
     }
 
+    public void generateReportTemp() {
+        WritableWorkbook book = null;
+        try {
+            book = Workbook.createWorkbook(new File(reportPath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        int i = 0;
+        int sheetNum = 0;
+        for (Map.Entry<String, String[]> entry : bookList) {
+            String tagID = entry.getKey();
+            String[] bookInfos = entry.getValue();
+            String tmp = bookInfos[BookFieldName.COLUMNNO.getIndex()] + "列 " + bookInfos[BookFieldName.ROWNO.getIndex
+                    ()] + "排";
+            WritableSheet sheet = null;
+            if ((sheet = book.getSheet(tmp)) == null) {
+                //不存在此sheet
+                sheet = book.createSheet(tmp, sheetNum);
+                sheetNum++;
+                //添加此sheet信息
+                //                Label labTitle_ = new Label(0, 0, "架号"+data[3]+" 层号"+data[4]);
+                Label labBookID_ = new Label(0, 0, "条形码");
+                Label labBookIndex_ = new Label(1, 0, "索书号");
+                Label labBookName_ = new Label(2, 0, "书名");
+                //                Label labShelfNo_ = new Label(3, 0, "架号");
+                Label labLayerNo_ = new Label(3, 0, "层号");
+                //                Label labOrderNo_ = new Label(5, 0, "顺序号");
+                try {
+                    //                    sheet.addCell(labTitle_);
+                    sheet.addCell(labBookID_);
+                    sheet.addCell(labBookIndex_);
+                    sheet.addCell(labBookName_);
+                    //                                        sheet.addCell(labShelfNo_);
+                    sheet.addCell(labLayerNo_);
+                    //                    sheet.addCell(labOrderNo_);
+                } catch (WriteException e) {
+                    e.printStackTrace();
+                }
+            }
+            //添加书本信息
+            int rowNo = sheet.getRows();
+            //            Label labBookID = new Label(0, rowNo, bookInfos[BookFieldName.BOOK_ID.getIndex()]);
+            //            Label labBookIndex = new Label(1, rowNo, bookInfos[BookFieldName.BOOK_INDEX.getIndex()]);
+            //            Label labBookName = new Label(2, rowNo, bookInfos[BookFieldName.BOOK_NAME.getIndex()]);
+            //            Label labShelfNo = new Label(3, rowNo, bookInfos[BookFieldName.SHELFNO.getIndex()]);
+            Label labLayerNo = new Label(3, rowNo, bookInfos[BookFieldName.LAYERNO.getIndex()]);
+            //            Label labOrderNo = new Label(5, rowNo, bookInfos[BookFieldName.ORDERNO.getIndex()]);
+            try {
+                //                sheet.addCell(labBookID);
+                //                sheet.addCell(labBookIndex);
+                //                sheet.addCell(labBookName);
+                //                                sheet.addCell(labShelfNo);
+                sheet.addCell(labLayerNo);
+                //                sheet.addCell(labOrderNo);
+            } catch (WriteException e) {
+                e.printStackTrace();
+            }
+            i++;
+        }
+        try {
+            book.write();
+            book.close();
+        } catch (IOException | WriteException e) {
+            e.printStackTrace();
+        }
+        System.out.println("报表生成！");
+        System.out.println("正在监听...");
+    }
 
     public void generateReport() {
         WritableWorkbook book = null;
@@ -218,23 +355,30 @@ class Res2DB {
         System.out.println("");
     }
 
+
+    /**
+     * 判断EPC是否正确
+     *
+     * @param epc
+     * @return
+     */
     private boolean isEpc(String epc) {
         /*之后可采用正则表达式判断*/
         return epc.length() >= 20;
     }
 
-//    private void getDBConnection(String host, int port, String dbName, String user, String password) {
-//        try {
-//            Class.forName("oracle.jdbc.driver.OracleDriver");
-//            DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());//实例化驱动程序类
-//            String url = "jdbc:oracle:thin:@" + host + ":" + port + ":" + dbName;//驱动程序名：@主机名/IP：端口号：数据库实例名
-//            connect = DriverManager.getConnection(url, user, password);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    //    private void getDBConnection(String host, int port, String dbName, String user, String password) {
+    //        try {
+    //            Class.forName("oracle.jdbc.driver.OracleDriver");
+    //            DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());//实例化驱动程序类
+    //            String url = "jdbc:oracle:thin:@" + host + ":" + port + ":" + dbName;//驱动程序名：@主机名/IP：端口号：数据库实例名
+    //            connect = DriverManager.getConnection(url, user, password);
+    //        } catch (SQLException e) {
+    //            e.printStackTrace();
+    //        } catch (ClassNotFoundException e) {
+    //            e.printStackTrace();
+    //        }
+    //    }
 
     private void getDBConnection() {
         try {
