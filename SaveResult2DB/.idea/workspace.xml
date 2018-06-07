@@ -23,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="WatchFilePath.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WatchFilePath.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/WatchFilePath.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="62" column="43" lean-forward="false" selection-start-line="62" selection-start-column="36" selection-end-line="62" selection-end-column="43" />
+            <state relative-caret-position="400">
+              <caret line="58" column="39" lean-forward="true" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -36,21 +36,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Res2DB.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Res2DB.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Res2DB.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="158" column="46" lean-forward="false" selection-start-line="158" selection-start-column="34" selection-end-line="158" selection-end-column="46" />
+            <state relative-caret-position="349">
+              <caret line="74" column="19" lean-forward="false" selection-start-line="74" selection-start-column="12" selection-end-line="74" selection-end-column="19" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <marker date="1528363097273" expanded="true" signature="2203:2683" ph="update RFID " />
-                <marker date="1528363097273" expanded="true" signature="2203:2818" ph="update RFID " />
-                <marker date="1528363097273" expanded="true" signature="2203:2840" ph="update RFID " />
-                <marker date="1528363097273" expanded="true" signature="3582:3625" ph="SELECT BOOK_... RFID" />
-                <marker date="1528363097273" expanded="true" signature="3582:3656" ph="SELECT BOOK_... RFID" />
-                <marker date="1528363097273" expanded="true" signature="3582:3672" ph="SELECT BOOK_... RFID" />
-                <marker date="1528363097273" expanded="true" signature="3582:3686" ph="SELECT BOOK_... RFID" />
+                <marker date="1528372893188" expanded="true" signature="2326:2921" ph="UPDATE RFID.... " />
+                <marker date="1528372893188" expanded="true" signature="2332:2776" ph="update RFID " />
+                <marker date="1528372893188" expanded="true" signature="2332:2905" ph="update RFID " />
+                <marker date="1528372893188" expanded="true" signature="2332:2921" ph="update RFID " />
+                <marker date="1528372893188" expanded="true" signature="3624:3667" ph="SELECT BOOK_... RFID" />
+                <marker date="1528372893188" expanded="true" signature="3624:3698" ph="SELECT BOOK_... RFID" />
+                <marker date="1528372893188" expanded="true" signature="3624:3714" ph="SELECT BOOK_... RFID" />
+                <marker date="1528372893188" expanded="true" signature="3624:3728" ph="SELECT BOOK_... RFID" />
               </folding>
             </state>
           </provider>
@@ -82,10 +83,12 @@
       <find>string</find>
       <find>host</find>
       <find>,</find>
+      <find>resInfo[i]</find>
     </findStrings>
     <replaceStrings>
       <replace>String</replace>
       <replace>',</replace>
+      <replace>data</replace>
     </replaceStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -98,8 +101,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/fileutil/FileUtil.java" />
         <option value="$PROJECT_DIR$/src/util/FileUtil.java" />
-        <option value="$PROJECT_DIR$/src/Res2DB.java" />
         <option value="$PROJECT_DIR$/src/WatchFilePath.java" />
+        <option value="$PROJECT_DIR$/src/Res2DB.java" />
       </list>
     </option>
   </component>
@@ -109,7 +112,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -331,15 +334,15 @@
       <workItem from="1527060266995" duration="169000" />
       <workItem from="1527834863704" duration="635000" />
       <workItem from="1528189804612" duration="5236000" />
-      <workItem from="1528359552696" duration="4702000" />
+      <workItem from="1528359552696" duration="6740000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30530000" />
+    <option name="totallyTimeSpent" value="32568000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -410,13 +413,14 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <marker date="1528363097273" expanded="true" signature="2203:2683" ph="update RFID " />
-            <marker date="1528363097273" expanded="true" signature="2203:2818" ph="update RFID " />
-            <marker date="1528363097273" expanded="true" signature="2203:2840" ph="update RFID " />
-            <marker date="1528363097273" expanded="true" signature="3582:3625" ph="SELECT BOOK_... RFID" />
-            <marker date="1528363097273" expanded="true" signature="3582:3656" ph="SELECT BOOK_... RFID" />
-            <marker date="1528363097273" expanded="true" signature="3582:3672" ph="SELECT BOOK_... RFID" />
-            <marker date="1528363097273" expanded="true" signature="3582:3686" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="2326:2921" ph="UPDATE RFID.... " />
+            <marker date="1528372893188" expanded="true" signature="2332:2776" ph="update RFID " />
+            <marker date="1528372893188" expanded="true" signature="2332:2905" ph="update RFID " />
+            <marker date="1528372893188" expanded="true" signature="2332:2921" ph="update RFID " />
+            <marker date="1528372893188" expanded="true" signature="3624:3667" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="3624:3698" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="3624:3714" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="3624:3728" ph="SELECT BOOK_... RFID" />
           </folding>
         </state>
       </provider>
@@ -449,13 +453,14 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <marker date="1528363097273" expanded="true" signature="2203:2683" ph="update RFID " />
-            <marker date="1528363097273" expanded="true" signature="2203:2818" ph="update RFID " />
-            <marker date="1528363097273" expanded="true" signature="2203:2840" ph="update RFID " />
-            <marker date="1528363097273" expanded="true" signature="3582:3625" ph="SELECT BOOK_... RFID" />
-            <marker date="1528363097273" expanded="true" signature="3582:3656" ph="SELECT BOOK_... RFID" />
-            <marker date="1528363097273" expanded="true" signature="3582:3672" ph="SELECT BOOK_... RFID" />
-            <marker date="1528363097273" expanded="true" signature="3582:3686" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="2326:2921" ph="UPDATE RFID.... " />
+            <marker date="1528372893188" expanded="true" signature="2332:2776" ph="update RFID " />
+            <marker date="1528372893188" expanded="true" signature="2332:2905" ph="update RFID " />
+            <marker date="1528372893188" expanded="true" signature="2332:2921" ph="update RFID " />
+            <marker date="1528372893188" expanded="true" signature="3624:3667" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="3624:3698" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="3624:3714" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="3624:3728" ph="SELECT BOOK_... RFID" />
           </folding>
         </state>
       </provider>
@@ -488,13 +493,14 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <marker date="1528363097273" expanded="true" signature="2203:2683" ph="update RFID " />
-            <marker date="1528363097273" expanded="true" signature="2203:2818" ph="update RFID " />
-            <marker date="1528363097273" expanded="true" signature="2203:2840" ph="update RFID " />
-            <marker date="1528363097273" expanded="true" signature="3582:3625" ph="SELECT BOOK_... RFID" />
-            <marker date="1528363097273" expanded="true" signature="3582:3656" ph="SELECT BOOK_... RFID" />
-            <marker date="1528363097273" expanded="true" signature="3582:3672" ph="SELECT BOOK_... RFID" />
-            <marker date="1528363097273" expanded="true" signature="3582:3686" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="2326:2921" ph="UPDATE RFID.... " />
+            <marker date="1528372893188" expanded="true" signature="2332:2776" ph="update RFID " />
+            <marker date="1528372893188" expanded="true" signature="2332:2905" ph="update RFID " />
+            <marker date="1528372893188" expanded="true" signature="2332:2921" ph="update RFID " />
+            <marker date="1528372893188" expanded="true" signature="3624:3667" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="3624:3698" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="3624:3714" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="3624:3728" ph="SELECT BOOK_... RFID" />
           </folding>
         </state>
       </provider>
@@ -527,13 +533,14 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <marker date="1528363097273" expanded="true" signature="2203:2683" ph="update RFID " />
-            <marker date="1528363097273" expanded="true" signature="2203:2818" ph="update RFID " />
-            <marker date="1528363097273" expanded="true" signature="2203:2840" ph="update RFID " />
-            <marker date="1528363097273" expanded="true" signature="3582:3625" ph="SELECT BOOK_... RFID" />
-            <marker date="1528363097273" expanded="true" signature="3582:3656" ph="SELECT BOOK_... RFID" />
-            <marker date="1528363097273" expanded="true" signature="3582:3672" ph="SELECT BOOK_... RFID" />
-            <marker date="1528363097273" expanded="true" signature="3582:3686" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="2326:2921" ph="UPDATE RFID.... " />
+            <marker date="1528372893188" expanded="true" signature="2332:2776" ph="update RFID " />
+            <marker date="1528372893188" expanded="true" signature="2332:2905" ph="update RFID " />
+            <marker date="1528372893188" expanded="true" signature="2332:2921" ph="update RFID " />
+            <marker date="1528372893188" expanded="true" signature="3624:3667" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="3624:3698" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="3624:3714" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="3624:3728" ph="SELECT BOOK_... RFID" />
           </folding>
         </state>
       </provider>
@@ -566,13 +573,14 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <marker date="1528363097273" expanded="true" signature="2203:2683" ph="update RFID " />
-            <marker date="1528363097273" expanded="true" signature="2203:2818" ph="update RFID " />
-            <marker date="1528363097273" expanded="true" signature="2203:2840" ph="update RFID " />
-            <marker date="1528363097273" expanded="true" signature="3582:3625" ph="SELECT BOOK_... RFID" />
-            <marker date="1528363097273" expanded="true" signature="3582:3656" ph="SELECT BOOK_... RFID" />
-            <marker date="1528363097273" expanded="true" signature="3582:3672" ph="SELECT BOOK_... RFID" />
-            <marker date="1528363097273" expanded="true" signature="3582:3686" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="2326:2921" ph="UPDATE RFID.... " />
+            <marker date="1528372893188" expanded="true" signature="2332:2776" ph="update RFID " />
+            <marker date="1528372893188" expanded="true" signature="2332:2905" ph="update RFID " />
+            <marker date="1528372893188" expanded="true" signature="2332:2921" ph="update RFID " />
+            <marker date="1528372893188" expanded="true" signature="3624:3667" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="3624:3698" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="3624:3714" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="3624:3728" ph="SELECT BOOK_... RFID" />
           </folding>
         </state>
       </provider>
@@ -628,31 +636,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Res2DB.java">
+    <entry file="file://$PROJECT_DIR$/src/WatchFilePath.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="158" column="46" lean-forward="false" selection-start-line="158" selection-start-column="34" selection-end-line="158" selection-end-column="46" />
+        <state relative-caret-position="400">
+          <caret line="58" column="39" lean-forward="true" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <marker date="1528363097273" expanded="true" signature="2203:2683" ph="update RFID " />
-            <marker date="1528363097273" expanded="true" signature="2203:2818" ph="update RFID " />
-            <marker date="1528363097273" expanded="true" signature="2203:2840" ph="update RFID " />
-            <marker date="1528363097273" expanded="true" signature="3582:3625" ph="SELECT BOOK_... RFID" />
-            <marker date="1528363097273" expanded="true" signature="3582:3656" ph="SELECT BOOK_... RFID" />
-            <marker date="1528363097273" expanded="true" signature="3582:3672" ph="SELECT BOOK_... RFID" />
-            <marker date="1528363097273" expanded="true" signature="3582:3686" ph="SELECT BOOK_... RFID" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/WatchFilePath.java">
+    <entry file="file://$PROJECT_DIR$/src/Res2DB.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="62" column="43" lean-forward="false" selection-start-line="62" selection-start-column="36" selection-end-line="62" selection-end-column="43" />
+        <state relative-caret-position="349">
+          <caret line="74" column="19" lean-forward="false" selection-start-line="74" selection-start-column="12" selection-end-line="74" selection-end-column="19" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
+            <marker date="1528372893188" expanded="true" signature="2326:2921" ph="UPDATE RFID.... " />
+            <marker date="1528372893188" expanded="true" signature="2332:2776" ph="update RFID " />
+            <marker date="1528372893188" expanded="true" signature="2332:2905" ph="update RFID " />
+            <marker date="1528372893188" expanded="true" signature="2332:2921" ph="update RFID " />
+            <marker date="1528372893188" expanded="true" signature="3624:3667" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="3624:3698" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="3624:3714" ph="SELECT BOOK_... RFID" />
+            <marker date="1528372893188" expanded="true" signature="3624:3728" ph="SELECT BOOK_... RFID" />
           </folding>
         </state>
       </provider>

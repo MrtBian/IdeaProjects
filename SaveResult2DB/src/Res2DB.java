@@ -63,6 +63,17 @@ class Res2DB {
         this.resPath = filePath;
         reportPath = resPath.replace(".res", ".xls").replace("result", "report");
         System.out.println(reportPath);
+        getResInfo();
+    }
+
+    public void getResInfo(){
+        List<String> result = readFileByLine(resPath);
+        resInfo = new String[result.size()][];
+        int i = 0;
+        String tags = "";
+        for (String data : result) {
+            resInfo[i++] = data.split(" ");
+        }
     }
 
     /**
@@ -70,45 +81,40 @@ class Res2DB {
      */
     public void write2DB() {
         /**
-         * 数据库
+         * 写入数据库暂时不启用
          */
-        List<String> result = readFileByLine(resPath);
-        resInfo = new String[result.size()][];
-        int i = 0;
-//        getDBConnection();
-//        try {
-//            statement = connect.createStatement();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-        for (String data : result) {
-            resInfo[i] = data.split(" ");
-            if (isEpc(resInfo[i])) {
+        getDBConnection();
+        try {
+            statement = connect.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (String[] data : resInfo) {
+            if (isEpc(data[0])) {
                 String sql = "UPDATE " + DB_NAME +"."+TABLE_NAME + " SET "
-                        + DB_FIELD_NAME[1] + "='" + resInfo[i][1] + "', "
-                        + DB_FIELD_NAME[2] + "='" + resInfo[i][2] + "', "
-                        + DB_FIELD_NAME[3] + "='" + resInfo[i][3] + "', "
-                        + DB_FIELD_NAME[4] + "='" + resInfo[i][4] + "', "
-                        + DB_FIELD_NAME[5] + "='" + resInfo[i][5] + "', "
-                        + DB_FIELD_NAME[6] + "='" + resInfo[i][6] + "', "
-                        + DB_FIELD_NAME[7] + "='" + resInfo[i][7] + "'"
-                        + " where " + DB_FIELD_NAME[0] + "='" + resInfo[i][0] + "'";
+                        + DB_FIELD_NAME[1] + "='" + data[1] + "', "
+                        + DB_FIELD_NAME[2] + "='" + data[2] + "', "
+                        + DB_FIELD_NAME[3] + "='" + data[3] + "', "
+                        + DB_FIELD_NAME[4] + "='" + data[4] + "', "
+                        + DB_FIELD_NAME[5] + "='" + data[5] + "', "
+                        + DB_FIELD_NAME[6] + "='" + data[6] + "', "
+                        + DB_FIELD_NAME[7] + "='" + data[7] + "'"
+                        + " WHERE " + DB_FIELD_NAME[0] + "='" + data[0] + "'";
 //                System.out.println(sql);
 
-//            try {
-//                statement.executeUpdate(sql);
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                statement.executeUpdate(sql);
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-            i++;
+            }
         }
-//        try {
-//            statement.close();
-//            connect.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            statement.close();
+            connect.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -153,6 +159,7 @@ class Res2DB {
             Label labBookName = new Label(2, 0, "BOOK_NAME");
             Label labError = new Label(3, 0, "ERROR");
 
+            assert book != null;
             sheets[i] = book.createSheet("sheet" + (i + 1), 0);
             try {
                 sheets[i].addCell(labBookID);
@@ -205,23 +212,15 @@ class Res2DB {
         try {
             book.write();
             book.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (WriteException e) {
+        } catch (IOException | WriteException e) {
             e.printStackTrace();
         }
         System.out.println("");
     }
 
-    private boolean isEpc(String[] resInfo) {
-        if (resInfo.length == 0)
-            return false;
-        String epc = resInfo[0];
+    private boolean isEpc(String epc) {
         /*之后可采用正则表达式判断*/
-        if (epc.length() < 20) {
-            return false;
-        }
-        return true;
+        return epc.length() >= 20;
     }
 
 //    private void getDBConnection(String host, int port, String dbName, String user, String password) {
