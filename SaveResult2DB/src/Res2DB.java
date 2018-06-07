@@ -29,6 +29,7 @@ class Res2DB {
     private static final String HOST = "202.114.65.49";
     private static final int PORT_NO = 1521;
     private static final String DB_NAME = "RFID";
+    private static final String TABLE_NAME = "m_transform_tag";
     private static final String USERNAME = "autopd";
     private static final String PASSWORD = "123456";
 
@@ -60,47 +61,54 @@ class Res2DB {
 
     Res2DB(String filePath) {
         this.resPath = filePath;
-        reportPath = resPath.replace(".res", ".xlsx").replace("result", "report");
-//        System.out.println(reportPath);
+        reportPath = resPath.replace(".res", ".xls").replace("result", "report");
+        System.out.println(reportPath);
     }
 
     /**
      * 将位置信息更改写回数据库
      */
     public void write2DB() {
+        /**
+         * 数据库
+         */
         List<String> result = readFileByLine(resPath);
-        resInfo = new String[result.size()][FIELD_NUM];
+        resInfo = new String[result.size()][];
         int i = 0;
-        getDBConnection();
-        try {
-            statement = connect.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        getDBConnection();
+//        try {
+//            statement = connect.createStatement();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
         for (String data : result) {
             resInfo[i] = data.split(" ");
-            String sql = "update " + DB_NAME + " set " + DB_FIELD_NAME[1] + "='" + resInfo[1] + "', "
-                    + DB_FIELD_NAME[2] + "='" + resInfo[2] + "', "
-                    + DB_FIELD_NAME[3] + "='" + resInfo[3] + "', "
-                    + DB_FIELD_NAME[4] + "='" + resInfo[4] + "', "
-                    + DB_FIELD_NAME[5] + "='" + resInfo[5] + "', "
-                    + DB_FIELD_NAME[6] + "='" + resInfo[6] + "', "
-                    + DB_FIELD_NAME[7] + "='" + resInfo[7] + "'"
-                    + " where " + DB_FIELD_NAME[0] + "='" + resInfo[0] + "'";
-            System.out.println(sql);
-            try {
-                statement.executeUpdate(sql);
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (isEpc(resInfo[i])) {
+                String sql = "UPDATE " + DB_NAME +"."+TABLE_NAME + " SET "
+                        + DB_FIELD_NAME[1] + "='" + resInfo[i][1] + "', "
+                        + DB_FIELD_NAME[2] + "='" + resInfo[i][2] + "', "
+                        + DB_FIELD_NAME[3] + "='" + resInfo[i][3] + "', "
+                        + DB_FIELD_NAME[4] + "='" + resInfo[i][4] + "', "
+                        + DB_FIELD_NAME[5] + "='" + resInfo[i][5] + "', "
+                        + DB_FIELD_NAME[6] + "='" + resInfo[i][6] + "', "
+                        + DB_FIELD_NAME[7] + "='" + resInfo[i][7] + "'"
+                        + " where " + DB_FIELD_NAME[0] + "='" + resInfo[i][0] + "'";
+//                System.out.println(sql);
+
+//            try {
+//                statement.executeUpdate(sql);
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
             }
             i++;
         }
-        try {
-            statement.close();
-            connect.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            statement.close();
+//            connect.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 
     /**
@@ -114,8 +122,8 @@ class Res2DB {
         getDBConnection();
         try {
             statement = connect.createStatement();
-            String sql = "SELECT BOOK_ID BOOK_INDEX BOOK_NAME FROM " + DB_NAME + " WHERE TAG_ID = '" + tagID + "'";
-            System.out.println(sql);
+            String sql = "SELECT BOOK_ID, BOOK_INDEX, BOOK_NAME FROM " + DB_NAME+"."+TABLE_NAME + " WHERE TAG_ID = '" + tagID + "'";
+//            System.out.println(sql);
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 bookID = resultSet.getString("BOOK_ID");
@@ -139,11 +147,12 @@ class Res2DB {
             e.printStackTrace();
         }
         WritableSheet[] sheets = new WritableSheet[SHEET_NUM];
-        Label labBookID = new Label(0, 0, "BOOK_ID");
-        Label labBookIndex = new Label(1, 0, "BOOK_INDEX");
-        Label labBookName = new Label(2, 0, "BOOK_NAME");
-        Label labError = new Label(3, 0, "ERROR");
         for (int i = 0; i < SHEET_NUM; i++) {
+            Label labBookID = new Label(0, 0, "BOOK_ID");
+            Label labBookIndex = new Label(1, 0, "BOOK_INDEX");
+            Label labBookName = new Label(2, 0, "BOOK_NAME");
+            Label labError = new Label(3, 0, "ERROR");
+
             sheets[i] = book.createSheet("sheet" + (i + 1), 0);
             try {
                 sheets[i].addCell(labBookID);
@@ -156,6 +165,7 @@ class Res2DB {
                 e.printStackTrace();
             }
         }
+
         for (String[] data : resInfo) {
             String[] tmp = getBookInfo(data[0]).split(" ");
             if (tmp.length == 0) {
@@ -163,7 +173,7 @@ class Res2DB {
                 continue;
             }
             String bookID = tmp[0], bookIndex = tmp[1], bookName = tmp[2];
-            int errorNo = Integer.valueOf(data[FIELD_NUM - 1]);
+            int errorNo = Integer.valueOf(data[data.length - 1]);
             //写入总表之中
             int rowNo_ = sheets[errorNo + 2].getRows();
             Label id_ = new Label(0, rowNo_, bookID);
@@ -190,15 +200,28 @@ class Res2DB {
             } catch (WriteException e) {
                 e.printStackTrace();
             }
-            try {
-                book.write();
-                book.close();
-            } catch (WriteException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
         }
+        try {
+            book.write();
+            book.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (WriteException e) {
+            e.printStackTrace();
+        }
+        System.out.println("");
+    }
+
+    private boolean isEpc(String[] resInfo) {
+        if (resInfo.length == 0)
+            return false;
+        String epc = resInfo[0];
+        /*之后可采用正则表达式判断*/
+        if (epc.length() < 20) {
+            return false;
+        }
+        return true;
     }
 
 //    private void getDBConnection(String host, int port, String dbName, String user, String password) {

@@ -40,22 +40,27 @@ public class WatchFilePath {
                 WatchEvent<Path> e = (WatchEvent<Path>) event;
 
                 String fileName = e.context().toString();
-                System.out.printf("Event %s has happened,which fileName is %s%n"
-                        , kind.name(), fileName);
+//                System.out.printf("Event %s has happened,which fileName is %s%n"
+//                        , kind.name(), fileName);
                 if (kind.name().equals("ENTRY_CREATE")) {
                     if (fileName.matches(".*\\.res$")) {
                         //监听到结果文件创建
-                        resFile = path + fileName;
+                        resFile = path +File.separator+ fileName;
+                        System.out.println("检测到res文件,等待传输完成...");
                     }
                     if (fileName.equals(END_FILE)) {
                         //监听到结束标志文件创建
-                        new File(fileName).delete();//删除结束标志文件
+
+                        System.out.println("检测到end文件，等待解析...");
+                        new File(path+File.separator+fileName).delete();//删除结束标志文件
                         Res2DB res2DB = new Res2DB(resFile);
+                        //写回数据库
                         res2DB.write2DB();
                         res2DB.generateReport();
                         resFile = "";
                     }
                 }
+                System.out.println("监听继续...");
 
             }
             if (!key.reset()) {
@@ -65,12 +70,12 @@ public class WatchFilePath {
     }
 
     public static void main(String args[]) throws IOException, InterruptedException {
-        String FILEPATH = "C:\\Users\\Wing\\Desktop\\";
+        String FILEPATH = args[0];
+//        String FILEPATH = "C:\\Users\\Wing\\Desktop\\Test\\";
         File file = new File(FILEPATH);
         if(!file.getParentFile().exists()){
             file.mkdirs();
         }
         new WatchFilePath(Paths.get(FILEPATH)).handleEvents();
-//        new WatchFilePath(Paths.get(args[0])).handleEvents();
     }
 }

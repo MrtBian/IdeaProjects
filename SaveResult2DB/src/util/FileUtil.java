@@ -9,7 +9,10 @@ public final class FileUtil {
         ArrayList<String> result = new ArrayList<>();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            result.add(reader.readLine());
+            String text;
+            while ((text = reader.readLine())!=null) {
+                result.add(text);
+            }
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
