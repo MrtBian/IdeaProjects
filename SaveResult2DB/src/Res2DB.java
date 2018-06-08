@@ -47,7 +47,7 @@ class Res2DB {
      * 书籍信息
      */
 
-    /*条形码 索书号 书名 区域号 楼层号 列号 排号 架号 层号 顺序号 放错等级*/
+    /*条形码 索书号 书名 区域号 楼层号 列号 排号 层号 架号 顺序号 放错等级*/
     private enum BookFieldName {
         BOOK_ID("BOOK_ID", 0), BOOK_INDEX("BOOK_INDEX", 1), BOOK_NAME("BOOK_NAME", 2), AREANO("AREANO", 3), FLOORNO
                 ("FLOORNO", 4), COLUMNNO("COLUMNNO", 5), ROWNO("ROWNO", 6), SHELFNO("SHELFNO", 7), LAYERNO("LAYERNO",
@@ -97,36 +97,39 @@ class Res2DB {
         getResInfo();
     }
 
+    /**
+     *
+     */
     public void getResInfo() {
-        bookMap = new HashMap<>();
-        List<String> result = readFileByLine(resPath);
-        resInfo = new String[result.size()][];
-        int i = 0;
-        String[] tagIDs = new String[result.size()];
-        for (String data : result) {
-            String[] bookInfos = new String[BOOK_FIELD_NUM];
-            resInfo[i] = data.split(" ");
-            tagIDs[i] = "\"" + resInfo[i][0] + "\"";
-            String tagID = resInfo[i][0];
-            System.arraycopy(resInfo[i], 1, bookInfos, BookFieldName.AREANO.getIndex(), FIELD_NUM - 2);
-            bookMap.put(tagID, bookInfos);
-            i++;
-        }
-                getDBConnection();
+        getDBConnection();
         try {
             statement = connect.createStatement();
-            String tagsTmp = Arrays.toString(tagIDs).replace("[", "(").replace("]", ")");
-            String sql = "SELECT TAG_ID,BOOK_ID, BOOK_INDEX, BOOK_NAME FROM " + DB_NAME + "." + TABLE_NAME + " WHERE " +
-                    "" + "TAG_ID = '" + tagsTmp + "'";
-            System.out.println(sql);
-            resultSet = statement.executeQuery(sql);
-            while (resultSet.next()) {
-                String tagID = resultSet.getString("TAG_ID");
-                String[] bookInfos = bookMap.get(tagID);
-                bookInfos[0] = resultSet.getString("BOOK_ID");
-                bookInfos[1] = resultSet.getString("BOOK_INDEX");
-                bookInfos[2] = resultSet.getString("BOOK_NAME");
+            bookMap = new HashMap<>();
+            List<String> result = readFileByLine(resPath);
+            resInfo = new String[result.size()][];
+            int i = 0;
+            for (String data : result) {
+                String[] bookInfos = new String[BOOK_FIELD_NUM];
+                resInfo[i] = data.split(" ");
+//            tagIDs[i] = "\"" + resInfo[i][0] + "\"";
+                String tagID = resInfo[i][0];
+                System.arraycopy(resInfo[i], 1, bookInfos, BookFieldName.AREANO.getIndex(), FIELD_NUM - 2);
+                //忽略架号
+//                bookInfos[BookFieldName.SHELFNO.getIndex()]="";
+                String sql = "SELECT BOOK_ID, BOOK_INDEX, BOOK_NAME FROM " + DB_NAME + "." + TABLE_NAME + " WHERE " +
+                        "" + "TAG_ID = '" + tagID + "'";
+//                System.out.println(sql);
+                resultSet = statement.executeQuery(sql);
+                while (resultSet.next()) {
+                    bookInfos[0] = resultSet.getString("BOOK_ID");
+                    bookInfos[1] = resultSet.getString("BOOK_INDEX");
+                    bookInfos[2] = resultSet.getString("BOOK_NAME");
+                    bookMap.put(tagID, bookInfos);
+                }
                 bookMap.put(tagID, bookInfos);
+                i++;
+                if (i % 100 == 0)
+                    System.out.println(i);
             }
             statement.close();
             connect.close();
@@ -139,8 +142,15 @@ class Res2DB {
         Collections.sort(bookList, new Comparator<Map.Entry<String, String[]>>() {
             //升序排序
             public int compare(Map.Entry<String, String[]> o1, Map.Entry<String, String[]> o2) {
-                String tmp1 = Arrays.toString(o1.getValue());
-                String tmp2 = Arrays.toString(o2.getValue());
+                String[] b1 = o1.getValue();
+                String[] b2 = o2.getValue();
+                //层架互换排序
+                b1[BookFieldName.SHELFNO.getIndex()] = b1[BookFieldName.LAYERNO.getIndex()];
+                b1[BookFieldName.LAYERNO.getIndex()] = o1.getValue()[BookFieldName.SHELFNO.getIndex()];
+                b2[BookFieldName.SHELFNO.getIndex()] = b2[BookFieldName.LAYERNO.getIndex()];
+                b2[BookFieldName.LAYERNO.getIndex()] = o2.getValue()[BookFieldName.SHELFNO.getIndex()];
+                String tmp1 = Arrays.toString(Arrays.copyOfRange(o1.getValue(), BookFieldName.AREANO.getIndex(), o1.getValue().length));
+                String tmp2 = Arrays.toString(Arrays.copyOfRange(o2.getValue(), BookFieldName.AREANO.getIndex(), o2.getValue().length));
                 int tmp = tmp1.compareTo(tmp2);
                 return tmp;
             }
@@ -166,9 +176,9 @@ class Res2DB {
                 String sql = "UPDATE " + DB_NAME + "." + TABLE_NAME + " SET " + DB_FIELD_NAME[1] + "='" + data[1] +
                         "', " + DB_FIELD_NAME[2] + "='" + data[2] + "', " + DB_FIELD_NAME[3] + "='" + data[3] + "', "
                         + DB_FIELD_NAME[4] + "='" + data[4] + "', " + DB_FIELD_NAME[5] + "='" + data[5] + "', " +
-                        DB_FIELD_NAME[6] + "='" + data[6] + "', " + DB_FIELD_NAME[7] + "='" + data[7] + "'" + " " +
+                        DB_FIELD_NAME[6] + "='" + data[6] + "', " + DB_FIELD_NAME[7] + "='" + data[7] + "' " +
                         "WHERE" + " " + DB_FIELD_NAME[0] + "='" + data[0] + "'";
-                //                System.out.println(sql);
+                //System.out.println(sql);
 
                 try {
                     statement.executeUpdate(sql);
@@ -197,7 +207,7 @@ class Res2DB {
         try {
             statement = connect.createStatement();
             String sql = "SELECT BOOK_ID, BOOK_INDEX, BOOK_NAME FROM " + DB_NAME + "." + TABLE_NAME + " WHERE TAG_ID " +
-                    "" + "" + "" + "" + "" + "" + "" + "= '" + tagID + "'";
+                    "= '" + tagID + "'";
             //            System.out.println(sql);
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
@@ -220,7 +230,7 @@ class Res2DB {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        int i = 0;
+//        int i = 0;
         int sheetNum = 0;
         for (Map.Entry<String, String[]> entry : bookList) {
             String tagID = entry.getKey();
@@ -233,44 +243,48 @@ class Res2DB {
                 sheet = book.createSheet(tmp, sheetNum);
                 sheetNum++;
                 //添加此sheet信息
-                //                Label labTitle_ = new Label(0, 0, "架号"+data[3]+" 层号"+data[4]);
+                // Label labTitle_ = new Label(0, 0, "架号"+data[3]+" 层号"+data[4]);
                 Label labBookID_ = new Label(0, 0, "条形码");
                 Label labBookIndex_ = new Label(1, 0, "索书号");
                 Label labBookName_ = new Label(2, 0, "书名");
-                //                Label labShelfNo_ = new Label(3, 0, "架号");
                 Label labLayerNo_ = new Label(3, 0, "层号");
-                //                Label labOrderNo_ = new Label(5, 0, "顺序号");
+                Label labShelfNo_ = new Label(4, 0, "架号");
+                //Label labOrderNo_ = new Label(5, 0, "顺序号");
                 try {
-                    //                    sheet.addCell(labTitle_);
+                    //sheet.addCell(labTitle_);
                     sheet.addCell(labBookID_);
                     sheet.addCell(labBookIndex_);
                     sheet.addCell(labBookName_);
-                    //                                        sheet.addCell(labShelfNo_);
+                    sheet.addCell(labShelfNo_);
                     sheet.addCell(labLayerNo_);
-                    //                    sheet.addCell(labOrderNo_);
+                    //sheet.addCell(labOrderNo_);
                 } catch (WriteException e) {
                     e.printStackTrace();
                 }
             }
             //添加书本信息
             int rowNo = sheet.getRows();
-            //            Label labBookID = new Label(0, rowNo, bookInfos[BookFieldName.BOOK_ID.getIndex()]);
-            //            Label labBookIndex = new Label(1, rowNo, bookInfos[BookFieldName.BOOK_INDEX.getIndex()]);
-            //            Label labBookName = new Label(2, rowNo, bookInfos[BookFieldName.BOOK_NAME.getIndex()]);
-            //            Label labShelfNo = new Label(3, rowNo, bookInfos[BookFieldName.SHELFNO.getIndex()]);
+            if (bookInfos[BookFieldName.BOOK_ID.getIndex()].length() < 1) {
+                //数据库图书未找到
+                continue;
+            }
+            Label labBookID = new Label(0, rowNo, bookInfos[BookFieldName.BOOK_ID.getIndex()]);
+            Label labBookIndex = new Label(1, rowNo, bookInfos[BookFieldName.BOOK_INDEX.getIndex()]);
+            Label labBookName = new Label(2, rowNo, bookInfos[BookFieldName.BOOK_NAME.getIndex()]);
             Label labLayerNo = new Label(3, rowNo, bookInfos[BookFieldName.LAYERNO.getIndex()]);
+                        Label labShelfNo = new Label(4, rowNo, bookInfos[BookFieldName.SHELFNO.getIndex()]);
             //            Label labOrderNo = new Label(5, rowNo, bookInfos[BookFieldName.ORDERNO.getIndex()]);
             try {
-                //                sheet.addCell(labBookID);
-                //                sheet.addCell(labBookIndex);
-                //                sheet.addCell(labBookName);
-                //                                sheet.addCell(labShelfNo);
+                sheet.addCell(labBookID);
+                sheet.addCell(labBookIndex);
+                sheet.addCell(labBookName);
+                sheet.addCell(labShelfNo);
                 sheet.addCell(labLayerNo);
-                //                sheet.addCell(labOrderNo);
+                //sheet.addCell(labOrderNo);
             } catch (WriteException e) {
                 e.printStackTrace();
             }
-            i++;
+//            i++;
         }
         try {
             book.write();

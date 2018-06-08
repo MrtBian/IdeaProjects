@@ -52,6 +52,7 @@ public class WatchFilePath {
                         //监听到结束标志文件创建
 
                         System.out.println("检测到end文件，等待解析...");
+                        Thread.sleep(100);
                         new File(path+File.separator+fileName).delete();//删除结束标志文件
                         Res2DB res2DB = new Res2DB(resFile);
                         //写回数据库
