@@ -154,7 +154,7 @@ class Res2DB {
                 String[] b2 = o2.getValue().clone();
                 long i1=0,i2=0;
                 //排序，从楼层号到书架层号
-                for(int i=BookFieldName.FLOORNO.getIndex();i<=BookFieldName.LAYERNO.getIndex();i++){
+                for(int i=BookFieldName.FLOORNO.getIndex();i<=BookFieldName.ORDERNO.getIndex();i++){
                     i1 = i1*100 + Integer.valueOf(b1[i]);
                     i2 = i2*100 + Integer.valueOf(b2[i]);
                 }
@@ -218,7 +218,7 @@ class Res2DB {
                 String[] b2 = o2.getValue().clone();
                 long i1=0,i2=0;
                 //排序，从楼层号到书架层号
-                for(int i=BookFieldName.FLOORNO.getIndex();i<=BookFieldName.LAYERNO.getIndex();i++){
+                for(int i=BookFieldName.FLOORNO.getIndex();i<=BookFieldName.ORDERNO.getIndex();i++){
                     i1 = i1*100 + Integer.valueOf(b1[i]);
                     i2 = i2*100 + Integer.valueOf(b2[i]);
                 }
@@ -323,7 +323,7 @@ class Res2DB {
                 Label labBookName_ = new Label(2, 0, "书名");
                 Label labLayerNo_ = new Label(3, 0, "层号");
                 Label labShelfNo_ = new Label(4, 0, "架号");
-                //Label labOrderNo_ = new Label(5, 0, "顺序号");
+                Label labOrderNo_ = new Label(5, 0, "顺序号");
                 try {
                     //sheet.addCell(labTitle_);
                     sheet.addCell(labBookID_);
@@ -331,7 +331,7 @@ class Res2DB {
                     sheet.addCell(labBookName_);
                     sheet.addCell(labShelfNo_);
                     sheet.addCell(labLayerNo_);
-                    //sheet.addCell(labOrderNo_);
+                    sheet.addCell(labOrderNo_);
 
 
                 } catch (WriteException e) {
@@ -362,14 +362,14 @@ class Res2DB {
             Label labBookName = new Label(2, rowNo, bookInfos[BookFieldName.BOOK_NAME.getIndex()], format);
             Label labLayerNo = new Label(3, rowNo, bookInfos[BookFieldName.LAYERNO.getIndex()], format);
             Label labShelfNo = new Label(4, rowNo, bookInfos[BookFieldName.SHELFNO.getIndex()],format);
-            //            Label labOrderNo = new Label(5, rowNo, bookInfos[BookFieldName.ORDERNO.getIndex()],format);
+            Label labOrderNo = new Label(5, rowNo, bookInfos[BookFieldName.ORDERNO.getIndex()],format);
             try {
                 sheet.addCell(labBookID);
                 sheet.addCell(labBookIndex);
                 sheet.addCell(labBookName);
                 sheet.addCell(labShelfNo);
                 sheet.addCell(labLayerNo);
-                //sheet.addCell(labOrderNo);
+                sheet.addCell(labOrderNo);
             } catch (WriteException e) {
                 e.printStackTrace();
             }
