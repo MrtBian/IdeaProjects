@@ -23,6 +23,11 @@ class Res2DB {
      * 结果文件路径
      **/
     private String resPath;
+
+    /**
+     * 数据库参数
+     **/
+    private final static String DB_TXT_PATH = "C:\\Users\\Wing\\Desktop\\Test\\DB_m_transform_tag_2018-06-11.txt";
     /**
      * 数据库参数
      **/
@@ -67,8 +72,9 @@ class Res2DB {
             return name;
         }
     }
+
     //表格列宽
-    private static int[] EXCEL_LENGTH= {80,80,200,80,80,80};
+    private static int[] EXCEL_LENGTH = {20, 25, 80, 10, 10, 10};
 
     private static final int BOOK_FIELD_NUM = 11;
     private Map<String, String[]> bookMap;
@@ -96,10 +102,74 @@ class Res2DB {
         reportPath = resPath.replace(".res", ".xls").replace("result", "report");
         System.out.println(reportPath);
         getResInfo();
+//        getResInfoFromTXT();
+    }
+
+    public void getResInfoFromTXT() {
+        //读取TXT中的图书信息
+        System.out.println("读取TXT中的图书信息...");
+        List<String> txtInfos = readFileByLine(DB_TXT_PATH);
+        Map<String, String[]> bookInfosTxt = new HashMap<String, String[]>();
+        for (String data : txtInfos) {
+            String[] infos = data.split(";");
+            String tagID = infos[0];
+            String[] bookInfos = Arrays.copyOfRange(infos, 1, 4);
+            bookInfosTxt.put(tagID, bookInfos);
+        }
+        System.out.println("读取成功");
+        bookMap = new HashMap<>();
+        List<String> result = readFileByLine(resPath);
+        resInfo = new String[result.size()][];
+        int i = 0;
+        for (String data : result) {
+            String[] bookInfos = new String[BOOK_FIELD_NUM];
+            resInfo[i] = data.split(" ");
+            //tagIDs[i] = "\"" + resInfo[i][0] + "\"";
+            String tagID = resInfo[i][0];
+            System.arraycopy(resInfo[i], 1, bookInfos, BookFieldName.AREANO.getIndex(), FIELD_NUM - 2);
+            bookInfos[BookFieldName.LAYERNO.getIndex()] = 6 - Integer.valueOf(bookInfos[BookFieldName.LAYERNO
+                    .getIndex()]) + "";
+            //忽略架号
+            //bookInfos[BookFieldName.SHELFNO.getIndex()]="";
+            String[] tmp = bookInfosTxt.get(tagID);
+            if(tmp == null){
+                //数据库无此书
+                continue;
+            }
+            bookInfos[0] = tmp[0];
+            bookInfos[1] = tmp[1];
+            bookInfos[2] = tmp[2];
+            bookMap.put(tagID, bookInfos);
+            i++;
+            if (i % 1000 == 0) System.out.println(i);
+        }
+
+
+        //排序
+        bookList = new ArrayList<Map.Entry<String, String[]>>(bookMap.entrySet());
+        Collections.sort(bookList, new Comparator<Map.Entry<String, String[]>>() {
+            //升序排序
+            public int compare(Map.Entry<String, String[]> o1, Map.Entry<String, String[]> o2) {
+                String[] b1 = o1.getValue().clone();
+                String[] b2 = o2.getValue().clone();
+                long i1=0,i2=0;
+                //排序，从楼层号到书架层号
+                for(int i=BookFieldName.FLOORNO.getIndex();i<=BookFieldName.LAYERNO.getIndex();i++){
+                    i1 = i1*100 + Integer.valueOf(b1[i]);
+                    i2 = i2*100 + Integer.valueOf(b2[i]);
+                }
+                int tmp = (int)(i1-i2);
+                if(tmp==0){
+                    tmp = b1[BookFieldName.BOOK_INDEX.getIndex()].compareTo(b2[BookFieldName.BOOK_INDEX.getIndex()]);
+                }
+                return tmp;
+            }
+
+        });
     }
 
     /**
-     *
+     *从数据中获取图书信息
      */
     public void getResInfo() {
         getDBConnection();
@@ -146,16 +216,16 @@ class Res2DB {
             public int compare(Map.Entry<String, String[]> o1, Map.Entry<String, String[]> o2) {
                 String[] b1 = o1.getValue().clone();
                 String[] b2 = o2.getValue().clone();
-                //层架互换排序
-                b1[BookFieldName.SHELFNO.getIndex()] = b1[BookFieldName.LAYERNO.getIndex()];
-                b1[BookFieldName.LAYERNO.getIndex()] = o1.getValue()[BookFieldName.SHELFNO.getIndex()];
-                b2[BookFieldName.SHELFNO.getIndex()] = b2[BookFieldName.LAYERNO.getIndex()];
-                b2[BookFieldName.LAYERNO.getIndex()] = o2.getValue()[BookFieldName.SHELFNO.getIndex()];
-                String tmp1 = Arrays.toString(Arrays.copyOfRange(b1, BookFieldName.AREANO.getIndex(), o1.getValue()
-                        .length));
-                String tmp2 = Arrays.toString(Arrays.copyOfRange(b2, BookFieldName.AREANO.getIndex(), o2.getValue()
-                        .length));
-                int tmp = tmp1.compareTo(tmp2);
+                long i1=0,i2=0;
+                //排序，从楼层号到书架层号
+                for(int i=BookFieldName.FLOORNO.getIndex();i<=BookFieldName.LAYERNO.getIndex();i++){
+                    i1 = i1*100 + Integer.valueOf(b1[i]);
+                    i2 = i2*100 + Integer.valueOf(b2[i]);
+                }
+                int tmp = (int)(i1-i2);
+                if(tmp==0){
+                    tmp = b1[BookFieldName.BOOK_INDEX.getIndex()].compareTo(b2[BookFieldName.BOOK_INDEX.getIndex()]);
+                }
                 return tmp;
             }
 
@@ -252,14 +322,14 @@ class Res2DB {
                 Label labBookIndex_ = new Label(1, 0, "索书号");
                 Label labBookName_ = new Label(2, 0, "书名");
                 Label labLayerNo_ = new Label(3, 0, "层号");
-//                Label labShelfNo_ = new Label(4, 0, "架号");
+                Label labShelfNo_ = new Label(4, 0, "架号");
                 //Label labOrderNo_ = new Label(5, 0, "顺序号");
                 try {
                     //sheet.addCell(labTitle_);
                     sheet.addCell(labBookID_);
                     sheet.addCell(labBookIndex_);
                     sheet.addCell(labBookName_);
-//                    sheet.addCell(labShelfNo_);
+                    sheet.addCell(labShelfNo_);
                     sheet.addCell(labLayerNo_);
                     //sheet.addCell(labOrderNo_);
 
@@ -268,8 +338,8 @@ class Res2DB {
                     e.printStackTrace();
                 }
                 //表格格式设置，固定列宽和自动换行
-                for (int i=0;i<EXCEL_LENGTH.length;i++){
-                    sheet.setColumnView(i,EXCEL_LENGTH[i]);
+                for (int i = 0; i < EXCEL_LENGTH.length; i++) {
+                    sheet.setColumnView(i, EXCEL_LENGTH[i]);
                 }
             }
             //定义样式
@@ -287,17 +357,17 @@ class Res2DB {
                 //数据库图书未找到
                 continue;
             }
-            Label labBookID = new Label(0, rowNo, bookInfos[BookFieldName.BOOK_ID.getIndex()],format);
-            Label labBookIndex = new Label(1, rowNo, bookInfos[BookFieldName.BOOK_INDEX.getIndex()],format);
-            Label labBookName = new Label(2, rowNo, bookInfos[BookFieldName.BOOK_NAME.getIndex()],format);
-            Label labLayerNo = new Label(3, rowNo, bookInfos[BookFieldName.LAYERNO.getIndex()],format);
-//            Label labShelfNo = new Label(4, rowNo, bookInfos[BookFieldName.SHELFNO.getIndex()],format);
+            Label labBookID = new Label(0, rowNo, bookInfos[BookFieldName.BOOK_ID.getIndex()], format);
+            Label labBookIndex = new Label(1, rowNo, bookInfos[BookFieldName.BOOK_INDEX.getIndex()], format);
+            Label labBookName = new Label(2, rowNo, bookInfos[BookFieldName.BOOK_NAME.getIndex()], format);
+            Label labLayerNo = new Label(3, rowNo, bookInfos[BookFieldName.LAYERNO.getIndex()], format);
+            Label labShelfNo = new Label(4, rowNo, bookInfos[BookFieldName.SHELFNO.getIndex()],format);
             //            Label labOrderNo = new Label(5, rowNo, bookInfos[BookFieldName.ORDERNO.getIndex()],format);
             try {
                 sheet.addCell(labBookID);
                 sheet.addCell(labBookIndex);
                 sheet.addCell(labBookName);
-//                sheet.addCell(labShelfNo);
+                sheet.addCell(labShelfNo);
                 sheet.addCell(labLayerNo);
                 //sheet.addCell(labOrderNo);
             } catch (WriteException e) {

@@ -19,6 +19,7 @@ public class WatchFilePath {
     private WatchService watcher;
     private String path;
     private static final String END_FILE = "end";
+    private boolean isRes = false;
 
     public WatchFilePath(Path path) throws IOException {
         this.path = path.toString();
@@ -28,6 +29,8 @@ public class WatchFilePath {
 
     public void handleEvents() throws InterruptedException {
         String resFile = "";
+
+        System.out.println("正在监听...");
         while (true) {
             WatchKey key = watcher.take();
             for (WatchEvent<?> event : key.pollEvents()) {
@@ -45,21 +48,23 @@ public class WatchFilePath {
                 if (kind.name().equals("ENTRY_CREATE")) {
                     if (fileName.matches(".*\\.res$")) {
                         //监听到结果文件创建
-                        resFile = path +File.separator+ fileName;
-                        System.out.println("检测到res文件,等待传输完成...");
+                        resFile = path + File.separator + fileName;
+                        isRes = true;
+                        System.out.println("检测到res文件，等待传输完成...");
                     }
-                    if (fileName.equals(END_FILE)) {
+                    if (isRes && fileName.equals(END_FILE)) {
                         //监听到结束标志文件创建
 
                         System.out.println("检测到end文件，等待解析...");
                         Thread.sleep(100);
-                        new File(path+File.separator+fileName).delete();//删除结束标志文件
+                        new File(path + File.separator + fileName).delete();//删除结束标志文件
                         Res2DB res2DB = new Res2DB(resFile);
                         //写回数据库
 //                        res2DB.write2DB();
                         res2DB.generateReportTemp();
 //                        res2DB.generateReport();
                         resFile = "";
+                        isRes = false;
                     }
                 }
 //                System.out.println("监听继续...");
@@ -75,7 +80,7 @@ public class WatchFilePath {
 //        String FILEPATH = args[0];
         String FILEPATH = "C:\\Users\\Wing\\Desktop\\Test\\";
         File file = new File(FILEPATH);
-        if(!file.exists()){
+        if (!file.exists()) {
             file.mkdirs();
         }
         new WatchFilePath(Paths.get(FILEPATH)).handleEvents();
