@@ -7,7 +7,8 @@ import com.sun.jna.ptr.IntByReference;
 
 // tip: The demo must import Jna library, inner DobotDemo folder of this project
 public class Main {
-    public void reset() {
+
+    public void moveX(float x) {
         try {
 
             this.Start();
@@ -22,7 +23,7 @@ public class Main {
             try {
                 PTPCmd ptpCmd = new PTPCmd();
                 ptpCmd.ptpMode = 2;
-                ptpCmd.x = pose.x+100;
+                ptpCmd.x = pose.x+x;
                 ptpCmd.y = pose.y;
                 ptpCmd.z = pose.z;
                 ptpCmd.r = pose.r;
@@ -39,71 +40,15 @@ public class Main {
                     + "r=" + pose.r + "  ");
 
             DobotDll.instance.DisconnectDobot();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public static void main(String[] args) {
-        try {
-
-            Main app = new Main();
-            app.reset();
-
-//            app.Start();
-//
-//            IntByReference ib = new IntByReference();
-//
-//            JOGCmd test = new JOGCmd();
-//            test.isJoint = 1;
-//            while (true) {
-//                try {
-//                    test.cmd = 1;
-//                    DobotDll.instance.SetJOGCmd(test, false, ib);
-//                    Thread.sleep(500);
-//                    test.cmd = 0;
-//                    DobotDll.instance.SetJOGCmd(test, false, ib);
-//                    Thread.sleep(2000);
-//                    test.cmd = 2;
-//                    DobotDll.instance.SetJOGCmd(test, false, ib);
-//                    Thread.sleep(500);
-//                    test.cmd = 0;
-//                    DobotDll.instance.SetJOGCmd(test, false, ib);
-//                    Thread.sleep(2000);
-//
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-
-	    	/*while(true)
-	    	{
-	    		try{
-	    			PTPCmd ptpCmd = new PTPCmd();
-	    			ptpCmd.ptpMode = 0;
-	    			ptpCmd.x = 260;
-	    			ptpCmd.y = 0;
-	    			ptpCmd.z = 50;
-	    			ptpCmd.r = 0;
-	    			DobotDll.instance.SetPTPCmd(ptpCmd, true, ib);
-		    		//Thread.sleep(200);
-		    		
-		    		ptpCmd.ptpMode = 0;
-	    			ptpCmd.x = 220;
-	    			ptpCmd.y = 0;
-	    			ptpCmd.z = 80;
-	    			ptpCmd.r = 0;
-	    			DobotDll.instance.SetPTPCmd(ptpCmd, true, ib);	    		
-		    		//Thread.sleep(200);
-		    		
-	    		} catch (Exception e) {  
-	                e.printStackTrace();  
-	            }
-	    	}*/
-            //DobotDll.instance.DisconnectDobot();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Main app = new Main();
+        app.moveX(100);
     }
 
     private void Start() {
