@@ -79,6 +79,7 @@ public class WatchFilePath {
     public static void main(String args[]) throws IOException, InterruptedException {
 //        String FILEPATH = args[0];
         String FILEPATH = "C:\\Users\\Wing\\Desktop\\Test\\";
+
         File file = new File(FILEPATH);
         if (!file.exists()) {
             file.mkdirs();

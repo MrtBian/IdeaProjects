@@ -25,9 +25,10 @@ class Res2DB {
     private String resPath;
 
     /**
-     * 数据库参数
+     * 文件参数
      **/
-    private final static String DB_TXT_PATH = "C:\\Users\\Wing\\Desktop\\Test\\DB_m_transform_tag_2018-06-11.txt";
+    private final static String DB_TXT_PATH = "data\\DB_m_transform_tag_2018-06-11.txt";
+    private int flag = 0;//0 为文件读取
     /**
      * 数据库参数
      **/
@@ -101,8 +102,12 @@ class Res2DB {
         this.resPath = filePath;
         reportPath = resPath.replace(".res", ".xls").replace("result", "report");
         System.out.println(reportPath);
-        getResInfo();
-//        getResInfoFromTXT();
+        if(flag == 0){
+            getResInfoFromTXT();
+        }
+        else {
+            getResInfo();
+        }
     }
 
     public void getResInfoFromTXT() {
@@ -321,8 +326,8 @@ class Res2DB {
                 Label labBookID_ = new Label(0, 0, "条形码");
                 Label labBookIndex_ = new Label(1, 0, "索书号");
                 Label labBookName_ = new Label(2, 0, "书名");
-                Label labLayerNo_ = new Label(3, 0, "层号");
-                Label labShelfNo_ = new Label(4, 0, "架号");
+                Label labShelfNo_ = new Label(3, 0, "架号");
+                Label labLayerNo_ = new Label(4, 0, "层号");
                 Label labOrderNo_ = new Label(5, 0, "顺序号");
                 try {
                     //sheet.addCell(labTitle_);
@@ -360,8 +365,8 @@ class Res2DB {
             Label labBookID = new Label(0, rowNo, bookInfos[BookFieldName.BOOK_ID.getIndex()], format);
             Label labBookIndex = new Label(1, rowNo, bookInfos[BookFieldName.BOOK_INDEX.getIndex()], format);
             Label labBookName = new Label(2, rowNo, bookInfos[BookFieldName.BOOK_NAME.getIndex()], format);
-            Label labLayerNo = new Label(3, rowNo, bookInfos[BookFieldName.LAYERNO.getIndex()], format);
-            Label labShelfNo = new Label(4, rowNo, bookInfos[BookFieldName.SHELFNO.getIndex()],format);
+            Label labLayerNo = new Label(4, rowNo, bookInfos[BookFieldName.LAYERNO.getIndex()], format);
+            Label labShelfNo = new Label(3, rowNo, bookInfos[BookFieldName.SHELFNO.getIndex()],format);
             Label labOrderNo = new Label(5, rowNo, bookInfos[BookFieldName.ORDERNO.getIndex()],format);
             try {
                 sheet.addCell(labBookID);
