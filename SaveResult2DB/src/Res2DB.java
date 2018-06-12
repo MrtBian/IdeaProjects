@@ -322,13 +322,20 @@ class Res2DB {
                 sheet = book.createSheet(tmp, sheetNum);
                 sheetNum++;
                 //添加此sheet信息
+                //定义样式
+                WritableCellFormat format1 = new WritableCellFormat();
+                try {
+                    format1.setAlignment(Alignment.CENTRE);
+                } catch (WriteException e) {
+                    e.printStackTrace();
+                }
                 // Label labTitle_ = new Label(0, 0, "架号"+data[3]+" 层号"+data[4]);
-                Label labBookID_ = new Label(0, 0, "条形码");
-                Label labBookIndex_ = new Label(1, 0, "索书号");
-                Label labBookName_ = new Label(2, 0, "书名");
-                Label labShelfNo_ = new Label(3, 0, "架号");
-                Label labLayerNo_ = new Label(4, 0, "层号");
-                Label labOrderNo_ = new Label(5, 0, "顺序号");
+                Label labBookID_ = new Label(0, 0, "条形码",format1);
+                Label labBookIndex_ = new Label(1, 0, "索书号",format1);
+                Label labBookName_ = new Label(2, 0, "书名",format1);
+                Label labShelfNo_ = new Label(3, 0, "架号",format1);
+                Label labLayerNo_ = new Label(4, 0, "层号",format1);
+                Label labOrderNo_ = new Label(5, 0, "顺序号",format1);
                 try {
                     //sheet.addCell(labTitle_);
                     sheet.addCell(labBookID_);
