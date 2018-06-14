@@ -18,11 +18,12 @@
       <file leaf-file-name="WatchFilePath.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/WatchFilePath.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1173">
-              <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+            <state relative-caret-position="1311">
+              <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
+                <marker date="1528730973780" expanded="true" signature="2840:2947" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -31,15 +32,16 @@
       <file leaf-file-name="Res2DB.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Res2DB.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="17">
               <caret line="337" column="65" lean-forward="false" selection-start-line="337" selection-start-column="65" selection-end-line="337" selection-end-column="65" />
+=======
+            <state relative-caret-position="1254">
+              <caret line="430" column="2" lean-forward="false" selection-start-line="430" selection-start-column="2" selection-end-line="430" selection-end-column="2" />
+>>>>>>> 772c366e0a747477dc409738259aaa498dc4f784
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#3112#3130#0" expanded="true" />
-                <marker date="1528808426523" expanded="true" signature="6484:6626" ph="SELECT BOOK_... m_transform_tag" />
-                <marker date="1528808426523" expanded="true" signature="8691:9198" ph="UPDATE RFID.... " />
-                <marker date="1528808426523" expanded="true" signature="9921:10059" ph="SELECT BOOK_... m_transform_tag" />
               </folding>
             </state>
           </provider>
@@ -60,7 +62,7 @@
       <file leaf-file-name="FileUtil.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/util/FileUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
+            <state relative-caret-position="475">
               <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -101,7 +103,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-7" />
     <option name="width" value="974" />
-    <option name="height" value="1047" />
+    <option name="height" value="788" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -118,9 +120,12 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="AndroidView" />
       <pane id="Scratches" />
       <pane id="PackagesPane" />
+=======
+>>>>>>> 772c366e0a747477dc409738259aaa498dc4f784
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -154,6 +159,12 @@
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
+=======
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
+>>>>>>> 772c366e0a747477dc409738259aaa498dc4f784
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -322,8 +333,7 @@
     <option name="totallyTimeSpent" value="7145000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="974" height="1047" extended-state="0" />
-    <editor active="true" />
+    <frame x="-7" y="0" width="974" height="788" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -332,13 +342,17 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27944326" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22338204" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.106471814" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> 772c366e0a747477dc409738259aaa498dc4f784
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -349,6 +363,10 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+<<<<<<< HEAD
+=======
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+>>>>>>> 772c366e0a747477dc409738259aaa498dc4f784
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32923076" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
@@ -370,11 +388,45 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/WatchFilePath.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1311">
+          <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <marker date="1528730973780" expanded="true" signature="2840:2947" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Res2DB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6403">
+          <caret line="337" column="29" lean-forward="true" selection-start-line="337" selection-start-column="29" selection-end-line="337" selection-end-column="29" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/FileUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WatchFilePath.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="32" column="32" lean-forward="false" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
+            <marker date="1528730973780" expanded="true" signature="2840:2947" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -396,10 +448,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3112#3130#0" expanded="true" />
-            <marker date="1528808426523" expanded="true" signature="6484:6626" ph="SELECT BOOK_... m_transform_tag" />
-            <marker date="1528808426523" expanded="true" signature="8691:9198" ph="UPDATE RFID.... " />
-            <marker date="1528808426523" expanded="true" signature="9921:10059" ph="SELECT BOOK_... m_transform_tag" />
           </folding>
         </state>
       </provider>
@@ -411,6 +459,7 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
+            <marker date="1528730973780" expanded="true" signature="2840:2947" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -432,10 +481,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3112#3130#0" expanded="true" />
-            <marker date="1528808426523" expanded="true" signature="6484:6626" ph="SELECT BOOK_... m_transform_tag" />
-            <marker date="1528808426523" expanded="true" signature="8691:9198" ph="UPDATE RFID.... " />
-            <marker date="1528808426523" expanded="true" signature="9921:10059" ph="SELECT BOOK_... m_transform_tag" />
           </folding>
         </state>
       </provider>
@@ -447,6 +492,7 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
+            <marker date="1528730973780" expanded="true" signature="2840:2947" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -468,10 +514,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3112#3130#0" expanded="true" />
-            <marker date="1528808426523" expanded="true" signature="6484:6626" ph="SELECT BOOK_... m_transform_tag" />
-            <marker date="1528808426523" expanded="true" signature="8691:9198" ph="UPDATE RFID.... " />
-            <marker date="1528808426523" expanded="true" signature="9921:10059" ph="SELECT BOOK_... m_transform_tag" />
           </folding>
         </state>
       </provider>
@@ -483,6 +525,7 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
+            <marker date="1528730973780" expanded="true" signature="2840:2947" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -504,10 +547,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3112#3130#0" expanded="true" />
-            <marker date="1528808426523" expanded="true" signature="6484:6626" ph="SELECT BOOK_... m_transform_tag" />
-            <marker date="1528808426523" expanded="true" signature="8691:9198" ph="UPDATE RFID.... " />
-            <marker date="1528808426523" expanded="true" signature="9921:10059" ph="SELECT BOOK_... m_transform_tag" />
           </folding>
         </state>
       </provider>
@@ -519,6 +558,7 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
+            <marker date="1528730973780" expanded="true" signature="2840:2947" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -540,10 +580,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3112#3130#0" expanded="true" />
-            <marker date="1528808426523" expanded="true" signature="6484:6626" ph="SELECT BOOK_... m_transform_tag" />
-            <marker date="1528808426523" expanded="true" signature="8691:9198" ph="UPDATE RFID.... " />
-            <marker date="1528808426523" expanded="true" signature="9921:10059" ph="SELECT BOOK_... m_transform_tag" />
           </folding>
         </state>
       </provider>
@@ -555,6 +591,7 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
+            <marker date="1528730973780" expanded="true" signature="2840:2947" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -576,10 +613,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3112#3130#0" expanded="true" />
-            <marker date="1528808426523" expanded="true" signature="6484:6626" ph="SELECT BOOK_... m_transform_tag" />
-            <marker date="1528808426523" expanded="true" signature="8691:9198" ph="UPDATE RFID.... " />
-            <marker date="1528808426523" expanded="true" signature="9921:10059" ph="SELECT BOOK_... m_transform_tag" />
           </folding>
         </state>
       </provider>
@@ -591,6 +624,7 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
+            <marker date="1528730973780" expanded="true" signature="2840:2947" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -612,10 +646,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3112#3130#0" expanded="true" />
-            <marker date="1528808426523" expanded="true" signature="6484:6626" ph="SELECT BOOK_... m_transform_tag" />
-            <marker date="1528808426523" expanded="true" signature="8691:9198" ph="UPDATE RFID.... " />
-            <marker date="1528808426523" expanded="true" signature="9921:10059" ph="SELECT BOOK_... m_transform_tag" />
           </folding>
         </state>
       </provider>
@@ -627,6 +657,7 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
+            <marker date="1528730973780" expanded="true" signature="2840:2947" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -638,10 +669,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3112#3130#0" expanded="true" />
-            <marker date="1528808426523" expanded="true" signature="6484:6626" ph="SELECT BOOK_... m_transform_tag" />
-            <marker date="1528808426523" expanded="true" signature="8691:9198" ph="UPDATE RFID.... " />
-            <marker date="1528808426523" expanded="true" signature="9921:10059" ph="SELECT BOOK_... m_transform_tag" />
           </folding>
         </state>
       </provider>
@@ -663,6 +690,7 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
+            <marker date="1528730973780" expanded="true" signature="2840:2947" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -674,10 +702,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3112#3130#0" expanded="true" />
-            <marker date="1528808426523" expanded="true" signature="6484:6626" ph="SELECT BOOK_... m_transform_tag" />
-            <marker date="1528808426523" expanded="true" signature="8691:9198" ph="UPDATE RFID.... " />
-            <marker date="1528808426523" expanded="true" signature="9921:10059" ph="SELECT BOOK_... m_transform_tag" />
           </folding>
         </state>
       </provider>
@@ -699,6 +723,7 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
+            <marker date="1528730973780" expanded="true" signature="2840:2947" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -710,10 +735,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3112#3130#0" expanded="true" />
-            <marker date="1528808426523" expanded="true" signature="6484:6626" ph="SELECT BOOK_... m_transform_tag" />
-            <marker date="1528808426523" expanded="true" signature="8691:9198" ph="UPDATE RFID.... " />
-            <marker date="1528808426523" expanded="true" signature="9921:10059" ph="SELECT BOOK_... m_transform_tag" />
           </folding>
         </state>
       </provider>
@@ -735,6 +756,7 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
+            <marker date="1528730973780" expanded="true" signature="2840:2947" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -746,10 +768,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3112#3130#0" expanded="true" />
-            <marker date="1528808426523" expanded="true" signature="6484:6626" ph="SELECT BOOK_... m_transform_tag" />
-            <marker date="1528808426523" expanded="true" signature="8691:9198" ph="UPDATE RFID.... " />
-            <marker date="1528808426523" expanded="true" signature="9921:10059" ph="SELECT BOOK_... m_transform_tag" />
           </folding>
         </state>
       </provider>
@@ -771,6 +789,7 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
+            <marker date="1528730973780" expanded="true" signature="2840:2947" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -782,10 +801,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3112#3130#0" expanded="true" />
-            <marker date="1528808426523" expanded="true" signature="6484:6626" ph="SELECT BOOK_... m_transform_tag" />
-            <marker date="1528808426523" expanded="true" signature="8691:9198" ph="UPDATE RFID.... " />
-            <marker date="1528808426523" expanded="true" signature="9921:10059" ph="SELECT BOOK_... m_transform_tag" />
           </folding>
         </state>
       </provider>
@@ -830,26 +845,31 @@
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_91/src.zip!/java/util/Arrays.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/Map.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="211" column="6" lean-forward="false" selection-start-line="211" selection-start-column="6" selection-end-line="211" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/DB_m_transform_tag_2018-06-11.txt">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/Map.java" />
+    <entry file="file://$PROJECT_DIR$/data/DB_m_transform_tag_2018-06-11.txt" />
     <entry file="file://$PROJECT_DIR$/src/WatchFilePath.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1173">
-          <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+        <state relative-caret-position="1311">
+          <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <marker date="1528730973780" expanded="true" signature="2840:2947" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/src/Res2DB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="337" column="65" lean-forward="false" selection-start-line="337" selection-start-column="65" selection-end-line="337" selection-end-column="65" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/util/FileUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+          <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -857,15 +877,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Res2DB.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="337" column="65" lean-forward="false" selection-start-line="337" selection-start-column="65" selection-end-line="337" selection-end-column="65" />
+        <state relative-caret-position="1254">
+          <caret line="430" column="2" lean-forward="false" selection-start-line="430" selection-start-column="2" selection-end-line="430" selection-end-column="2" />
+>>>>>>> 772c366e0a747477dc409738259aaa498dc4f784
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3112#3130#0" expanded="true" />
-            <marker date="1528808426523" expanded="true" signature="6484:6626" ph="SELECT BOOK_... m_transform_tag" />
-            <marker date="1528808426523" expanded="true" signature="8691:9198" ph="UPDATE RFID.... " />
-            <marker date="1528808426523" expanded="true" signature="9921:10059" ph="SELECT BOOK_... m_transform_tag" />
           </folding>
         </state>
       </provider>
