@@ -131,6 +131,11 @@ class Res2DB {
             resInfo[i] = data.split(" ");
             //tagIDs[i] = "\"" + resInfo[i][0] + "\"";
             String tagID = resInfo[i][0];
+            //处理借出图书，将首位8改为0
+            char[] arr = tagID.toCharArray();
+            arr[0] = arr[0]=='8'?'0':arr[0];
+            tagID = new String (arr);
+
             System.arraycopy(resInfo[i], 1, bookInfos, BookFieldName.AREANO.getIndex(), FIELD_NUM - 2);
             bookInfos[BookFieldName.LAYERNO.getIndex()] = 6 - Integer.valueOf(bookInfos[BookFieldName.LAYERNO
                     .getIndex()]) + "";
@@ -189,6 +194,11 @@ class Res2DB {
                 resInfo[i] = data.split(" ");
                 //            tagIDs[i] = "\"" + resInfo[i][0] + "\"";
                 String tagID = resInfo[i][0];
+                //处理借出图书，将首位8改为0
+                char[] arr = tagID.toCharArray();
+                arr[0] = arr[0]=='8'?'0':arr[0];
+                tagID = new String (arr);
+
                 System.arraycopy(resInfo[i], 1, bookInfos, BookFieldName.AREANO.getIndex(), FIELD_NUM - 2);
                 bookInfos[BookFieldName.LAYERNO.getIndex()] = 6 - Integer.valueOf(bookInfos[BookFieldName.LAYERNO
                         .getIndex()]) + "";
