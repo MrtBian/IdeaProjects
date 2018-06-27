@@ -63,7 +63,15 @@ class BookIndex implements Comparable {
     @Override
     public int compareTo(Object o) {
         BookIndex b2 = (BookIndex) o;
-        int tmp = classNo.compareTo(b2.ClassNo);
+        int tmp = classNo.compareTo(b2.classNo);
+        if(tmp!=0)
+            return tmp;
+        tmp = authorNo.compareTo(b2.authorNo);
+        if(tmp!=0)
+            return tmp;
+        tmp = volumeNo.compareTo(b2.volumeNo);
+        if(tmp!=0)
+            return tmp;
 
         return 0;
     }
