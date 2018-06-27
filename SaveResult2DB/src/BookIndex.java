@@ -1,4 +1,8 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.function.BinaryOperator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 class BookIndex implements Comparable {
     private ClassNo classNo;
@@ -11,7 +15,7 @@ class BookIndex implements Comparable {
      * 标记符号
      */
     private enum MarkSymbol {
-        COLON(':'), HYPHEN('-'), EQUALITYSIGN('='),EMPTY('e');
+        COLON(':'), HYPHEN('-'), EQUALITYSIGN('='), EMPTY('e');
 
         private char symbol;
         private int index;
@@ -59,19 +63,38 @@ class BookIndex implements Comparable {
         }
     }
 
+    @Override
+    public String toString() {
+        return "BookIndex{" +
+                "lines=" + Arrays.toString(lines) +
+                '}';
+    }
 
     @Override
     public int compareTo(Object o) {
         BookIndex b2 = (BookIndex) o;
         int tmp = classNo.compareTo(b2.classNo);
-        if(tmp!=0)
+        if (tmp != 0)
             return tmp;
         tmp = authorNo.compareTo(b2.authorNo);
-        if(tmp!=0)
+        if (tmp != 0)
             return tmp;
         tmp = volumeNo.compareTo(b2.volumeNo);
-        if(tmp!=0)
+        if (tmp != 0)
             return tmp;
+        int count = 3;
+        while (lineNum >= count && b2.lineNum >= count) {
+            if (lineNum == b2.lineNum && lineNum == count)
+                return 0;
+            if (lineNum == count && b2.lineNum > lineNum)
+                return -1;
+            if (b2.lineNum == count && b2.lineNum < lineNum)
+                return -1;
+            tmp = lines[count].compareTo(b2.lines[count]);
+            if (tmp != 0)
+                return tmp;
+            count++;
+        }
 
         return 0;
     }
@@ -83,9 +106,10 @@ class BookIndex implements Comparable {
         private String laClassNo = "";
 
         ClassNo(String classNo) {
-            int index = classNo.indexOf("[:-=]");
-            if (index >= 0) {
-                switch (classNo.charAt(index)) {
+            Pattern p = Pattern.compile("[:-=]");
+            Matcher m = p.matcher(classNo);
+            if (m.find()) {
+                switch (m.group().charAt(0)) {
                     case ':':
                         markSymbol = MarkSymbol.COLON;
                     case '-':
@@ -93,9 +117,10 @@ class BookIndex implements Comparable {
                     case '=':
                         markSymbol = MarkSymbol.EQUALITYSIGN;
                 }
-                preClassNo = classNo.substring(0, index);
-                laClassNo = classNo.substring(index + 1);
-            }
+                preClassNo = classNo.substring(0, m.start());
+                laClassNo = classNo.substring(m.end());
+            } else
+                preClassNo = classNo;
         }
 
         @Override
@@ -115,6 +140,11 @@ class BookIndex implements Comparable {
     }
 
     public static void main(String[] args) {
+        BookIndex[] bookIndices = {new BookIndex("K825.6:442/L328"), new BookIndex("K825.6=442/L328"), new BookIndex("K825.6-442/L328"), new BookIndex("K825.6/L328"), new BookIndex("K825.6=442/L328/(22)")};
+        Arrays.sort(bookIndices);
+        for (BookIndex b : bookIndices) {
 
+            System.out.println(b.toString());
+        }
     }
 }
