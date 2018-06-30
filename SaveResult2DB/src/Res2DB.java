@@ -137,8 +137,8 @@ class Res2DB {
             tagID = new String (arr);
 
             System.arraycopy(resInfo[i], 1, bookInfos, BookFieldName.AREANO.getIndex(), FIELD_NUM - 2);
-            bookInfos[BookFieldName.LAYERNO.getIndex()] = 6 - Integer.valueOf(bookInfos[BookFieldName.LAYERNO
-                    .getIndex()]) + "";
+//            bookInfos[BookFieldName.LAYERNO.getIndex()] = 6 - Integer.valueOf(bookInfos[BookFieldName.LAYERNO
+//                    .getIndex()]) + "";
             //忽略架号
             //bookInfos[BookFieldName.SHELFNO.getIndex()]="";
             String[] tmp = bookInfosTxt.get(tagID);
@@ -200,8 +200,8 @@ class Res2DB {
                 tagID = new String (arr);
 
                 System.arraycopy(resInfo[i], 1, bookInfos, BookFieldName.AREANO.getIndex(), FIELD_NUM - 2);
-                bookInfos[BookFieldName.LAYERNO.getIndex()] = 6 - Integer.valueOf(bookInfos[BookFieldName.LAYERNO
-                        .getIndex()]) + "";
+//                bookInfos[BookFieldName.LAYERNO.getIndex()] = 6 - Integer.valueOf(bookInfos[BookFieldName.LAYERNO
+//                        .getIndex()]) + "";
                 //忽略架号
                 //                bookInfos[BookFieldName.SHELFNO.getIndex()]="";
                 String sql = "SELECT BOOK_ID, BOOK_INDEX, BOOK_NAME FROM " + DB_NAME + "." + TABLE_NAME + " WHERE " +
