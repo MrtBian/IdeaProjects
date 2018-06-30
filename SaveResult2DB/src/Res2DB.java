@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.*;
 
-import static util.FileUtil.readFileByLine;
+import static utils.FileUtil.*;
 
 
 class Res2DB {
