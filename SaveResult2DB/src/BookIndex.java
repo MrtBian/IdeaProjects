@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 class BookIndex implements Comparable {
     private ClassNo classNo;
-    private String authorNo = "";
+    private AuthorNo authorNo;
     private String lines[];
     private int lineNum;
 
@@ -14,7 +14,7 @@ class BookIndex implements Comparable {
         lineNum = lines.length;
         classNo = new ClassNo(lines[0]);
         if (lineNum >= 2) {
-            authorNo = lines[1];
+            authorNo = new AuthorNo(lines[1]);
         }
     }
 
