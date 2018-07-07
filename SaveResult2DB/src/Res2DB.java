@@ -102,10 +102,9 @@ class Res2DB {
         this.resPath = filePath;
         reportPath = resPath.replace(".res", ".xls").replace("result", "report");
         System.out.println(reportPath);
-        if(flag == 0){
+        if (flag == 0) {
             getResInfoFromTXT();
-        }
-        else {
+        } else {
             getResInfo();
         }
     }
@@ -114,7 +113,6 @@ class Res2DB {
         //读取TXT中的图书信息
         System.out.println("读取TXT中的图书信息...");
         List<String> txtInfos = readFileByLine(DB_TXT_PATH);
-        System.out.println("共有"+txtInfos.size()+"条待处理");
         Map<String, String[]> bookInfosTxt = new HashMap<String, String[]>();
         for (String data : txtInfos) {
             String[] infos = data.split(";");
@@ -123,40 +121,50 @@ class Res2DB {
             bookInfosTxt.put(tagID, bookInfos);
         }
         System.out.println("读取成功");
+        System.out.println("读取res文件...");
         bookMap = new HashMap<>();
         List<String> result = readFileByLine(resPath);
+        System.out.println("共有" + result.size() + "条待处理");
         resInfo = new String[result.size()][];
         int i = 0;
         int countNotInDB = 0;
+        int countRC = 0;
+        int countSucc = 0;
         for (String data : result) {
             String[] bookInfos = new String[BOOK_FIELD_NUM];
             resInfo[i] = data.split(" ");
-            //tagIDs[i] = "\"" + resInfo[i][0] + "\"";
             String tagID = resInfo[i][0];
-            //处理借出图书，将首位8改为0
-            char[] arr = tagID.toCharArray();
-            arr[0] = arr[0]=='8'?'0':arr[0];
-            tagID = new String (arr);
-
+            if (tagID.length() > 0) {
+                //处理借出图书，将首位8改为0
+                char[] arr = tagID.toCharArray();
+                arr[0] = arr[0] == '8' ? '0' : arr[0];
+                tagID = new String(arr);
+                if (tagID.matches("^CD[\\d\\w]+$")) {
+                    countRC++;
+                    continue;
+                }
+            }
             System.arraycopy(resInfo[i], 1, bookInfos, BookFieldName.AREANO.getIndex(), FIELD_NUM - 2);
 //            bookInfos[BookFieldName.LAYERNO.getIndex()] = 6 - Integer.valueOf(bookInfos[BookFieldName.LAYERNO
 //                    .getIndex()]) + "";
             //忽略架号
             //bookInfos[BookFieldName.SHELFNO.getIndex()]="";
             String[] tmp = bookInfosTxt.get(tagID);
-            if(tmp == null){
+            if (tmp == null) {
                 //数据库无此书
                 countNotInDB++;
+                System.out.println(tagID);
                 continue;
             }
             bookInfos[0] = tmp[0];
             bookInfos[1] = tmp[1];
             bookInfos[2] = tmp[2];
             bookMap.put(tagID, bookInfos);
+            countSucc++;
             i++;
-            if (i % 1000 == 0) System.out.println(i);
+            if (i % 1000 == 0) System.out.println("已处理" + i);
         }
-        System.out.println("有"+countNotInDB+"个EPC不在数据库中");
+        System.out.println("有" + countRC + "个层架标\n" + "有" + countNotInDB + "个EPC不在数据库中\n" + countSucc + "本书处理成功！");
 
 
         //排序
@@ -166,14 +174,14 @@ class Res2DB {
             public int compare(Map.Entry<String, String[]> o1, Map.Entry<String, String[]> o2) {
                 String[] b1 = o1.getValue().clone();
                 String[] b2 = o2.getValue().clone();
-                long i1=0,i2=0;
+                long i1 = 0, i2 = 0;
                 //排序，从楼层号到书架层号
-                for(int i=BookFieldName.FLOORNO.getIndex();i<=BookFieldName.ORDERNO.getIndex();i++){
-                    i1 = i1*100 + Integer.valueOf(b1[i]);
-                    i2 = i2*100 + Integer.valueOf(b2[i]);
+                for (int i = BookFieldName.FLOORNO.getIndex(); i <= BookFieldName.ORDERNO.getIndex(); i++) {
+                    i1 = i1 * 100 + Integer.valueOf(b1[i]);
+                    i2 = i2 * 100 + Integer.valueOf(b2[i]);
                 }
-                int tmp = (int)(i1-i2);
-                if(tmp==0){
+                int tmp = (int) (i1 - i2);
+                if (tmp == 0) {
                     tmp = b1[BookFieldName.BOOK_INDEX.getIndex()].compareTo(b2[BookFieldName.BOOK_INDEX.getIndex()]);
                 }
                 return tmp;
@@ -183,7 +191,7 @@ class Res2DB {
     }
 
     /**
-     *从数据中获取图书信息
+     * 从数据中获取图书信息
      */
     public void getResInfo() {
         getDBConnection();
@@ -193,34 +201,49 @@ class Res2DB {
             List<String> result = readFileByLine(resPath);
             resInfo = new String[result.size()][];
             int i = 0;
+            int countNotInDB = 0;
+            int countRC = 0;
+            int countSucc = 0;
             for (String data : result) {
                 String[] bookInfos = new String[BOOK_FIELD_NUM];
                 resInfo[i] = data.split(" ");
-                //            tagIDs[i] = "\"" + resInfo[i][0] + "\"";
                 String tagID = resInfo[i][0];
-                //处理借出图书，将首位8改为0
-                char[] arr = tagID.toCharArray();
-                arr[0] = arr[0]=='8'?'0':arr[0];
-                tagID = new String (arr);
+                if (tagID.length() > 0) {
+                    //处理借出图书，将首位8改为0
+                    char[] arr = tagID.toCharArray();
+                    arr[0] = arr[0] == '8' ? '0' : arr[0];
+                    tagID = new String(arr);
+                    if (tagID.matches("^CD[\\d\\w]+$")) {
+                        //排除层架标
+                        countRC++;
+                        continue;
+                    }
+                }
 
                 System.arraycopy(resInfo[i], 1, bookInfos, BookFieldName.AREANO.getIndex(), FIELD_NUM - 2);
-//                bookInfos[BookFieldName.LAYERNO.getIndex()] = 6 - Integer.valueOf(bookInfos[BookFieldName.LAYERNO
-//                        .getIndex()]) + "";
+                //bookInfos[BookFieldName.LAYERNO.getIndex()] = 6 - Integer.valueOf(bookInfos[BookFieldName.LAYERNO.getIndex()]) + "";
                 //忽略架号
-                //                bookInfos[BookFieldName.SHELFNO.getIndex()]="";
+                //bookInfos[BookFieldName.SHELFNO.getIndex()]="";
                 String sql = "SELECT BOOK_ID, BOOK_INDEX, BOOK_NAME FROM " + DB_NAME + "." + TABLE_NAME + " WHERE " +
                         "" + "TAG_ID = '" + tagID + "'";
                 //                System.out.println(sql);
                 resultSet = statement.executeQuery(sql);
-                while (resultSet.next()) {
+                if (resultSet.next()) {
                     bookInfos[0] = resultSet.getString("BOOK_ID");
                     bookInfos[1] = resultSet.getString("BOOK_INDEX");
                     bookInfos[2] = resultSet.getString("BOOK_NAME");
                     bookMap.put(tagID, bookInfos);
+                } else {
+                    //数据库无此书
+                    countNotInDB++;
+                    System.out.println(tagID);
+                    continue;
                 }
                 bookMap.put(tagID, bookInfos);
                 i++;
-                if (i % 100 == 0) System.out.println(i);
+                countSucc++;
+                if (i % 1000 == 0) System.out.println("已处理" + i);
+                System.out.println("有" + countRC + "个层架标\n" + "有" + countNotInDB + "个EPC不在数据库中\n" + countSucc + "本书处理成功！");
             }
             statement.close();
             connect.close();
@@ -235,14 +258,14 @@ class Res2DB {
             public int compare(Map.Entry<String, String[]> o1, Map.Entry<String, String[]> o2) {
                 String[] b1 = o1.getValue().clone();
                 String[] b2 = o2.getValue().clone();
-                long i1=0,i2=0;
+                long i1 = 0, i2 = 0;
                 //排序，从楼层号到书架层号
-                for(int i=BookFieldName.FLOORNO.getIndex();i<=BookFieldName.ORDERNO.getIndex();i++){
-                    i1 = i1*100 + Integer.valueOf(b1[i]);
-                    i2 = i2*100 + Integer.valueOf(b2[i]);
+                for (int i = BookFieldName.FLOORNO.getIndex(); i <= BookFieldName.ORDERNO.getIndex(); i++) {
+                    i1 = i1 * 100 + Integer.valueOf(b1[i]);
+                    i2 = i2 * 100 + Integer.valueOf(b2[i]);
                 }
-                int tmp = (int)(i1-i2);
-                if(tmp==0){
+                int tmp = (int) (i1 - i2);
+                if (tmp == 0) {
                     tmp = b1[BookFieldName.BOOK_INDEX.getIndex()].compareTo(b2[BookFieldName.BOOK_INDEX.getIndex()]);
                 }
                 return tmp;
@@ -316,6 +339,9 @@ class Res2DB {
         return bookID + " " + bookIndex + " " + bookName;
     }
 
+    /**
+     * @brief 按行和列生成报表
+     */
     public void generateReportTemp() {
         WritableWorkbook book = null;
         try {
@@ -344,12 +370,12 @@ class Res2DB {
                     e.printStackTrace();
                 }
                 // Label labTitle_ = new Label(0, 0, "架号"+data[3]+" 层号"+data[4]);
-                Label labBookID_ = new Label(0, 0, "条形码",format1);
-                Label labBookIndex_ = new Label(1, 0, "索书号",format1);
-                Label labBookName_ = new Label(2, 0, "书名",format1);
-                Label labShelfNo_ = new Label(3, 0, "架号",format1);
-                Label labLayerNo_ = new Label(4, 0, "层号",format1);
-                Label labOrderNo_ = new Label(5, 0, "顺序号",format1);
+                Label labBookID_ = new Label(0, 0, "条形码", format1);
+                Label labBookIndex_ = new Label(1, 0, "索书号", format1);
+                Label labBookName_ = new Label(2, 0, "书名", format1);
+                Label labShelfNo_ = new Label(3, 0, "架号", format1);
+                Label labLayerNo_ = new Label(4, 0, "层号", format1);
+                Label labOrderNo_ = new Label(5, 0, "顺序号", format1);
                 try {
                     //sheet.addCell(labTitle_);
                     sheet.addCell(labBookID_);
@@ -387,8 +413,8 @@ class Res2DB {
             Label labBookIndex = new Label(1, rowNo, bookInfos[BookFieldName.BOOK_INDEX.getIndex()], format);
             Label labBookName = new Label(2, rowNo, bookInfos[BookFieldName.BOOK_NAME.getIndex()], format);
             Label labLayerNo = new Label(4, rowNo, bookInfos[BookFieldName.LAYERNO.getIndex()], format);
-            Label labShelfNo = new Label(3, rowNo, bookInfos[BookFieldName.SHELFNO.getIndex()],format);
-            Label labOrderNo = new Label(5, rowNo, bookInfos[BookFieldName.ORDERNO.getIndex()],format);
+            Label labShelfNo = new Label(3, rowNo, bookInfos[BookFieldName.SHELFNO.getIndex()], format);
+            Label labOrderNo = new Label(5, rowNo, bookInfos[BookFieldName.ORDERNO.getIndex()], format);
             try {
                 sheet.addCell(labBookID);
                 sheet.addCell(labBookIndex);
