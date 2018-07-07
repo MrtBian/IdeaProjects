@@ -114,6 +114,7 @@ class Res2DB {
         //读取TXT中的图书信息
         System.out.println("读取TXT中的图书信息...");
         List<String> txtInfos = readFileByLine(DB_TXT_PATH);
+        System.out.println("共有"+txtInfos.size()+"条待处理");
         Map<String, String[]> bookInfosTxt = new HashMap<String, String[]>();
         for (String data : txtInfos) {
             String[] infos = data.split(";");
@@ -126,6 +127,7 @@ class Res2DB {
         List<String> result = readFileByLine(resPath);
         resInfo = new String[result.size()][];
         int i = 0;
+        int countNotInDB = 0;
         for (String data : result) {
             String[] bookInfos = new String[BOOK_FIELD_NUM];
             resInfo[i] = data.split(" ");
@@ -144,6 +146,7 @@ class Res2DB {
             String[] tmp = bookInfosTxt.get(tagID);
             if(tmp == null){
                 //数据库无此书
+                countNotInDB++;
                 continue;
             }
             bookInfos[0] = tmp[0];
@@ -153,6 +156,7 @@ class Res2DB {
             i++;
             if (i % 1000 == 0) System.out.println(i);
         }
+        System.out.println("有"+countNotInDB+"个EPC不在数据库中");
 
 
         //排序

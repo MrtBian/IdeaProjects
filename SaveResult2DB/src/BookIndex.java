@@ -61,8 +61,8 @@ class BookIndex implements Comparable {
         public int compareTo(Object o) {
             ClassNo classNo1 = (ClassNo) o;
             String s1 = cnStr.toLowerCase(), s2 = classNo1.cnStr.toLowerCase();
-            s1 = s1.replaceAll("[^:+=()\\w\\d]", "");
-            s2 = s2.replaceAll("[^:+=()\\w\\d]", "");
+            s1 = s1.replaceAll("[^-()\"\"=#+:\\w\\d]", "");
+            s2 = s2.replaceAll("[^-()\"\"=#+:\\w\\d]", "");
             int l1 = s1.length(), l2 = s2.length();
             if (s1.compareTo(s2) == 0) {
                 return 0;
@@ -89,7 +89,7 @@ class BookIndex implements Comparable {
          * @return c1 < c2 -1 c1 == c2 0 c1 > c2 1
          */
         private int compareChar(char c1, char c2) {
-            String str = ":-=()#+0123456789abcdefghijklmnopqrstuvwxyz.";
+            String str = "-()\"\"=#+:0123456789abcdefghijklmnopqrstuvwxyz.";
             return str.indexOf(c1) - str.indexOf(c2);
         }
     }
