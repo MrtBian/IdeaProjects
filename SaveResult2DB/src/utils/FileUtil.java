@@ -21,6 +21,10 @@ public final class FileUtil {
     }
     public static void writeFile(String fileName, boolean isAddToTail, List<String> contents) {
         try {
+            File file = new File(fileName);
+            if(!file.exists()){
+                file.createNewFile();
+            }
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, isAddToTail));
             for(String string : contents){
                 writer.write(string);
@@ -34,6 +38,10 @@ public final class FileUtil {
 
     public static void writeFile(String fileName, boolean isAddToTail, String content) {
         try {
+            File file = new File(fileName);
+            if(!file.exists()){
+                file.createNewFile();
+            }
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, isAddToTail));
             writer.write(content);
             writer.newLine();

@@ -1,4 +1,12 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import utils.FileUtil.*;
+
+import static utils.FileUtil.readFileByLine;
+import static utils.FileUtil.writeFile;
 
 class BookIndex implements Comparable {
     private ClassNo classNo;
@@ -20,7 +28,17 @@ class BookIndex implements Comparable {
 
     @Override
     public String toString() {
-        return Arrays.toString(lines);
+        StringBuilder str = new StringBuilder();
+        boolean isFirst = true;
+        for (String line : lines) {
+            if (isFirst) {
+                str.append(line);
+                isFirst = false;
+            } else {
+                str.append("/").append(line);
+            }
+        }
+        return str.toString();
     }
 
     @Override
@@ -109,7 +127,7 @@ class BookIndex implements Comparable {
         @Override
         public int compareTo(Object o) {
             AuthorNo authorNo1 = (AuthorNo) o;
-            String s1 = anStr.toLowerCase(), s2 = anStr.toLowerCase();
+            String s1 = anStr.toLowerCase(), s2 = authorNo1.anStr.toLowerCase();
             s1 = s1.replaceAll("[^()-+=\\w\\d]", "");
             s2 = s2.replaceAll("[^()-+=\\w\\d]", "");
             int l1 = s1.length(), l2 = s2.length();
@@ -191,6 +209,13 @@ class BookIndex implements Comparable {
             if (s1.compareTo(s2) == 0) {
                 return 0;
             }
+            if(s1.equals("y")){
+                return -1;
+            }
+
+            if(s2.equals("y")){
+                return 1;
+            }
             int index1 = 0, index2 = 0, tmp;
             while (l1 > index1 && l2 > index2) {
                 char c1 = s1.charAt(index1);
@@ -230,93 +255,19 @@ class BookIndex implements Comparable {
     }
 
     public static void main(String[] args) {
-        BookIndex[] bookIndices = {new BookIndex("TP312C++/D295/1996/Y"),
-                new BookIndex("D81/I-61a/1995/Y"),
-                new BookIndex("D971.221.6/I-32/1995/Y"),
-                new BookIndex("F74/I-61j/1996/Y"),
-                new BookIndex("P74-532/P115/1991,19th/Y"),
-                new BookIndex("D971.2/A512r(-)/2nd/Judgments/1982-/V.1-/Y"),
-                new BookIndex("D910.9-61/I-61//Intergov./1998/V.1/Suppl.3/Y"),
-                new BookIndex("S715-091.61/F718/1988/Y"),
-                new BookIndex("D0/S558(5)/1997/Y"),
-                new BookIndex("B516.41/M191(-)/1997/Y"),
-                new BookIndex("D956.1/P123(+)/[1989]/Y"),
-                new BookIndex("H319/W192s/1980/Tutor's bk./Y"),
-                new BookIndex("H319/B853/1989/teacher's guide/Y"),
-                new BookIndex("H334.3/Z-66/*"),
-                new BookIndex("O4-44/O-66(2-)/1975"),
-                new BookIndex("O4/Y72a(6)/1982/Guide"),
-                new BookIndex("TP15-532/P692/1984,15th/V.15, Pt.3"),
-                new BookIndex("TP15-532/P692/1981,12th/V.12,Pt.2"),
-                new BookIndex("TP15-532/P692/1979,10th/V.10,Pt.3"),
-                new BookIndex("TP15-532/P692/1984,15th/V.15, Pt.4"),
-                new BookIndex("TP15-532/P692/1981,12th/V.12,Pt.1"),
-                new BookIndex("TP15-532/P692/1981,12th/V.12,Pt.4"),
-                new BookIndex("TP15-532/P692/1981,12th/V.12,Pt.3"),
-                new BookIndex("TP15-532/P692/1980,11th/V.11,Pt.4"),
-                new BookIndex("TP15-532/P692/1984,15th/V.15,Pt.2"),
-                new BookIndex("TP15-532/P692/1979,10th/V.10,Pt.2"),
-                new BookIndex("TP15-532/P692/1984,15th/V.15,Pt.5"),
-                new BookIndex("TP15-532/P692/1979,10th/V.10,Pt.1"),
-                new BookIndex("TP15-532/P692/1980,11th/V.11,Pt.2"),
-                new BookIndex("TP15-532/P692/1979,10th/V.10,Pt.4"),
-                new BookIndex("TP15-532/P692/1984,15th/V.15,Pt.1"),
-                new BookIndex("O32-53/S559/1983/V.53,Pt.3"),
-                new BookIndex("O32-53/S559/1973/V.43,Pt.3-4"),
-                new BookIndex("O32-53/S559/1970/V.41,Pt.5"),
-                new BookIndex("O32-53/S559/1970/V.41,Pt.2"),
-                new BookIndex("O32-53/S559/1970/V.41,Pt.7"),
-                new BookIndex("O32-53/S559/1970/V.41,Pt.3"),
-                new BookIndex("O32-53/S559/1973/V.43,Pt.1-2"),
-                new BookIndex("O32-53/S559/1983/V.53,Pt.2"),
-                new BookIndex("O32-53/S559/1982/V.52,Pt.4"),
-                new BookIndex("H339/B664/1979/V.1B-Si/Y"),
-                new BookIndex("H339/B664/V.1A-D/1970/Y"),
-                new BookIndex("H339/B664/1978/V.1A-G/Y"),
-                new BookIndex("H339/B664/1977/V.1B-L/Y"),
-                new BookIndex("H339/B664/V.2/1971/Y"),
-                new BookIndex("TP399:TH126/R725(2)/2002/Y"),
-                new BookIndex("Z88:N/C614/2005/Y"),
-                new BookIndex("51.621/C262/[1964-]"),
-                new BookIndex("TP312C#/X141a"),
-                new BookIndex("TP312C++/L785"),
-                new BookIndex("TP312C++-33/C1962"),
-                new BookIndex("K825.3=74/Z259"),
-                new BookIndex("H319.4:I/L147"),
-                new BookIndex("B2/Z561a/(1-3)"),
-                new BookIndex("A221.1/1894.04a2"),
-                new BookIndex("A1/M1/(26-2)"),
-                new BookIndex("K827=73/Z6983"),
-                new BookIndex("B2/X337/(1-1)"),
-                new BookIndex("B2/X337/(1-3-1)"),
-                new BookIndex("B2/X337/(1-2)"),
-                new BookIndex("B516.47/Z666a2"),
-                new BookIndex("K204.2/S641zx"),
-                new BookIndex("K204.2/S641zx2"),
-                new BookIndex("K827=6/H488d/(14)5"),
-                new BookIndex("D923.04/Z571a/(1~2)"),
-                new BookIndex("D923.05-55/M387a/(2009-1&2)"),
-                new BookIndex("K825.6/D342/Y.ZH."),
-                new BookIndex("K254.410.7/J333b"),
-                new BookIndex("D091.6-52/O-1242/(1)"),
-                new BookIndex("K250.6/C325/(8)-(10)"),
-                new BookIndex("I216.1/Z325/(1911-1927)/(6) "),
-                new BookIndex("I216.1/Z325/(1911-1927)/(8) "),
-                new BookIndex("I216.1/Z325/(1911-1927)/(3) "),
-                new BookIndex("I216.1/Z325/(1911-1927)/(1) "),
-                new BookIndex("I216.1/Z325/(1911-1927)/(4) "),
-                new BookIndex("I216.1/Z325/(1911-1927)/(5) "),
-                new BookIndex("I216.1/Z325/(1911-1927)/(9) "),
-                new BookIndex("I216.1/Z325/(1911-1927)/(7) "),
-                new BookIndex("I216.1/Z325/(1911-1927)/(2) "),
-                new BookIndex("R/91.8563/P214/1976-/base vol.1977-//Y"),
-                new BookIndex("SW/E712.53-09/R311/1996/Ser.8//R.25/Y"),
-                new BookIndex("R/54.5073/B422(4e)/1999/Suppl.5/V.27/F:Index/C1-C204")};
-
-        Arrays.sort(bookIndices);
-        for (BookIndex b : bookIndices) {
-
-            System.out.println(b.toString());
+        List<String> bookIndexs = readFileByLine("data\\test_0711.txt");
+        Collections.shuffle(bookIndexs);
+        List<BookIndex> bis = new ArrayList<>();
+        for (String bi : bookIndexs) {
+            bis.add(new BookIndex(bi));
         }
+        Collections.sort(bis);
+        List<String> newStrs = new ArrayList<>();
+        for (BookIndex bi : bis) {
+            newStrs.add(bi.toString());
+        }
+        writeFile("data\\old_0711.txt", false, bookIndexs);
+        writeFile("data\\new_0711.txt", false, newStrs);
+
     }
 }

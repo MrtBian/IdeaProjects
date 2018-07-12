@@ -177,6 +177,10 @@ class Res2DB {
                 long i1 = 0, i2 = 0;
                 //排序，从楼层号到书架层号
                 for (int i = BookFieldName.FLOORNO.getIndex(); i <= BookFieldName.ORDERNO.getIndex(); i++) {
+                    if(i==BookFieldName.ORDERNO.getIndex()){
+                        i1*=2;
+                        i2*=2;
+                    }
                     i1 = i1 * 100 + Integer.valueOf(b1[i]);
                     i2 = i2 * 100 + Integer.valueOf(b2[i]);
                 }
@@ -261,8 +265,8 @@ class Res2DB {
                 long i1 = 0, i2 = 0;
                 //排序，从楼层号到书架层号
                 for (int i = BookFieldName.FLOORNO.getIndex(); i <= BookFieldName.ORDERNO.getIndex(); i++) {
-                    i1 = i1 * 100 + Integer.valueOf(b1[i]);
-                    i2 = i2 * 100 + Integer.valueOf(b2[i]);
+                    i1 = i1 * 1000 + Integer.valueOf(b1[i]);
+                    i2 = i2 * 1000 + Integer.valueOf(b2[i]);
                 }
                 int tmp = (int) (i1 - i2);
                 if (tmp == 0) {
