@@ -27,7 +27,7 @@ class Res2DB {
     /**
      * 文件参数
      **/
-    private final static String DB_TXT_PATH = "data\\DB_m_transform_tag_2018-06-11.txt";
+    private final static String DB_TXT_PATH = "data\\DB_m_transform_tag_2018-06-29.txt";
     private int flag = 0;//0 为文件读取
     /**
      * 数据库参数
@@ -45,9 +45,9 @@ class Res2DB {
     /**
      * 结果文件解析
      **/
-    /*EPC 区域号 楼层号 列号 排号 架号 层号 顺序号 放错等级*/
+    /*EPC 区域号 楼层号 列号 排号 架号 层号 顺序号 放错等级 当层数量*/
     private String[][] resInfo;
-    private static final int FIELD_NUM = 9;
+    private static final int FIELD_NUM = 10;
 
     /**
      * 书籍信息
@@ -56,7 +56,7 @@ class Res2DB {
     private enum BookFieldName {
         BOOK_ID("BOOK_ID", 0), BOOK_INDEX("BOOK_INDEX", 1), BOOK_NAME("BOOK_NAME", 2), AREANO("AREANO", 3), FLOORNO
                 ("FLOORNO", 4), COLUMNNO("COLUMNNO", 5), ROWNO("ROWNO", 6), SHELFNO("SHELFNO", 7), LAYERNO("LAYERNO",
-                8), ORDERNO("ORDERNO", 9), ERRORFLAG("ERRORFLAG", 10);
+                8), ORDERNO("ORDERNO", 9), ERRORFLAG("ERRORFLAG", 10), NUM("NUM", 11);
         private String name;
         private int index;
 
@@ -73,18 +73,18 @@ class Res2DB {
             return name;
         }
     }
+    private static final int BOOK_FIELD_NUM = 12;
 
     //表格列宽
-    private static int[] EXCEL_LENGTH = {20, 25, 80, 10, 10, 10};
+    private static int[] EXCEL_LENGTH = {20, 25, 80, 6, 6, 6, 6, 6, 15};
 
-    private static final int BOOK_FIELD_NUM = 11;
     private Map<String, String[]> bookMap;
     private List<Map.Entry<String, String[]>> bookList;
     /**
      * 对应图书馆数据库字段
      **/
     private static final String DB_FIELD_NAME[] = {"TAG_ID", "AREANO", "FLOORNO", "COLUMNNO", "ROWNO", "SHELFNO",
-            "LAYERNO", "ORDERNO", "ERRORFLAG"};
+            "LAYERNO", "ORDERNO", "ERRORFLAG", "NUM"};
     //
     private static final int SHEET_NUM = 10;
     /**
@@ -144,7 +144,7 @@ class Res2DB {
                     continue;
                 }
             }
-            System.arraycopy(resInfo[i], 1, bookInfos, BookFieldName.AREANO.getIndex(), FIELD_NUM - 2);
+            System.arraycopy(resInfo[i], 1, bookInfos, BookFieldName.AREANO.getIndex(), FIELD_NUM - 1);
 //            bookInfos[BookFieldName.LAYERNO.getIndex()] = 6 - Integer.valueOf(bookInfos[BookFieldName.LAYERNO
 //                    .getIndex()]) + "";
             //忽略架号
@@ -177,9 +177,9 @@ class Res2DB {
                 long i1 = 0, i2 = 0;
                 //排序，从楼层号到书架层号
                 for (int i = BookFieldName.FLOORNO.getIndex(); i <= BookFieldName.ORDERNO.getIndex(); i++) {
-                    if(i==BookFieldName.ORDERNO.getIndex()){
-                        i1*=2;
-                        i2*=2;
+                    if (i == BookFieldName.ORDERNO.getIndex()) {
+                        i1 *= 2;
+                        i2 *= 2;
                     }
                     i1 = i1 * 100 + Integer.valueOf(b1[i]);
                     i2 = i2 * 100 + Integer.valueOf(b2[i]);
@@ -224,7 +224,7 @@ class Res2DB {
                     }
                 }
 
-                System.arraycopy(resInfo[i], 1, bookInfos, BookFieldName.AREANO.getIndex(), FIELD_NUM - 2);
+                System.arraycopy(resInfo[i], 1, bookInfos, BookFieldName.AREANO.getIndex(), FIELD_NUM - 1);
                 //bookInfos[BookFieldName.LAYERNO.getIndex()] = 6 - Integer.valueOf(bookInfos[BookFieldName.LAYERNO.getIndex()]) + "";
                 //忽略架号
                 //bookInfos[BookFieldName.SHELFNO.getIndex()]="";
@@ -240,7 +240,7 @@ class Res2DB {
                 } else {
                     //数据库无此书
                     countNotInDB++;
-                    System.out.println(tagID);
+//                    System.out.println(tagID);
                     continue;
                 }
                 bookMap.put(tagID, bookInfos);
@@ -355,6 +355,46 @@ class Res2DB {
         }
         //        int i = 0;
         int sheetNum = 0;
+        //错误列表
+        WritableSheet sheetErr = book.createSheet("错架列表",sheetNum);
+        sheetNum++;
+        WritableCellFormat format1 = new WritableCellFormat();
+        try {
+            format1.setAlignment(Alignment.CENTRE);
+        } catch (WriteException e) {
+            e.printStackTrace();
+        }
+        // Label labTitle_ = new Label(0, 0, "架号"+data[3]+" 层号"+data[4]);
+        Label labBookID_ = new Label(0, 0, "条形码", format1);
+        Label labBookIndex_ = new Label(1, 0, "索书号", format1);
+        Label labBookName_ = new Label(2, 0, "书名", format1);
+        Label labColumnNo_ = new Label(3, 0, "列号", format1);
+        Label labRowNo_ = new Label(4, 0, "行号", format1);
+        Label labShelfNo_ = new Label(5, 0, "架号", format1);
+        Label labLayerNo_ = new Label(6, 0, "层号", format1);
+        Label labOrderNo_ = new Label(7, 0, "顺序号", format1);
+        Label labNum_ = new Label(8, 0, "书格图书总数", format1);
+        Label[] labels_ = {labBookID_,labBookIndex_,labBookName_,labColumnNo_,labRowNo_,labShelfNo_,labLayerNo_,labOrderNo_,labNum_};
+        try {
+            //sheet.addCell(labTitle_);
+            sheetErr.addCell(labBookID_);
+            sheetErr.addCell(labBookIndex_);
+            sheetErr.addCell(labBookName_);
+            sheetErr.addCell(labColumnNo_);
+            sheetErr.addCell(labRowNo_);
+            sheetErr.addCell(labShelfNo_);
+            sheetErr.addCell(labLayerNo_);
+            sheetErr.addCell(labOrderNo_);
+            sheetErr.addCell(labNum_);
+
+
+        } catch (WriteException e) {
+            e.printStackTrace();
+        }
+        //表格格式设置，固定列宽和自动换行
+        for (int i = 0; i < EXCEL_LENGTH.length; i++) {
+            sheetErr.setColumnView(i, EXCEL_LENGTH[i]);
+        }
         for (Map.Entry<String, String[]> entry : bookList) {
             String tagID = entry.getKey();
             String[] bookInfos = entry.getValue();
@@ -365,30 +405,30 @@ class Res2DB {
                 //不存在此sheet
                 sheet = book.createSheet(tmp, sheetNum);
                 sheetNum++;
-                //添加此sheet信息
-                //定义样式
-                WritableCellFormat format1 = new WritableCellFormat();
-                try {
-                    format1.setAlignment(Alignment.CENTRE);
-                } catch (WriteException e) {
-                    e.printStackTrace();
-                }
-                // Label labTitle_ = new Label(0, 0, "架号"+data[3]+" 层号"+data[4]);
-                Label labBookID_ = new Label(0, 0, "条形码", format1);
-                Label labBookIndex_ = new Label(1, 0, "索书号", format1);
-                Label labBookName_ = new Label(2, 0, "书名", format1);
-                Label labShelfNo_ = new Label(3, 0, "架号", format1);
-                Label labLayerNo_ = new Label(4, 0, "层号", format1);
-                Label labOrderNo_ = new Label(5, 0, "顺序号", format1);
-                try {
-                    //sheet.addCell(labTitle_);
-                    sheet.addCell(labBookID_);
-                    sheet.addCell(labBookIndex_);
-                    sheet.addCell(labBookName_);
-                    sheet.addCell(labShelfNo_);
-                    sheet.addCell(labLayerNo_);
-                    sheet.addCell(labOrderNo_);
 
+                // Label labTitle_ = new Label(0, 0, "架号"+data[3]+" 层号"+data[4]);
+                labBookID_ = new Label(0, 0, "条形码", format1);
+                labBookIndex_ = new Label(1, 0, "索书号", format1);
+                labBookName_ = new Label(2, 0, "书名", format1);
+                labColumnNo_ = new Label(3, 0, "列号", format1);
+                labRowNo_ = new Label(4, 0, "行号", format1);
+                labShelfNo_ = new Label(5, 0, "架号", format1);
+                labLayerNo_ = new Label(6, 0, "层号", format1);
+                labOrderNo_ = new Label(7, 0, "顺序号", format1);
+                Label[] newLabels_ = {labBookID_,labBookIndex_,labBookName_,labColumnNo_,labRowNo_,labShelfNo_,labLayerNo_,labOrderNo_};
+                try {
+                    for (int i=0;i<newLabels_.length;i++){
+                        sheet.addCell(newLabels_[i]);
+                    }
+//                    //sheet.addCell(labTitle_);
+//                    sheet.addCell(labBookID_);
+//                    sheet.addCell(labBookIndex_);
+//                    sheet.addCell(labBookName_);
+//                    sheet.addCell(labColumnNo_);
+//                    sheet.addCell(labRowNo_);
+//                    sheet.addCell(labShelfNo_);
+//                    sheet.addCell(labLayerNo_);
+//                    sheet.addCell(labOrderNo_);
 
                 } catch (WriteException e) {
                     e.printStackTrace();
@@ -400,7 +440,7 @@ class Res2DB {
             }
             //定义样式
             WritableCellFormat format = new WritableCellFormat();
-            // true自动换号，false不自动换行
+            // true自动换行，false不自动换行
             try {
                 format.setWrap(true);
             } catch (WriteException e) {
@@ -416,18 +456,56 @@ class Res2DB {
             Label labBookID = new Label(0, rowNo, bookInfos[BookFieldName.BOOK_ID.getIndex()], format);
             Label labBookIndex = new Label(1, rowNo, bookInfos[BookFieldName.BOOK_INDEX.getIndex()], format);
             Label labBookName = new Label(2, rowNo, bookInfos[BookFieldName.BOOK_NAME.getIndex()], format);
-            Label labLayerNo = new Label(4, rowNo, bookInfos[BookFieldName.LAYERNO.getIndex()], format);
-            Label labShelfNo = new Label(3, rowNo, bookInfos[BookFieldName.SHELFNO.getIndex()], format);
-            Label labOrderNo = new Label(5, rowNo, bookInfos[BookFieldName.ORDERNO.getIndex()], format);
+            Label labColumnNo = new Label(3, rowNo, bookInfos[BookFieldName.COLUMNNO.getIndex()], format);
+            Label labRowNo = new Label(4, rowNo, bookInfos[BookFieldName.ROWNO.getIndex()], format);
+            Label labShelfNo = new Label(5, rowNo, bookInfos[BookFieldName.SHELFNO.getIndex()], format);
+            Label labLayerNo = new Label(6, rowNo, bookInfos[BookFieldName.LAYERNO.getIndex()], format);
+            Label labOrderNo = new Label(7, rowNo, bookInfos[BookFieldName.ORDERNO.getIndex()], format);
+            Label[] labels = {labBookID,labBookIndex,labBookName,labColumnNo,labRowNo,labShelfNo,labLayerNo,labOrderNo};
             try {
-                sheet.addCell(labBookID);
-                sheet.addCell(labBookIndex);
-                sheet.addCell(labBookName);
-                sheet.addCell(labShelfNo);
-                sheet.addCell(labLayerNo);
-                sheet.addCell(labOrderNo);
+                for (int i=0;i<labels.length;i++){
+                    sheet.addCell(labels[i]);
+                }
+//                sheet.addCell(labBookID);
+//                sheet.addCell(labBookIndex);
+//                sheet.addCell(labBookName);
+//                sheet.addCell(labColumnNo);
+//                sheet.addCell(labRowNo);
+//                sheet.addCell(labShelfNo);
+//                sheet.addCell(labLayerNo);
+//                sheet.addCell(labOrderNo);
             } catch (WriteException e) {
                 e.printStackTrace();
+            }
+            if(bookInfos[BookFieldName.ERRORFLAG.getIndex()].equals("1")){
+                //将错架图书加入错架列表
+                rowNo = sheetErr.getRows();
+                labBookID = new Label(0, rowNo, bookInfos[BookFieldName.BOOK_ID.getIndex()], format);
+                labBookIndex = new Label(1, rowNo, bookInfos[BookFieldName.BOOK_INDEX.getIndex()], format);
+                labBookName = new Label(2, rowNo, bookInfos[BookFieldName.BOOK_NAME.getIndex()], format);
+                labColumnNo = new Label(3, rowNo, bookInfos[BookFieldName.COLUMNNO.getIndex()], format);
+                labRowNo = new Label(4, rowNo, bookInfos[BookFieldName.ROWNO.getIndex()], format);
+                labShelfNo = new Label(5, rowNo, bookInfos[BookFieldName.SHELFNO.getIndex()], format);
+                labLayerNo = new Label(6, rowNo, bookInfos[BookFieldName.LAYERNO.getIndex()], format);
+                labOrderNo = new Label(7, rowNo, bookInfos[BookFieldName.ORDERNO.getIndex()], format);
+                Label labNum = new Label(8, rowNo, bookInfos[BookFieldName.NUM.getIndex()], format);
+                Label[] newLabels = {labBookID,labBookIndex,labBookName,labColumnNo,labRowNo,labShelfNo,labLayerNo,labOrderNo,labNum};
+                try {
+
+                    for (int i=0;i<newLabels.length;i++){
+                        sheetErr.addCell(newLabels[i]);
+                    }
+//                    sheetErr.addCell(labBookID);
+//                    sheetErr.addCell(labBookIndex);
+//                    sheetErr.addCell(labBookName);
+//                    sheetErr.addCell(labColumnNo);
+//                    sheetErr.addCell(labRowNo);
+//                    sheetErr.addCell(labShelfNo);
+//                    sheetErr.addCell(labLayerNo);
+//                    sheetErr.addCell(labOrderNo);
+                } catch (WriteException e) {
+                    e.printStackTrace();
+                }
             }
             //            i++;
         }
