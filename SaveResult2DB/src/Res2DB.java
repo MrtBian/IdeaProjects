@@ -153,9 +153,16 @@ class Res2DB {
             if (tmp == null) {
                 //数据库无此书
                 countNotInDB++;
-                System.out.println(tagID);
+//                System.out.println(tagID);
                 continue;
             }
+            //数据库中会出现null字符
+//            if (tmp[1].equals("null")) {
+//                //数据库无此书
+//                countNotInDB++;
+//                System.out.println(tagID);
+//                continue;
+//            }
             bookInfos[0] = tmp[0];
             bookInfos[1] = tmp[1];
             bookInfos[2] = tmp[2];
@@ -376,16 +383,20 @@ class Res2DB {
         Label labNum_ = new Label(8, 0, "书格图书总数", format1);
         Label[] labels_ = {labBookID_,labBookIndex_,labBookName_,labColumnNo_,labRowNo_,labShelfNo_,labLayerNo_,labOrderNo_,labNum_};
         try {
+
+            for (int i=0;i<labels_.length;i++){
+                sheetErr.addCell(labels_[i]);
+            }
             //sheet.addCell(labTitle_);
-            sheetErr.addCell(labBookID_);
-            sheetErr.addCell(labBookIndex_);
-            sheetErr.addCell(labBookName_);
-            sheetErr.addCell(labColumnNo_);
-            sheetErr.addCell(labRowNo_);
-            sheetErr.addCell(labShelfNo_);
-            sheetErr.addCell(labLayerNo_);
-            sheetErr.addCell(labOrderNo_);
-            sheetErr.addCell(labNum_);
+//            sheetErr.addCell(labBookID_);
+//            sheetErr.addCell(labBookIndex_);
+//            sheetErr.addCell(labBookName_);
+//            sheetErr.addCell(labColumnNo_);
+//            sheetErr.addCell(labRowNo_);
+//            sheetErr.addCell(labShelfNo_);
+//            sheetErr.addCell(labLayerNo_);
+//            sheetErr.addCell(labOrderNo_);
+//            sheetErr.addCell(labNum_);
 
 
         } catch (WriteException e) {
@@ -489,7 +500,8 @@ class Res2DB {
                 labLayerNo = new Label(6, rowNo, bookInfos[BookFieldName.LAYERNO.getIndex()], format);
                 labOrderNo = new Label(7, rowNo, bookInfos[BookFieldName.ORDERNO.getIndex()], format);
                 Label labNum = new Label(8, rowNo, bookInfos[BookFieldName.NUM.getIndex()], format);
-                Label[] newLabels = {labBookID,labBookIndex,labBookName,labColumnNo,labRowNo,labShelfNo,labLayerNo,labOrderNo,labNum};
+//                Label labEPC = new Label(9,rowNo,tagID,format);
+                Label[] newLabels = {labBookID,labBookIndex,labBookName,labColumnNo,labRowNo,labShelfNo,labLayerNo,labOrderNo,labNum/*,labEPC*/};
                 try {
 
                     for (int i=0;i<newLabels.length;i++){
