@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="SaveResult2DB:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SaveResult2DB_jar</output-path>
+    <root id="archive" name="SaveResult2DB.jar">
+      <element id="module-output" name="SaveResult2DB" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jxl.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/ojdbc8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-net-1.4.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
