@@ -182,7 +182,7 @@ class Res2DB {
             i++;
             if (i % 1000 == 0) LOGGER.info("已处理" + i);
         }
-        LOGGER.info("有" + countRC + "个层架标\n" + "有" + countNotInDB + "个EPC不在数据库中\n" + countSucc + "本书处理成功！");
+        LOGGER.info("有" + countRC + "个层架标;" + "有" + countNotInDB + "个EPC不在数据库中;" + countSucc + "本书处理成功！");
 
 
         LOGGER.info("结果排序中...");
@@ -272,7 +272,7 @@ class Res2DB {
                 i++;
                 countSucc++;
                 if (i % 1000 == 0) LOGGER.info("已处理" + i);
-                LOGGER.info("有" + countRC + "个层架标\n" + "有" + countNotInDB + "个EPC不在数据库中\n" + countSucc + "本书处理成功！");
+                LOGGER.info("有" + countRC + "个层架标;" + "有" + countNotInDB + "个EPC不在数据库中;" + countSucc + "本书处理成功！");
             }
             statement.close();
             connect.close();
