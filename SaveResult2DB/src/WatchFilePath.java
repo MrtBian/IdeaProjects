@@ -3,6 +3,7 @@
  * 文件夹监听服务
  */
 
+import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -78,8 +79,8 @@ public class WatchFilePath {
 
     public static void main(String args[]) throws IOException, InterruptedException {
 //        String FILEPATH = args[0];
-        String FILEPATH = "C:\\Users\\Wing\\Desktop\\Test\\";
-
+//        String FILEPATH = "C:\\Users\\Wing\\Desktop\\Test\\";
+        String FILEPATH = FileSystemView.getFileSystemView().getHomeDirectory().getPath() + "\\Tooker\\result";
         File file = new File(FILEPATH);
         if (!file.exists()) {
             file.mkdirs();

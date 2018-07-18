@@ -6,6 +6,7 @@
 import jxl.Workbook;
 import jxl.write.*;
 
+import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
@@ -100,7 +101,13 @@ class Res2DB {
 
     Res2DB(String filePath) {
         this.resPath = filePath;
-        reportPath = resPath.replace(".res", ".xls").replace("result", "report");
+        String fileName = resPath.replaceAll("^.+\\\\","").replace(".res", ".xls");
+        String fileDir = FileSystemView.getFileSystemView().getHomeDirectory().getPath() + "\\报表";
+        File file = new File(fileDir);
+        if(!file.exists()){
+            file.mkdirs();
+        }
+        reportPath = fileDir+File.separator + fileName;
         System.out.println(reportPath);
         if (flag == 0) {
             getResInfoFromTXT();
