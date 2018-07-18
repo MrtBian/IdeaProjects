@@ -14,9 +14,9 @@ import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 
 import static java.nio.file.StandardWatchEventKinds.*;
+import static utils.MyLogger.LOGGER;
 
 public class WatchFilePath {
-
     private WatchService watcher;
     private String path;
     private static final String END_FILE = "end";
@@ -30,8 +30,8 @@ public class WatchFilePath {
 
     public void handleEvents() throws InterruptedException {
         String resFile = "";
-
-        System.out.println("正在监听...");
+        LOGGER.info("正在监听文件夹："+path);
+//        System.out.println("正在监听...");
         while (true) {
             WatchKey key = watcher.take();
             for (WatchEvent<?> event : key.pollEvents()) {
@@ -44,31 +44,32 @@ public class WatchFilePath {
                 WatchEvent<Path> e = (WatchEvent<Path>) event;
 
                 String fileName = e.context().toString();
-//                System.out.printf("Event %s has happened,which fileName is %s%n"
-//                        , kind.name(), fileName);
+                //                System.out.printf("Event %s has happened,which fileName is %s%n"
+                //                        , kind.name(), fileName);
                 if (kind.name().equals("ENTRY_CREATE")) {
                     if (fileName.matches(".*\\.res$")) {
                         //监听到结果文件创建
                         resFile = path + File.separator + fileName;
                         isRes = true;
-                        System.out.println("检测到res文件，等待传输完成...");
+                        LOGGER.info("检测到res文件，等待传输完成...");
+//                        System.out.println("检测到res文件，等待传输完成...");
                     }
                     if (isRes && fileName.equals(END_FILE)) {
                         //监听到结束标志文件创建
-
-                        System.out.println("检测到end文件，等待解析...");
+                        LOGGER.info("检测到end文件，等待解析...");
+//                        System.out.println("检测到end文件，等待解析...");
                         Thread.sleep(100);
                         new File(path + File.separator + fileName).delete();//删除结束标志文件
                         Res2DB res2DB = new Res2DB(resFile);
                         //写回数据库
-                        res2DB.write2DB();
+//                        res2DB.write2DB();
                         res2DB.generateReportTemp();
-//                        res2DB.generateReport();
+                        //                        res2DB.generateReport();
                         resFile = "";
                         isRes = false;
                     }
                 }
-//                System.out.println("监听继续...");
+                //                System.out.println("监听继续...");
 
             }
             if (!key.reset()) {
@@ -78,8 +79,8 @@ public class WatchFilePath {
     }
 
     public static void main(String args[]) throws IOException, InterruptedException {
-//        String FILEPATH = args[0];
-//        String FILEPATH = "C:\\Users\\Wing\\Desktop\\Test\\";
+        //        String FILEPATH = args[0];
+        //        String FILEPATH = "C:\\Users\\Wing\\Desktop\\Test\\";
         String FILEPATH = FileSystemView.getFileSystemView().getHomeDirectory().getPath() + "\\Tooker\\result";
         File file = new File(FILEPATH);
         if (!file.exists()) {

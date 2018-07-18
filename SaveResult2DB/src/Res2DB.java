@@ -13,6 +13,7 @@ import java.sql.*;
 import java.util.*;
 
 import static utils.FileUtil.*;
+import static utils.MyLogger.LOGGER;
 
 
 class Res2DB {
@@ -29,7 +30,7 @@ class Res2DB {
      * 文件参数
      **/
     private final static String DB_TXT_PATH = "data\\DB_m_transform_tag_2018-06-29.txt";
-    private int flag = 1;//0 为文件读取
+    private int flag = 0;//0 为文件读取
     /**
      * 数据库参数
      **/
@@ -74,6 +75,7 @@ class Res2DB {
             return name;
         }
     }
+
     private static final int BOOK_FIELD_NUM = 12;
 
     //表格列宽
@@ -101,14 +103,14 @@ class Res2DB {
 
     Res2DB(String filePath) {
         this.resPath = filePath;
-        String fileName = resPath.replaceAll("^.+\\\\","").replace(".res", ".xls");
+        String fileName = resPath.replaceAll("^.+\\\\", "").replace(".res", ".xls");
         String fileDir = FileSystemView.getFileSystemView().getHomeDirectory().getPath() + "\\报表";
         File file = new File(fileDir);
-        if(!file.exists()){
+        if (!file.exists()) {
             file.mkdirs();
         }
-        reportPath = fileDir+File.separator + fileName;
-        System.out.println(reportPath);
+        reportPath = fileDir + File.separator + fileName;
+        LOGGER.info(reportPath);
         if (flag == 0) {
             getResInfoFromTXT();
         } else {
@@ -118,7 +120,7 @@ class Res2DB {
 
     public void getResInfoFromTXT() {
         //读取TXT中的图书信息
-        System.out.println("读取TXT中的图书信息...");
+        LOGGER.info("读取TXT中的图书信息...");
         List<String> txtInfos = readFileByLine(DB_TXT_PATH);
         Map<String, String[]> bookInfosTxt = new HashMap<String, String[]>();
         for (String data : txtInfos) {
@@ -127,11 +129,11 @@ class Res2DB {
             String[] bookInfos = Arrays.copyOfRange(infos, 1, 4);
             bookInfosTxt.put(tagID, bookInfos);
         }
-        System.out.println("读取成功");
-        System.out.println("读取res文件...");
+        LOGGER.info("读取成功");
+        LOGGER.info("读取res文件...");
         bookMap = new HashMap<>();
         List<String> result = readFileByLine(resPath);
-        System.out.println("共有" + result.size() + "条待处理");
+        LOGGER.info("共有" + result.size() + "条待处理");
         resInfo = new String[result.size()][];
         int i = 0;
         int countNotInDB = 0;
@@ -148,39 +150,42 @@ class Res2DB {
                 tagID = new String(arr);
                 if (tagID.matches("^CD[\\d\\w]+$")) {
                     countRC++;
+                    LOGGER.info("层架标：" + tagID);
                     continue;
                 }
             }
             System.arraycopy(resInfo[i], 1, bookInfos, BookFieldName.AREANO.getIndex(), FIELD_NUM - 1);
-//            bookInfos[BookFieldName.LAYERNO.getIndex()] = 6 - Integer.valueOf(bookInfos[BookFieldName.LAYERNO
-//                    .getIndex()]) + "";
+            //            bookInfos[BookFieldName.LAYERNO.getIndex()] = 6 - Integer.valueOf(bookInfos[BookFieldName
+            // .LAYERNO
+            //                    .getIndex()]) + "";
             //忽略架号
             //bookInfos[BookFieldName.SHELFNO.getIndex()]="";
             String[] tmp = bookInfosTxt.get(tagID);
             if (tmp == null) {
                 //数据库无此书
                 countNotInDB++;
-//                System.out.println(tagID);
+                LOGGER.warn("数据库未找到TAGID="+tagID+"的书");
                 continue;
             }
             //数据库中会出现null字符
-//            if (tmp[1].equals("null")) {
-//                //数据库无此书
-//                countNotInDB++;
-//                System.out.println(tagID);
-//                continue;
-//            }
+            //            if (tmp[1].equals("null")) {
+            //                //数据库无此书
+            //                countNotInDB++;
+            //                LOGGER.info(tagID);
+            //                continue;
+            //            }
             bookInfos[0] = tmp[0];
             bookInfos[1] = tmp[1];
             bookInfos[2] = tmp[2];
             bookMap.put(tagID, bookInfos);
             countSucc++;
             i++;
-            if (i % 1000 == 0) System.out.println("已处理" + i);
+            if (i % 1000 == 0) LOGGER.info("已处理" + i);
         }
-        System.out.println("有" + countRC + "个层架标\n" + "有" + countNotInDB + "个EPC不在数据库中\n" + countSucc + "本书处理成功！");
+        LOGGER.info("有" + countRC + "个层架标\n" + "有" + countNotInDB + "个EPC不在数据库中\n" + countSucc + "本书处理成功！");
 
 
+        LOGGER.info("结果排序中...");
         //排序
         bookList = new ArrayList<Map.Entry<String, String[]>>(bookMap.entrySet());
         Collections.sort(bookList, new Comparator<Map.Entry<String, String[]>>() {
@@ -204,19 +209,23 @@ class Res2DB {
                 }
                 return tmp;
             }
-
         });
+        LOGGER.info("排序完成");
     }
 
     /**
      * 从数据中获取图书信息
      */
     public void getResInfo() {
+        LOGGER.info("连接数据库...");
         getDBConnection();
+        LOGGER.info("连接成功...");
         try {
             statement = connect.createStatement();
             bookMap = new HashMap<>();
+            LOGGER.info("读取res文件...");
             List<String> result = readFileByLine(resPath);
+            LOGGER.info("共有" + result.size() + "条待处理");
             resInfo = new String[result.size()][];
             int i = 0;
             int countNotInDB = 0;
@@ -234,17 +243,19 @@ class Res2DB {
                     if (tagID.matches("^CD[\\d\\w]+$")) {
                         //排除层架标
                         countRC++;
+                        LOGGER.info("层架标：" + tagID);
                         continue;
                     }
                 }
 
                 System.arraycopy(resInfo[i], 1, bookInfos, BookFieldName.AREANO.getIndex(), FIELD_NUM - 1);
-                //bookInfos[BookFieldName.LAYERNO.getIndex()] = 6 - Integer.valueOf(bookInfos[BookFieldName.LAYERNO.getIndex()]) + "";
+                //bookInfos[BookFieldName.LAYERNO.getIndex()] = 6 - Integer.valueOf(bookInfos[BookFieldName.LAYERNO
+                // .getIndex()]) + "";
                 //忽略架号
                 //bookInfos[BookFieldName.SHELFNO.getIndex()]="";
                 String sql = "SELECT BOOK_ID, BOOK_INDEX, BOOK_NAME FROM " + DB_NAME + "." + TABLE_NAME + " WHERE " +
                         "" + "TAG_ID = '" + tagID + "'";
-                //                System.out.println(sql);
+                //                LOGGER.info(sql);
                 resultSet = statement.executeQuery(sql);
                 if (resultSet.next()) {
                     bookInfos[0] = resultSet.getString("BOOK_ID");
@@ -254,21 +265,22 @@ class Res2DB {
                 } else {
                     //数据库无此书
                     countNotInDB++;
-//                    System.out.println(tagID);
+                    LOGGER.warn("数据库未找到TAGID="+tagID+"的书");
                     continue;
                 }
                 bookMap.put(tagID, bookInfos);
                 i++;
                 countSucc++;
-                if (i % 1000 == 0) System.out.println("已处理" + i);
-                System.out.println("有" + countRC + "个层架标\n" + "有" + countNotInDB + "个EPC不在数据库中\n" + countSucc + "本书处理成功！");
+                if (i % 1000 == 0) LOGGER.info("已处理" + i);
+                LOGGER.info("有" + countRC + "个层架标\n" + "有" + countNotInDB + "个EPC不在数据库中\n" + countSucc + "本书处理成功！");
             }
             statement.close();
             connect.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
 
+        LOGGER.info("结果排序中...");
         //排序
         bookList = new ArrayList<Map.Entry<String, String[]>>(bookMap.entrySet());
         Collections.sort(bookList, new Comparator<Map.Entry<String, String[]>>() {
@@ -290,6 +302,7 @@ class Res2DB {
             }
 
         });
+        LOGGER.info("排序完成");
     }
 
     /**
@@ -299,32 +312,35 @@ class Res2DB {
         /**
          * 写入数据库暂时不启用
          */
+        LOGGER.info("将更改写回数据库");
+        LOGGER.info("连接数据库...");
         getDBConnection();
+        LOGGER.info("连接成功...");
         try {
             statement = connect.createStatement();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
         for (Map.Entry<String, String[]> entry : bookList) {
             String tagID = entry.getKey();
             String[] bookInfos = entry.getValue();
-                String bookPlace = locationEncode(bookInfos);
-                String sql = "UPDATE " + DB_NAME + "." + TABLE_NAME + " SET " + "BOOK_PLACE" + "='" + bookPlace +
-                        "' WHERE" + " " + DB_FIELD_NAME[0] + "='" + tagID + "'";
-                System.out.println(sql);
+            String bookPlace = locationEncode(bookInfos);
+            String sql = "UPDATE " + DB_NAME + "." + TABLE_NAME + " SET " + "BOOK_PLACE" + "='" + bookPlace + "' " +
+                    "WHERE" + " " + DB_FIELD_NAME[0] + "='" + tagID + "'";
+            LOGGER.info(sql);
 
-                try {
-                    statement.executeUpdate(sql);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+            try {
+                statement.executeUpdate(sql);
+            } catch (SQLException e) {
+                LOGGER.error(e.getMessage());
+            }
 
         }
         try {
             statement.close();
             connect.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
     }
 
@@ -340,8 +356,8 @@ class Res2DB {
         try {
             statement = connect.createStatement();
             String sql = "SELECT BOOK_ID, BOOK_INDEX, BOOK_NAME FROM " + DB_NAME + "." + TABLE_NAME + " WHERE TAG_ID " +
-                    "" + "= '" + tagID + "'";
-            //            System.out.println(sql);
+                    "" + "" + "= '" + tagID + "'";
+            //            LOGGER.info(sql);
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 bookID = resultSet.getString(BookFieldName.BOOK_ID.getName());
@@ -351,7 +367,7 @@ class Res2DB {
             statement.close();
             connect.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
         return bookID + " " + bookIndex + " " + bookName;
     }
@@ -364,18 +380,18 @@ class Res2DB {
         try {
             book = Workbook.createWorkbook(new File(reportPath));
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
         //        int i = 0;
         int sheetNum = 0;
         //错误列表
-        WritableSheet sheetErr = book.createSheet("错架列表",sheetNum);
+        WritableSheet sheetErr = book.createSheet("错架列表", sheetNum);
         sheetNum++;
         WritableCellFormat format1 = new WritableCellFormat();
         try {
             format1.setAlignment(Alignment.CENTRE);
         } catch (WriteException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
         // Label labTitle_ = new Label(0, 0, "架号"+data[3]+" 层号"+data[4]);
         Label labBookID_ = new Label(0, 0, "条形码", format1);
@@ -387,16 +403,17 @@ class Res2DB {
         Label labLayerNo_ = new Label(6, 0, "层号", format1);
         Label labOrderNo_ = new Label(7, 0, "顺序号", format1);
         Label labNum_ = new Label(8, 0, "书格图书总数", format1);
-        Label[] labels_ = {labBookID_,labBookIndex_,labBookName_,labColumnNo_,labRowNo_,labShelfNo_,labLayerNo_,labOrderNo_,labNum_};
+        Label[] labels_ = {labBookID_, labBookIndex_, labBookName_, labColumnNo_, labRowNo_, labShelfNo_,
+                labLayerNo_, labOrderNo_, labNum_};
         try {
 
-            for (int i=0;i<labels_.length;i++){
+            for (int i = 0; i < labels_.length; i++) {
                 sheetErr.addCell(labels_[i]);
             }
 
 
         } catch (WriteException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
         //表格格式设置，固定列宽和自动换行
         for (int i = 0; i < EXCEL_LENGTH.length; i++) {
@@ -422,14 +439,15 @@ class Res2DB {
                 labShelfNo_ = new Label(5, 0, "架号", format1);
                 labLayerNo_ = new Label(6, 0, "层号", format1);
                 labOrderNo_ = new Label(7, 0, "顺序号", format1);
-                Label[] newLabels_ = {labBookID_,labBookIndex_,labBookName_,labColumnNo_,labRowNo_,labShelfNo_,labLayerNo_,labOrderNo_};
+                Label[] newLabels_ = {labBookID_, labBookIndex_, labBookName_, labColumnNo_, labRowNo_, labShelfNo_,
+                        labLayerNo_, labOrderNo_};
                 try {
-                    for (int i=0;i<newLabels_.length;i++){
+                    for (int i = 0; i < newLabels_.length; i++) {
                         sheet.addCell(newLabels_[i]);
                     }
 
                 } catch (WriteException e) {
-                    e.printStackTrace();
+                    LOGGER.error(e.getMessage());
                 }
                 //表格格式设置，固定列宽和自动换行
                 for (int i = 0; i < EXCEL_LENGTH.length; i++) {
@@ -442,7 +460,7 @@ class Res2DB {
             try {
                 format.setWrap(true);
             } catch (WriteException e) {
-                e.printStackTrace();
+                LOGGER.error(e.getMessage());
             }
 
             //添加书本信息
@@ -459,15 +477,16 @@ class Res2DB {
             Label labShelfNo = new Label(5, rowNo, bookInfos[BookFieldName.SHELFNO.getIndex()], format);
             Label labLayerNo = new Label(6, rowNo, bookInfos[BookFieldName.LAYERNO.getIndex()], format);
             Label labOrderNo = new Label(7, rowNo, bookInfos[BookFieldName.ORDERNO.getIndex()], format);
-            Label[] labels = {labBookID,labBookIndex,labBookName,labColumnNo,labRowNo,labShelfNo,labLayerNo,labOrderNo};
+            Label[] labels = {labBookID, labBookIndex, labBookName, labColumnNo, labRowNo, labShelfNo, labLayerNo,
+                    labOrderNo};
             try {
-                for (int i=0;i<labels.length;i++){
+                for (int i = 0; i < labels.length; i++) {
                     sheet.addCell(labels[i]);
                 }
             } catch (WriteException e) {
-                e.printStackTrace();
+                LOGGER.error(e.getMessage());
             }
-            if(bookInfos[BookFieldName.ERRORFLAG.getIndex()].equals("1")){
+            if (bookInfos[BookFieldName.ERRORFLAG.getIndex()].equals("1")) {
                 //将错架图书加入错架列表
                 rowNo = sheetErr.getRows();
                 labBookID = new Label(0, rowNo, bookInfos[BookFieldName.BOOK_ID.getIndex()], format);
@@ -479,15 +498,16 @@ class Res2DB {
                 labLayerNo = new Label(6, rowNo, bookInfos[BookFieldName.LAYERNO.getIndex()], format);
                 labOrderNo = new Label(7, rowNo, bookInfos[BookFieldName.ORDERNO.getIndex()], format);
                 Label labNum = new Label(8, rowNo, bookInfos[BookFieldName.NUM.getIndex()], format);
-//                Label labEPC = new Label(9,rowNo,tagID,format);
-                Label[] newLabels = {labBookID,labBookIndex,labBookName,labColumnNo,labRowNo,labShelfNo,labLayerNo,labOrderNo,labNum/*,labEPC*/};
+                //                Label labEPC = new Label(9,rowNo,tagID,format);
+                Label[] newLabels = {labBookID, labBookIndex, labBookName, labColumnNo, labRowNo, labShelfNo,
+                        labLayerNo, labOrderNo, labNum/*,labEPC*/};
                 try {
 
-                    for (int i=0;i<newLabels.length;i++){
+                    for (int i = 0; i < newLabels.length; i++) {
                         sheetErr.addCell(newLabels[i]);
                     }
                 } catch (WriteException e) {
-                    e.printStackTrace();
+                    LOGGER.error(e.getMessage());
                 }
             }
             //            i++;
@@ -496,46 +516,44 @@ class Res2DB {
             book.write();
             book.close();
         } catch (IOException | WriteException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
-        System.out.println("报表生成！");
-        System.out.println("正在监听...");
+        LOGGER.info("报表生成！");
+        LOGGER.info("正在监听...");
     }
 
     /**
-     * @brief 将位置信息解码
      * @param code 位置信息的编码
      * @return 图书信息数组
+     * @brief 将位置信息解码
      */
-    public String[] locationDecode(String code){
+    public String[] locationDecode(String code) {
         String[] bookPlace = new String[6];
-        bookPlace[0]=code.substring(2,3);
-        bookPlace[1]=code.substring(3,4);
-        bookPlace[2]=code.substring(5,6);
-        for(int i=6;i<12;i++){
-            bookPlace[i/2]=Integer.parseInt(code.substring(i,i+2))+"";
+        bookPlace[0] = code.substring(2, 3);
+        bookPlace[1] = code.substring(3, 4);
+        bookPlace[2] = code.substring(5, 6);
+        for (int i = 6; i < 12; i++) {
+            bookPlace[i / 2] = Integer.parseInt(code.substring(i, i + 2)) + "";
         }
         return bookPlace;
     }
 
     /**
-     * @brief 将位置信息进行编码
      * @param bookInfos 图书信息数组
      * @return 编码字符串
+     * @brief 将位置信息进行编码
      */
-    public String locationEncode(String[] bookInfos){
+    public String locationEncode(String[] bookInfos) {
         StringBuilder code = new StringBuilder("WL");
-        for(int i=BookFieldName.AREANO.getIndex();i<=BookFieldName.LAYERNO.getIndex();i++){
-            if(i==BookFieldName.FLOORNO.getIndex()){
+        for (int i = BookFieldName.AREANO.getIndex(); i <= BookFieldName.LAYERNO.getIndex(); i++) {
+            if (i == BookFieldName.FLOORNO.getIndex()) {
                 code.append(bookInfos[i]).append("F");
-            }
-            else if(i==BookFieldName.AREANO.getIndex()||i==BookFieldName.COLUMNNO.getIndex()){
+            } else if (i == BookFieldName.AREANO.getIndex() || i == BookFieldName.COLUMNNO.getIndex()) {
                 code.append(bookInfos[i]);
-            }
-            else{
+            } else {
                 String tmp = bookInfos[i];
-                if(tmp.length()==1){
-                    tmp = "0"+tmp;
+                if (tmp.length() == 1) {
+                    tmp = "0" + tmp;
                 }
                 code.append(tmp);
             }
@@ -548,7 +566,7 @@ class Res2DB {
         try {
             book = Workbook.createWorkbook(new File(reportPath));
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
         WritableSheet[] sheets = new WritableSheet[SHEET_NUM];
         for (int i = 0; i < SHEET_NUM; i++) {
@@ -567,7 +585,7 @@ class Res2DB {
                     sheets[0].addCell(labError);
                 }
             } catch (WriteException e) {
-                e.printStackTrace();
+                LOGGER.error(e.getMessage());
             }
         }
 
@@ -591,7 +609,7 @@ class Res2DB {
                 sheets[0].addCell(name_);
                 sheets[0].addCell(error_);
             } catch (WriteException e) {
-                e.printStackTrace();
+                LOGGER.error(e.getMessage());
             }
             //写入对应sheet之中
             int rowNo = sheets[errorNo + 2].getRows();
@@ -603,7 +621,7 @@ class Res2DB {
                 sheets[errorNo + 2].addCell(index);
                 sheets[errorNo + 2].addCell(name);
             } catch (WriteException e) {
-                e.printStackTrace();
+                LOGGER.error(e.getMessage());
             }
 
         }
@@ -611,9 +629,9 @@ class Res2DB {
             book.write();
             book.close();
         } catch (IOException | WriteException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
-        System.out.println("");
+        LOGGER.info("");
     }
 
 
@@ -635,9 +653,9 @@ class Res2DB {
     //            String url = "jdbc:oracle:thin:@" + host + ":" + port + ":" + dbName;//驱动程序名：@主机名/IP：端口号：数据库实例名
     //            connect = DriverManager.getConnection(url, user, password);
     //        } catch (SQLException e) {
-    //            e.printStackTrace();
+    //            LOGGER.error(e.getMessage());
     //        } catch (ClassNotFoundException e) {
-    //            e.printStackTrace();
+    //            LOGGER.error(e.getMessage());
     //        }
     //    }
 
@@ -645,14 +663,14 @@ class Res2DB {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
         try {
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());//实例化驱动程序类
             String url = "jdbc:oracle:thin:@" + HOST + ":" + PORT_NO + ":" + DB_NAME;//驱动程序名：@主机名/IP：端口号：数据库实例名
             connect = DriverManager.getConnection(url, USERNAME, PASSWORD);
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
     }
 
