@@ -29,7 +29,7 @@ class Res2DB {
      * 文件参数
      **/
     private final static String DB_TXT_PATH = "data\\DB_m_transform_tag_2018-06-29.txt";
-    private int flag = 0;//0 为文件读取
+    private int flag = 1;//0 为文件读取
     /**
      * 数据库参数
      **/
@@ -305,21 +305,20 @@ class Res2DB {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        for (String[] data : resInfo) {
-            if (isEpc(data[0])) {
-                String sql = "UPDATE " + DB_NAME + "." + TABLE_NAME + " SET " + DB_FIELD_NAME[1] + "='" + data[1] +
-                        "', " + DB_FIELD_NAME[2] + "='" + data[2] + "', " + DB_FIELD_NAME[3] + "='" + data[3] + "', "
-                        + DB_FIELD_NAME[4] + "='" + data[4] + "', " + DB_FIELD_NAME[5] + "='" + data[5] + "', " +
-                        DB_FIELD_NAME[6] + "='" + data[6] + "', " + DB_FIELD_NAME[7] + "='" + data[7] + "' " +
-                        "WHERE" + " " + DB_FIELD_NAME[0] + "='" + data[0] + "'";
-                //System.out.println(sql);
+        for (Map.Entry<String, String[]> entry : bookList) {
+            String tagID = entry.getKey();
+            String[] bookInfos = entry.getValue();
+                String bookPlace = locationEncode(bookInfos);
+                String sql = "UPDATE " + DB_NAME + "." + TABLE_NAME + " SET " + "BOOK_PLACE" + "='" + bookPlace +
+                        "' WHERE" + " " + DB_FIELD_NAME[0] + "='" + tagID + "'";
+                System.out.println(sql);
 
                 try {
                     statement.executeUpdate(sql);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-            }
+
         }
         try {
             statement.close();
@@ -394,16 +393,6 @@ class Res2DB {
             for (int i=0;i<labels_.length;i++){
                 sheetErr.addCell(labels_[i]);
             }
-            //sheet.addCell(labTitle_);
-//            sheetErr.addCell(labBookID_);
-//            sheetErr.addCell(labBookIndex_);
-//            sheetErr.addCell(labBookName_);
-//            sheetErr.addCell(labColumnNo_);
-//            sheetErr.addCell(labRowNo_);
-//            sheetErr.addCell(labShelfNo_);
-//            sheetErr.addCell(labLayerNo_);
-//            sheetErr.addCell(labOrderNo_);
-//            sheetErr.addCell(labNum_);
 
 
         } catch (WriteException e) {
@@ -438,15 +427,6 @@ class Res2DB {
                     for (int i=0;i<newLabels_.length;i++){
                         sheet.addCell(newLabels_[i]);
                     }
-//                    //sheet.addCell(labTitle_);
-//                    sheet.addCell(labBookID_);
-//                    sheet.addCell(labBookIndex_);
-//                    sheet.addCell(labBookName_);
-//                    sheet.addCell(labColumnNo_);
-//                    sheet.addCell(labRowNo_);
-//                    sheet.addCell(labShelfNo_);
-//                    sheet.addCell(labLayerNo_);
-//                    sheet.addCell(labOrderNo_);
 
                 } catch (WriteException e) {
                     e.printStackTrace();
@@ -484,14 +464,6 @@ class Res2DB {
                 for (int i=0;i<labels.length;i++){
                     sheet.addCell(labels[i]);
                 }
-//                sheet.addCell(labBookID);
-//                sheet.addCell(labBookIndex);
-//                sheet.addCell(labBookName);
-//                sheet.addCell(labColumnNo);
-//                sheet.addCell(labRowNo);
-//                sheet.addCell(labShelfNo);
-//                sheet.addCell(labLayerNo);
-//                sheet.addCell(labOrderNo);
             } catch (WriteException e) {
                 e.printStackTrace();
             }
@@ -514,14 +486,6 @@ class Res2DB {
                     for (int i=0;i<newLabels.length;i++){
                         sheetErr.addCell(newLabels[i]);
                     }
-//                    sheetErr.addCell(labBookID);
-//                    sheetErr.addCell(labBookIndex);
-//                    sheetErr.addCell(labBookName);
-//                    sheetErr.addCell(labColumnNo);
-//                    sheetErr.addCell(labRowNo);
-//                    sheetErr.addCell(labShelfNo);
-//                    sheetErr.addCell(labLayerNo);
-//                    sheetErr.addCell(labOrderNo);
                 } catch (WriteException e) {
                     e.printStackTrace();
                 }
@@ -536,6 +500,47 @@ class Res2DB {
         }
         System.out.println("报表生成！");
         System.out.println("正在监听...");
+    }
+
+    /**
+     * @brief 将位置信息解码
+     * @param code 位置信息的编码
+     * @return 图书信息数组
+     */
+    public String[] locationDecode(String code){
+        String[] bookPlace = new String[6];
+        bookPlace[0]=code.substring(2,3);
+        bookPlace[1]=code.substring(3,4);
+        bookPlace[2]=code.substring(5,6);
+        for(int i=6;i<12;i++){
+            bookPlace[i/2]=Integer.parseInt(code.substring(i,i+2))+"";
+        }
+        return bookPlace;
+    }
+
+    /**
+     * @brief 将位置信息进行编码
+     * @param bookInfos 图书信息数组
+     * @return 编码字符串
+     */
+    public String locationEncode(String[] bookInfos){
+        StringBuilder code = new StringBuilder("WL");
+        for(int i=BookFieldName.AREANO.getIndex();i<=BookFieldName.LAYERNO.getIndex();i++){
+            if(i==BookFieldName.FLOORNO.getIndex()){
+                code.append(bookInfos[i]).append("F");
+            }
+            else if(i==BookFieldName.AREANO.getIndex()||i==BookFieldName.COLUMNNO.getIndex()){
+                code.append(bookInfos[i]);
+            }
+            else{
+                String tmp = bookInfos[i];
+                if(tmp.length()==1){
+                    tmp = "0"+tmp;
+                }
+                code.append(tmp);
+            }
+        }
+        return code.toString();
     }
 
     public void generateReport() {
