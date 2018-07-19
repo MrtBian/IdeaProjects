@@ -62,7 +62,7 @@ public class WatchFilePath {
                         new File(path + File.separator + fileName).delete();//删除结束标志文件
                         Res2DB res2DB = new Res2DB(resFile);
                         //写回数据库
-//                        res2DB.write2DB();
+                        res2DB.write2DB();
                         res2DB.generateReportTemp();
                         //                        res2DB.generateReport();
                         resFile = "";

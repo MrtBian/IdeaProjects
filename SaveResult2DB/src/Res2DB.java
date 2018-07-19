@@ -30,7 +30,7 @@ class Res2DB {
      * 文件参数
      **/
     private final static String DB_TXT_PATH = "data\\DB_m_transform_tag_2018-06-29.txt";
-    private int flag = 0;//0 为文件读取
+    private int flag = 1;//0 为文件读取
     /**
      * 数据库参数
      **/
@@ -398,7 +398,7 @@ class Res2DB {
         Label labBookIndex_ = new Label(1, 0, "索书号", format1);
         Label labBookName_ = new Label(2, 0, "书名", format1);
         Label labColumnNo_ = new Label(3, 0, "列号", format1);
-        Label labRowNo_ = new Label(4, 0, "行号", format1);
+        Label labRowNo_ = new Label(4, 0, "排号", format1);
         Label labShelfNo_ = new Label(5, 0, "架号", format1);
         Label labLayerNo_ = new Label(6, 0, "层号", format1);
         Label labOrderNo_ = new Label(7, 0, "顺序号", format1);
@@ -435,7 +435,7 @@ class Res2DB {
                 labBookIndex_ = new Label(1, 0, "索书号", format1);
                 labBookName_ = new Label(2, 0, "书名", format1);
                 labColumnNo_ = new Label(3, 0, "列号", format1);
-                labRowNo_ = new Label(4, 0, "行号", format1);
+                labRowNo_ = new Label(4, 0, "排号", format1);
                 labShelfNo_ = new Label(5, 0, "架号", format1);
                 labLayerNo_ = new Label(6, 0, "层号", format1);
                 labOrderNo_ = new Label(7, 0, "顺序号", format1);
