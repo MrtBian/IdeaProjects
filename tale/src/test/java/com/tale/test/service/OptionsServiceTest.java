@@ -2,7 +2,7 @@ package com.tale.test.service;
 
 import com.blade.ioc.annotation.Inject;
 import com.tale.service.OptionsService;
-import com.tale.test.BaseTest;
+import com.tale.test.ALLTests;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -10,7 +10,7 @@ import org.junit.Test;
  * @author biezhi
  * @date 2018/6/3
  */
-public class OptionsServiceTest extends BaseTest {
+public class OptionsServiceTest extends ALLTests {
 
     @Inject
     private OptionsService optionsService;

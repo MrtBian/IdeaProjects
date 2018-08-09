@@ -114,7 +114,7 @@ public class CommentsService {
     }
 
     private Comment apply(Comments parent) {
-        Comment        comment  = new Comment(parent);
+        Comment comment  = new Comment(parent);
         List<Comments> children = new ArrayList<>();
         getChildren(children, comment.getCoid());
         comment.setChildren(children);
