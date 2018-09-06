@@ -8,7 +8,13 @@ import java.io.InputStream;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 
-public class FTPTool {
+/**
+ * FTP工具类
+ *
+ * @author Wing
+ * @date 2018.07.19
+ */
+public class FtpTool {
 
     /**
      * Description: 向FTP服务器上传文件
@@ -20,8 +26,7 @@ public class FTPTool {
      * @param path     FTP服务器保存目录
      * @param filename 上传到FTP服务器上的文件名
      * @param input    输入流
-     * @return 成功返回true，否则返回false *
-     * @Version 1.0
+     * @return 成功返回true，否则返回false
      */
     public static boolean uploadFile(String url,
                                      int port,
@@ -36,13 +41,15 @@ public class FTPTool {
         ftp.setControlEncoding("UTF-8");
         try {
             int reply;
-            ftp.connect(url, port);// 连接FTP服务器
+            // 连接FTP服务器
             // 如果采用默认端口，可以使用ftp.connect(url)的方式直接连接FTP服务器
-            ftp.login(username, password);// 登录
+            ftp.connect(url, port);
+            // 登录
+            ftp.login(username, password);
             reply = ftp.getReplyCode();
             if (!FTPReply.isPositiveCompletion(reply)) {
                 ftp.disconnect();
-                return success;
+                return false;
             }
             ftp.setFileType(FTPClient.BINARY_FILE_TYPE);
             ftp.makeDirectory(path);
@@ -74,8 +81,7 @@ public class FTPTool {
      * @param password      FTP登录密码
      * @param path          FTP服务器保存目录
      * @param filename      上传到FTP服务器上的文件名
-     * @param orginfilename 输入流文件名
-     * @return 成功返回true，否则返回false *
+     * @param originFilename 输入流文件名
      */
     public static void upLoadFromProduction(String url,
                                             int port,
@@ -83,10 +89,10 @@ public class FTPTool {
                                             String password,
                                             String path,
                                             String filename,
-                                            String orginfilename
+                                            String originFilename
     ) {
         try {
-            FileInputStream in = new FileInputStream(new File(orginfilename));
+            FileInputStream in = new FileInputStream(new File(originFilename));
             boolean flag = uploadFile(url, port, username, password, path, filename, in);
             System.out.println(flag);
         } catch (Exception e) {
@@ -94,8 +100,10 @@ public class FTPTool {
         }
     }
 
-    //测试
+    /**
+     * 测试
+     */
     public static void main(String[] args) {
-        upLoadFromProduction("192.168.13.32", 21, "hanshibo", "han", "韩士波测试", "hanshibo.doc", "E:/temp/H2数据库使用.doc");
+        upLoadFromProduction("192.168.13.32", 21, "name", "han", "韩士波测试", "name.doc", "E:/temp/H2数据库使用.doc");
     }
 }

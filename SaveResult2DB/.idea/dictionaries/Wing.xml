@@ -2,7 +2,24 @@
   <dictionary name="Wing">
     <words>
       <w>abcdefghijklmnopqrstuvwxyz</w>
+      <w>addivity</w>
+      <w>areano</w>
+      <w>autopd</w>
+      <w>columnno</w>
+      <w>errorflag</w>
       <w>fieldnum</w>
+      <w>floorno</w>
+      <w>indexs</w>
+      <w>infos</w>
+      <w>layerno</w>
+      <w>name</w>
+      <w>orderno</w>
+      <w>otherno</w>
+      <w>rowno</w>
+      <w>shelfno</w>
+      <w>strs</w>
+      <w>tagid</w>
+      <w>tooker</w>
     </words>
   </dictionary>
 </component>

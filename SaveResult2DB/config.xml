@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration> 
+  <bookInfo> 
+    <!--是否启用txt数据库-->  
+    <enableTxt>true</enableTxt>
+    <!--数据库配置-->  
+    <databaseConfig> 
+      <host>202.114.65.49</host>  
+      <portNo>1521</portNo>  
+      <databaseName>RFID</databaseName>  
+      <tableName>m_transform_tag</tableName>  
+      <username>autopd</username>  
+      <password>123456</password> 
+    </databaseConfig>  
+    <!--Txt配置-->  
+    <databaseTxtConfig> 
+      <txtPath>data\DB_m_transform_tag_2018-06-29.txt</txtPath> 
+    </databaseTxtConfig> 
+  </bookInfo>  
+  <watchFilePath>\Tooker\result</watchFilePath>  
+  <updateDatabase>false</updateDatabase>
+  <isFirst>true</isFirst>
+</configuration>
