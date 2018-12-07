@@ -1,0 +1,340 @@
+/*!
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+
+.client-details .client-designation {
+    display: none;
+}
+
+.bg-white {
+    background: white;
+}
+
+.bg-black {
+    background: black;
+}
+
+.btn-more {
+    text-align: right;
+    padding-top: 10px;
+}
+
+.client-details {
+    margin: 10px;
+}
+
+.client-details a p {
+    color: #73116f;
+    text-decoration: none;
+}
+
+.col-md-2_3 {
+    position: center;
+    min-height: 100px;
+    padding-right: 0px;
+    padding-left: 0px;
+    /*float: left;*/
+    display: inline-block;
+    vertical-align:top;
+    width: 12.5%;
+}
+
+.des-img {
+    height: 100px;
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 10px;
+}
+
+.display-inline {
+    display: inline;
+}
+
+.div-image {
+    height: 53px;
+    width: 100%;
+}
+
+.div-image-top {
+    height: 22px;
+    width: 100%;
+}
+#shelf .div-image {
+    height: 106px;
+    width: 100%;
+}
+
+#shelf .div-image-top {
+    height: 44px;
+    width: 100%;
+}
+
+.float-left {
+    float: left;
+}
+
+.font-content {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.img-big {
+    width: 400px;
+    height: 300px;
+    align-self: center;
+}
+
+.img-book {
+    height: 50px;
+    width: auto;
+    margin: 0px auto auto 20px;
+}
+
+.img_bg {
+    height: 600px;
+}
+
+.img-home {
+    height: 450px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.img-people {
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    margin-right: 15px;
+}
+
+.img-shelf{
+    float: left;
+    height: 100%;
+    width: 100%;
+    margin-bottom: -58px;
+}
+
+.img-small {
+    width: 50px;
+    height: 50px;
+}
+
+#inputContext1 {
+    height: 100px;
+    border-radius: 10px;
+}
+
+.item-time {
+    text-align: right;
+}
+
+.item-title {
+    color: #5a5a5a;
+    font-size: 1.5em;
+}
+
+.item-title-small {
+    color: #5a5a5a;
+}
+
+.name {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.999em;
+    color: #433b88;
+    font-weight: 600;
+}
+
+.text-col {
+    font-family: "楷体";
+    font-size: 1.5em;
+    color: #433b88;
+    font-weight: 600;
+}
+
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 9px 10px;
+}
+
+.navbar-brand {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 48px;
+}
+
+.navbar-default .navbar-nav > li > a {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #752668;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+.nav-people {
+    position: fixed;
+    /*因为是一个全页面的竖排导航，所以必须设置为固定定位*/
+    /*同时因为固定定位是把标签从文档中直接拿出来，所以布局其他元素时要用margin留出外边距，
+               必要时可以设置导航栏为固定宽度保证不会出现白边*/
+    /*让导航栏与页面同高*/
+    top: 204px;
+    left: 10px;
+    /*设置了固定定位后这两个属性才起作用*/
+}
+
+.nav-people a {
+    /*设置每个a标记的display属性为block，这样方便控制每个a标记的样式*/
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #ffffff;
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+}
+
+.nav-people a:hover {
+    background-color: #854236;
+}
+
+.nav-people a:active {
+    box-shadow: -1px 0.5px 4px 1px #777 inset;
+    background-color: #833683;
+}
+
+.margin-10 {
+    margin: 10px;
+}
+
+.padding-30 {
+    padding: 30px;
+}
+
+.padding-0 {
+    padding: 0px;
+}
+
+.padding-left-30 {
+    padding-left: 30px;
+}
+
+.padding-right-30 {
+    padding-right: 30px;
+}
+
+/* 顶部导航条大小设置 */
+
+.padding-header {
+    padding-top: 90px;
+}
+
+@media (min-width: 767px) {
+    .padding-header {
+        padding-top: 120px;
+    }
+}
+
+@media (min-width: 992px) {
+    .padding-header {
+        padding-top: 90px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .padding-header {
+        padding-top: 90px;
+    }
+}
+
+.page-name {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.999em;
+    color: #433b88;
+    font-weight: 600;
+}
+
+.people {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+#pic_news {
+    overflow: hidden;
+}
+
+#pic_news > img {
+    text-align: center
+}
+
+@media (max-width: 768px) {
+    #pic_news {
+        overflow: hidden;
+        width: 100%;
+    }
+
+    #pic_news > img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.table-attribute {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 20px;
+    color: rgb(30, 100, 206);
+    padding: 5px 10px;
+}
+
+.text-bold {
+    font-weight: bolder;
+}
+
+.text-black {
+    color: #222;
+}
+
+@media (max-width: 992px) {
+    .nav-people {
+        display: none;
+    }
+
+    .nav-people a {
+        font-size: 8px;
+    }
+}
+
+/*leader 特殊设置，与其他风格保持一致*/
+
+.leader {
+    width: 50%;
+}
+
+@media (min-width: 768px) {
+    .leader {
+        width: 50%;
+    }
+}
+
+@media (min-width: 992px) {
+    .leader {
+        width: 33.33333333%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .leader {
+        width: 25%;
+    }
+}

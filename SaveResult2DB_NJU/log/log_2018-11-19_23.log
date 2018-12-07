@@ -1,0 +1,4 @@
+23:29:48,648  INFO MyLogger:main.Res2Database.write2DB(Res2Database.java:311) : UPDATE BOOKCOPY SET updatetime='2018-11-19_08:40:37', check_level='W 4 3 10 7 3', BOOK_ORDER_NO=0 WHERE BARCODE='5862580'
+23:29:48,832  INFO MyLogger:main.Res2Database.write2DB(Res2Database.java:311) : UPDATE BOOKCOPY SET updatetime='2018-11-19_08:40:37', check_level='W 4 1 13 2 1', BOOK_ORDER_NO=0 WHERE BARCODE='00184168'
+23:29:48,962  INFO MyLogger:main.Res2Database.write2DB(Res2Database.java:311) : UPDATE BOOKCOPY SET updatetime='2018-11-19_08:40:37', check_level='W 4 3 17 5 4', BOOK_ORDER_NO=0 WHERE BARCODE='10000335'
+23:29:49,097  INFO MyLogger:main.Res2Database.write2DB(Res2Database.java:311) : UPDATE BOOKCOPY SET updatetime='2018-11-19_08:40:37', check_level='W 4 2 5 3 2', BOOK_ORDER_NO=0 WHERE BARCODE='10002243'

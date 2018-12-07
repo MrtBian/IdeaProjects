@@ -1,0 +1,3 @@
+20:31:07,159  INFO MyLogger:main.WatchFilePath.handleEvents(WatchFilePath.java:52) : 正在监听文件夹：C:\Users\Wing\Desktop\Tooker\result
+20:35:28,299  INFO MyLogger:main.WatchFilePath.handleEvents(WatchFilePath.java:52) : 正在监听文件夹：C:\Users\Wing\Desktop\Tooker\result
+20:51:43,813  INFO MyLogger:main.WatchFilePath.handleEvents(WatchFilePath.java:52) : 正在监听文件夹：C:\Users\Wing\Desktop\演示软件\Debug\result

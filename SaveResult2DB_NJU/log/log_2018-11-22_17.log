@@ -1,0 +1,8 @@
+17:01:18,287  INFO MyLogger:main.Res2Database.write2DB(Res2Database.java:384) : 已更新48000
+17:03:38,615  INFO MyLogger:main.Res2Database.write2DB(Res2Database.java:384) : 已更新49000
+17:05:59,389  INFO MyLogger:main.Res2Database.write2DB(Res2Database.java:384) : 已更新50000
+17:08:19,660  INFO MyLogger:main.Res2Database.write2DB(Res2Database.java:384) : 已更新51000
+17:10:24,860  INFO MyLogger:main.Res2Database.write2DB(Res2Database.java:384) : 已更新52000
+17:12:13,319  INFO MyLogger:main.Res2Database.write2DB(Res2Database.java:384) : 已更新53000
+17:14:00,296  INFO MyLogger:main.Res2Database.write2DB(Res2Database.java:384) : 已更新54000
+17:15:14,401  INFO MyLogger:main.Res2Database.write2DB(Res2Database.java:390) : 数据库更新完成

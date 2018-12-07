@@ -4,6 +4,11 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
     <option name="ANALYZE_TEST_SOURCES" value="false" />
   </component>
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="SaveResult2DB:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/src/utils/MyLogger.java" line="4" />
     <bookmark url="file://$PROJECT_DIR$/src/main/BookIndex.java" line="37" />
@@ -17,6 +22,9 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/SaveResult2DB$WatchFilePath.coverage" NAME="WatchFilePath Coverage Results" MODIFIED="1543149559622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -34,7 +42,7 @@
       <file leaf-file-name="Config.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/utils/Config.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
+            <state relative-caret-position="1632">
               <caret line="103" column="23" lean-forward="false" selection-start-line="103" selection-start-column="8" selection-end-line="103" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -46,11 +54,10 @@
       <file leaf-file-name="Res2Database.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Res2Database.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="214" column="38" lean-forward="true" selection-start-line="214" selection-start-column="38" selection-end-line="214" selection-end-column="38" />
+            <state relative-caret-position="-51">
+              <caret line="445" column="9" lean-forward="true" selection-start-line="445" selection-start-column="9" selection-end-line="445" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#getResInfo#0;class#Res2Database#0" expanded="false" />
                 <element signature="method#generateReportTemp#0;class#Res2Database#0" expanded="false" />
                 <marker date="1536231275413" expanded="true" signature="6727:6815" ph="UPDATE RFID.... " />
                 <marker date="1536231275413" expanded="true" signature="9365:9400" ph="SELECT TAG_I... m_transform_tag" />
@@ -72,7 +79,7 @@
       <file leaf-file-name="FileUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/utils/FileUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
+            <state relative-caret-position="1020">
               <caret line="63" column="82" lean-forward="false" selection-start-line="63" selection-start-column="76" selection-end-line="63" selection-end-column="82" />
               <folding />
             </state>
@@ -83,7 +90,7 @@
         <entry file="file://$PROJECT_DIR$/config.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
-              <caret line="22" column="25" lean-forward="true" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="25" />
+              <caret line="22" column="25" lean-forward="false" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -92,7 +99,7 @@
       <file leaf-file-name="BookIndex.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/BookIndex.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
+            <state relative-caret-position="3298">
               <caret line="199" column="31" lean-forward="false" selection-start-line="199" selection-start-column="31" selection-end-line="199" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -104,8 +111,8 @@
       <file leaf-file-name="WatchFilePath.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/WatchFilePath.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="32" column="31" lean-forward="true" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+            <state relative-caret-position="322">
+              <caret line="131" column="29" lean-forward="true" selection-start-line="131" selection-start-column="29" selection-end-line="131" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#handleEvents#0;class#WatchFilePath#0" expanded="false" />
@@ -164,8 +171,8 @@
         <option value="$PROJECT_DIR$/src/main/BookIndex.java" />
         <option value="$PROJECT_DIR$/src/utils/Config.java" />
         <option value="$PROJECT_DIR$/config.xml" />
-        <option value="$PROJECT_DIR$/src/main/WatchFilePath.java" />
         <option value="$PROJECT_DIR$/src/main/Res2Database.java" />
+        <option value="$PROJECT_DIR$/src/main/WatchFilePath.java" />
       </list>
     </option>
   </component>
@@ -224,19 +231,19 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="AndroidView" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../FirstWrite" />
     <property name="SearchEverywhereHistoryKey" value="javadoc&#9;ACTION&#9;GenerateJavadoc&#10;encoding&#9;ACTION&#9;ChangeFileEncodingAction" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="last.edited.regexp" value="" />
@@ -433,11 +440,17 @@
       <workItem from="1536115275327" duration="4028000" />
       <workItem from="1536148200078" duration="7037000" />
       <workItem from="1536216123668" duration="9897000" />
+      <workItem from="1536419826436" duration="453000" />
+      <workItem from="1539081305828" duration="299000" />
+      <workItem from="1539336684887" duration="38000" />
+      <workItem from="1542078120924" duration="190000" />
+      <workItem from="1542875966535" duration="357000" />
+      <workItem from="1543149514609" duration="650000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74846000" />
+    <option name="totallyTimeSpent" value="76833000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -452,8 +465,9 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32762313" sideWeight="0.50291973" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33510074" sideWeight="0.4970803" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -463,8 +477,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39448568" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Jindent" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -513,7 +527,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#getResInfo#0;class#Res2Database#0" expanded="false" />
             <element signature="method#generateReportTemp#0;class#Res2Database#0" expanded="false" />
             <marker date="1536231275413" expanded="true" signature="6727:6815" ph="UPDATE RFID.... " />
             <marker date="1536231275413" expanded="true" signature="9365:9400" ph="SELECT TAG_I... m_transform_tag" />
@@ -555,7 +568,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#getResInfo#0;class#Res2Database#0" expanded="false" />
             <element signature="method#generateReportTemp#0;class#Res2Database#0" expanded="false" />
             <marker date="1536231275413" expanded="true" signature="6727:6815" ph="UPDATE RFID.... " />
             <marker date="1536231275413" expanded="true" signature="9365:9400" ph="SELECT TAG_I... m_transform_tag" />
@@ -597,7 +609,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#getResInfo#0;class#Res2Database#0" expanded="false" />
             <element signature="method#generateReportTemp#0;class#Res2Database#0" expanded="false" />
             <marker date="1536231275413" expanded="true" signature="6727:6815" ph="UPDATE RFID.... " />
             <marker date="1536231275413" expanded="true" signature="9365:9400" ph="SELECT TAG_I... m_transform_tag" />
@@ -639,7 +650,6 @@
           <caret line="124" column="32" lean-forward="false" selection-start-line="124" selection-start-column="28" selection-end-line="124" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#getResInfo#0;class#Res2Database#0" expanded="false" />
             <element signature="method#generateReportTemp#0;class#Res2Database#0" expanded="false" />
             <marker date="1536231275413" expanded="true" signature="6727:6815" ph="UPDATE RFID.... " />
             <marker date="1536231275413" expanded="true" signature="9365:9400" ph="SELECT TAG_I... m_transform_tag" />
@@ -670,7 +680,6 @@
           <caret line="13" column="18" lean-forward="false" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#getResInfo#0;class#Res2Database#0" expanded="false" />
             <element signature="method#generateReportTemp#0;class#Res2Database#0" expanded="false" />
             <marker date="1536231275413" expanded="true" signature="6727:6815" ph="UPDATE RFID.... " />
             <marker date="1536231275413" expanded="true" signature="9365:9400" ph="SELECT TAG_I... m_transform_tag" />
@@ -701,7 +710,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#getResInfo#0;class#Res2Database#0" expanded="false" />
             <element signature="method#generateReportTemp#0;class#Res2Database#0" expanded="false" />
             <marker date="1536231275413" expanded="true" signature="6727:6815" ph="UPDATE RFID.... " />
             <marker date="1536231275413" expanded="true" signature="9365:9400" ph="SELECT TAG_I... m_transform_tag" />
@@ -725,7 +733,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#getResInfo#0;class#Res2Database#0" expanded="false" />
             <element signature="method#generateReportTemp#0;class#Res2Database#0" expanded="false" />
             <marker date="1536231275413" expanded="true" signature="6727:6815" ph="UPDATE RFID.... " />
             <marker date="1536231275413" expanded="true" signature="9365:9400" ph="SELECT TAG_I... m_transform_tag" />
@@ -750,7 +757,6 @@
           <caret line="522" column="44" lean-forward="true" selection-start-line="522" selection-start-column="3" selection-end-line="522" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#getResInfo#0;class#Res2Database#0" expanded="false" />
             <element signature="method#generateReportTemp#0;class#Res2Database#0" expanded="false" />
             <marker date="1536231275413" expanded="true" signature="6727:6815" ph="UPDATE RFID.... " />
             <marker date="1536231275413" expanded="true" signature="9365:9400" ph="SELECT TAG_I... m_transform_tag" />
@@ -830,13 +836,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data/DB_m_transform_tag_2018-06-29.txt" />
     <entry file="file://$PROJECT_DIR$/File.log" />
-    <entry file="file://$PROJECT_DIR$/my.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="3284" column="40" lean-forward="false" selection-start-line="3284" selection-start-column="28" selection-end-line="3284" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/my.log" />
     <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -882,13 +882,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="24" column="30" lean-forward="false" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/FileUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
+        <state relative-caret-position="1020">
           <caret line="63" column="82" lean-forward="false" selection-start-line="63" selection-start-column="76" selection-end-line="63" selection-end-column="82" />
           <folding />
         </state>
@@ -896,8 +895,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/Config.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
+        <state relative-caret-position="1632">
           <caret line="103" column="23" lean-forward="false" selection-start-line="103" selection-start-column="8" selection-end-line="103" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="25" lean-forward="false" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/BookIndex.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3298">
+          <caret line="199" column="31" lean-forward="false" selection-start-line="199" selection-start-column="31" selection-end-line="199" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -906,11 +923,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Res2Database.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="214" column="38" lean-forward="true" selection-start-line="214" selection-start-column="38" selection-end-line="214" selection-end-column="38" />
+        <state relative-caret-position="-51">
+          <caret line="445" column="9" lean-forward="true" selection-start-line="445" selection-start-column="9" selection-end-line="445" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#getResInfo#0;class#Res2Database#0" expanded="false" />
             <element signature="method#generateReportTemp#0;class#Res2Database#0" expanded="false" />
             <marker date="1536231275413" expanded="true" signature="6727:6815" ph="UPDATE RFID.... " />
             <marker date="1536231275413" expanded="true" signature="9365:9400" ph="SELECT TAG_I... m_transform_tag" />
@@ -928,28 +944,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="25" lean-forward="true" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/BookIndex.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="199" column="31" lean-forward="false" selection-start-line="199" selection-start-column="31" selection-end-line="199" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/WatchFilePath.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="32" column="31" lean-forward="true" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+        <state relative-caret-position="322">
+          <caret line="131" column="29" lean-forward="true" selection-start-line="131" selection-start-column="29" selection-end-line="131" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#handleEvents#0;class#WatchFilePath#0" expanded="false" />
